@@ -42,6 +42,7 @@ ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget stat
 ss.setdefault("dialog_open", False)
 ss.setdefault("prijs_dialog_payload", None)  # (material)
 ss.setdefault("events_epoch", 0)
+ss.selected_material = None
 ss.clicks = None
 
 # ---- shared layout so axes are fully visible and consistent
@@ -109,7 +110,7 @@ def make_levzeker_bar_figure(x_labels: tuple, y_vals: tuple, C_LAYOUT):
                      hovertemplate="<b>%{x}</b><br>Zekerheid: %{y:.1f}<extra></extra>")]
     )
     fig.update_layout(
-        height=CHART_HEIGHT, xaxis_title=None, yaxis_title="Index", showlegend=False, bargap=0.35,
+        height=CHART_HEIGHT, xaxis_title=None, yaxis_title="Index", showlegend=False,
         **C_LAYOUT
     )
     return fig
@@ -222,10 +223,6 @@ def tile_leveringszekerheid(df_now: pd.DataFrame):
     if ss.clicks2:
         mat = ss.clicks2[0].get("x")
         if mat:
-            try:
-                st.query_params.update({"materiaal": str(mat)})
-            except Exception:
-                pass
             st.switch_page("pages/02_Leveringszekerheid.py")
 
 def tile_klantvraag_image(image_path: str, target_page: str):

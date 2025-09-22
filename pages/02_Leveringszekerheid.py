@@ -4,21 +4,24 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
+ss = st.session_state 
+
+# Read query param robustly
+def get_param(name: str, default: str = "") -> str:
+    qp = st.query_params
+    val = qp.get(name)
+    if isinstance(val, list):  # older behavior sometimes returns list
+        val = val[0] if val else default
+    return val or default
+
 st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
 
 st.title("Leveringszekerheid — Wereldkaart")
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
 # Read selected materiaal from query params (or fallback)
-params = {}
-try:
-    params = dict(st.query_params)
-except Exception:
-    pass
-materiaal = (params.get("materiaal") if isinstance(params.get("materiaal"), str)
-             else (params.get("materiaal", [""])[0] if params.get("materiaal") else "")) or "Onbekend"
 
-st.caption(f"Gefilterd op materiaal: **{materiaal}**")
+st.caption(f"Gefilterd op materiaal: **{ss.clicks2[0].get('x')}**")
 
 # Demo data — replace with your real geo/materials feed
 rng = np.random.default_rng(2)
