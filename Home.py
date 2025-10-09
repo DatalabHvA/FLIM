@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
 from datetime import datetime, timedelta
@@ -124,6 +125,61 @@ def make_prijs_line_dialog_figure(sel_hist_df: pd.DataFrame):
                        xaxis_title=None, yaxis_title="%", showlegend=False)
     return line
 
+# --- Heatmap data (labels + values). Replace with your real source.
+@st.cache_data(show_spinner=False)
+def get_heatmap_series(seed: int = 7):
+    wetgeving = pd.DataFrame({'label' : ['EUDR [2025]','ESPR [2026]', 'Right to repair directive [2026]', 'Plastics Norm [2026]', 'REACH [2007]', '(indrect via keten)'],
+                             'value' : [1,2,3,4,5,6]})
+    return wetgeving
+
+# --- Heatmap figure (single column, many rows)
+@st.cache_data(show_spinner=False)
+def make_single_col_heatmap(labels: tuple, values: tuple, height: int = CHART_HEIGHT):
+    import plotly.graph_objects as go
+
+    # Reshape z and y
+    z = [[value] for value in values]
+    text = [[label] for label in labels]
+
+    # Base heatmap (no text)
+    heatmap = go.Heatmap(
+        z=z,
+        x=[""],
+        y=labels,
+        colorscale="RdYlGn",
+        reversescale=True,
+        showscale=False,
+        hoverinfo = 'none'
+    )
+
+    # Overlay text as scatter
+    scatter = go.Scatter(
+        x=[""]*len(labels),     # position text in center of each cell
+        y=labels,
+        mode="text",
+        text=labels,
+        textfont=dict(size=12, color="black"),
+        hoverinfo="none",
+        showlegend=False,
+    )
+
+    fig = go.Figure(data=[heatmap, scatter])
+
+    fig.update_yaxes(
+        autorange="reversed", showticklabels=False, showgrid=False, zeroline=False
+    )
+    fig.update_xaxes(
+        showticklabels=False, showgrid=False, zeroline=False
+    )
+    fig.update_layout(
+        template="plotly_white",
+        height=height,
+        xaxis_title=None,
+        yaxis_title=None,
+        margin=dict(t=40, b=30, l=50, r=20),
+    )
+
+    return fig
 # ---------- Sidebar Filters ----------
 with st.sidebar:
     st.header("Filters")
@@ -223,6 +279,7 @@ def tile_leveringszekerheid(df_now: pd.DataFrame):
     if ss.clicks2:
         mat = ss.clicks2[0].get("x")
         if mat:
+            ss.selected_material = mat
             st.switch_page("pages/02_Leveringszekerheid.py")
 
 def tile_klantvraag_image(image_path: str, target_page: str):
@@ -243,6 +300,30 @@ def tile_klantvraag_image(image_path: str, target_page: str):
         unsafe_allow_html=True
     )
 
+def tile_heatmap_to_page(df, target_page: str):
+    with st.container(border=False):
+        st.subheader("Wet- en regelgeving")
+        st.caption("Klik op een item om details te openen.")
+        labels = tuple(df["label"].tolist())
+        values = tuple(df["value"].tolist())
+        fig = make_single_col_heatmap(labels, values, height=CHART_HEIGHT)
+
+        clicks = plotly_events(
+            fig,
+            click_event=True, hover_event=False, select_event=False,
+            override_height=CHART_HEIGHT+40, override_width="100%",
+            key=f"evt_heatmap_{st.session_state.events_epoch}",
+        )
+        if clicks:
+            # For Heatmap, Plotly returns y = row label (our 'label')
+            sel_label = clicks[0].get("y")
+            if sel_label:
+                # Robust: set session state and (best-effort) URL param
+                st.session_state["heatmap_label"] = sel_label
+                st.write(sel_label)
+                st.switch_page(target_page)
+
+
 # ---------- Layout: 3 tiles in one row ----------
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 
@@ -252,3 +333,9 @@ with col3:tile_klantvraag_image(
             image_path="assets/klantvraag.png",
             target_page="/Klantvraag"
         )
+    
+# Second row: put the heatmap in the FIRST column
+h1, h2, h3 = st.columns(3, gap="small", border = True)
+with h1:
+    heat_df = get_heatmap_series()
+    tile_heatmap_to_page(heat_df, "pages/04_wet_regelgeving.py")

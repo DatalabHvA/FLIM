@@ -6,14 +6,6 @@ import plotly.express as px
 
 ss = st.session_state 
 
-# Read query param robustly
-def get_param(name: str, default: str = "") -> str:
-    qp = st.query_params
-    val = qp.get(name)
-    if isinstance(val, list):  # older behavior sometimes returns list
-        val = val[0] if val else default
-    return val or default
-
 st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
 
 st.title("Leveringszekerheid — Wereldkaart")
