@@ -146,7 +146,7 @@ def make_single_col_heatmap(labels: tuple, values: tuple, height: int = CHART_HE
         z=z,
         x=[""],
         y=labels,
-        colorscale="RdYlGn",
+        colorscale="reds",
         reversescale=True,
         showscale=False,
         hoverinfo = 'none'
@@ -176,7 +176,7 @@ def make_single_col_heatmap(labels: tuple, values: tuple, height: int = CHART_HE
         height=height,
         xaxis_title=None,
         yaxis_title=None,
-        margin=dict(t=40, b=30, l=50, r=20),
+        margin=dict(t=40, b=30, l=30, r=0),
     )
 
     return fig
