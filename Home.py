@@ -117,13 +117,44 @@ def make_levzeker_bar_figure(x_labels: tuple, y_vals: tuple, C_LAYOUT):
     return fig
 
 @st.cache_data(show_spinner=False)
-def make_prijs_line_dialog_figure(sel_hist_df: pd.DataFrame):
-    line = go.Figure()
-    line.add_trace(go.Scatter(x=sel_hist_df["datum"], y=sel_hist_df["prijsstijging_pct"], mode="lines+markers",
-                              hovertemplate="%{x|%d-%m-%Y}: %{y:.1f}%<extra></extra>"))
-    line.update_layout(height=360, margin=dict(l=10, r=10, t=10, b=10),
-                       xaxis_title=None, yaxis_title="%", showlegend=False)
-    return line
+def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
+    
+    fig = go.Figure()
+
+    # add each line
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in klantvraag_df['Jaar']],
+        y=[float(x) for x in klantvraag_df['Duurzame meubels (CAGR 2,8%)']],
+        mode='lines+markers',
+        name='Duurzame meubels (CAGR 2,8%)',
+        line=dict(color='red', width=3),
+        marker=dict(size=6)
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in klantvraag_df['Jaar']],
+        y=[float(x) for x in klantvraag_df['Traditionele meubels (CAGR 7,3%)']],
+        mode='lines+markers',
+        name='Traditionele meubels (CAGR 7,3%)',
+        line=dict(color='green', width=3),
+        marker=dict(size=6)
+    ))
+
+    # layout tweaks
+    fig.update_layout(
+        xaxis_title="Jaar",
+        yaxis_title="Index (2023 = 100)",
+        template="plotly_white",
+        **COMMON_LAYOUT,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="center",
+            x=0.5
+        )
+    )
+    return fig
 
 # --- Heatmap data (labels + values). Replace with your real source.
 @st.cache_data(show_spinner=False)
@@ -210,6 +241,11 @@ with st.sidebar:
 prijs_now_df   = get_prijs_snapshot(tuple(materials))      # cache key: selected materials
 prijs_hist_df  = get_prijs_history(tuple(materials))
 levzeker_df    = get_levzeker(tuple(materials))
+klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                              'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
+                              'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+
+
 
 # ---------- Tiles ----------
 
@@ -282,23 +318,22 @@ def tile_leveringszekerheid(df_now: pd.DataFrame):
             ss.selected_material = mat
             st.switch_page("pages/02_Leveringszekerheid.py")
 
-def tile_klantvraag_image(image_path: str, target_page: str):
-    st.subheader("Klantvraag")
-    st.caption("Klik op de figuur voor de klantvraag detailpagina.")
+def tile_klantvraag(df, target_page: str):
+    with st.container(border=False):
+        st.subheader("Klantvraag")
+        st.caption("Klik op de grafiek om details te openen.")
+        fig = make_klantvraag_scatter(df)
+        clicks = plotly_events(
+            fig,
+            click_event=True, hover_event=False, select_event=False,
+            override_height=CHART_HEIGHT, override_width="100%",
+            key=f"evt_klantvraag_{st.session_state.events_epoch}",
+        )
+        if clicks:
+            # For Heatmap, Plotly returns y = row label (our 'label')
+            st.switch_page(target_page)
 
-    def img_to_base64(path):
-        return base64.b64encode(Path(path).read_bytes()).decode()
 
-    img_b64 = img_to_base64("assets/klantvraag.png")
-    st.markdown(
-        f"""
-        <a href="{target_page}" target="_self">
-            <img id="centerimage" src="data:image/png;base64,{img_b64}" style="width:110%; height:{CHART_HEIGHT*0.8}px;
-                          margin-top:40px;">
-        </a>
-        """,
-        unsafe_allow_html=True
-    )
 
 def tile_heatmap_to_page(df, target_page: str):
     with st.container(border=False):
@@ -329,10 +364,7 @@ col1, col2, col3 = st.columns(3, gap="small", border = True)
 
 with col1: tile_prijsstijgingen(prijs_now_df, prijs_hist_df)
 with col2: tile_leveringszekerheid(levzeker_df)
-with col3:tile_klantvraag_image(
-            image_path="assets/klantvraag.png",
-            target_page="/Klantvraag"
-        )
+with col3: tile_klantvraag(klantvraag_df, target_page="pages/03_Klantvraag.py")
     
 # Second row: put the heatmap in the FIRST column
 h1, h2, h3 = st.columns(3, gap="small", border = True)
