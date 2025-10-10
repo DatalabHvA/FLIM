@@ -8,7 +8,7 @@ sys.path.append("..")
 
 from Home import make_klantvraag_scatter
 
-st.set_page_config(page_title="Klantvraag • Analyse", layout="wide")
+st.set_page_config(page_title="Klantvraag • Analyse", layout="wide", initial_sidebar_state="collapsed")
 
 st.page_link("Home.py", label="⬅ Terug naar Home")
 st.title("Klantvraag — Analyse")
