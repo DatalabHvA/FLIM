@@ -1,3 +1,4 @@
 plotly
 streamlit_plotly_events
 openpyxl
+statsmodels
