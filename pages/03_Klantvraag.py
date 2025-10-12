@@ -8,10 +8,26 @@ sys.path.append("..")
 
 from Home import make_klantvraag_scatter
 
-st.set_page_config(page_title="Klantvraag • Analyse", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Klantvraag • Analyse", layout="wide")
 
-st.page_link("Home.py", label="⬅ Terug naar Home")
+hide_sidebar = """
+    <style>
+        [data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="stSidebarNav"] {
+            display: none !important;
+        }
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+    </style>
+"""
+st.markdown(hide_sidebar, unsafe_allow_html=True)
+
 st.title("Klantvraag — Analyse")
+st.page_link("Home.py", label="⬅ Terug naar Home")
+
 st.write("Belangrijke risico's en kansen in de markt")
 
 klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],

@@ -8,12 +8,27 @@ ss = st.session_state
 
 st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
 
+hide_sidebar = """
+    <style>
+        [data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="stSidebarNav"] {
+            display: none !important;
+        }
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+    </style>
+"""
+st.markdown(hide_sidebar, unsafe_allow_html=True)
+
 st.title("Leveringszekerheid — Wereldkaart")
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
 # Read selected materiaal from query params (or fallback)
 
-st.caption(f"Gefilterd op materiaal: **{ss.clicks2[0].get('x')}**")
+st.caption(f"Gefilterd op materiaal: **{ss.selected_material_geo}**")
 
 # Demo data — replace with your real geo/materials feed
 rng = np.random.default_rng(2)
