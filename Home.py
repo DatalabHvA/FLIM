@@ -41,9 +41,17 @@ st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
 ss.prijzen_df = pd.read_excel('data/prijzen.xlsx')
-if 'selected_materials' not in st.session_state:
-    st.session_state.selected_materials = ['Hout','Aluminium','Textiel']
-
+if 'selected_materials' not in ss:
+    ss.selected_materials = ['Hout','Aluminium','Textiel']
+if 'selected_material_prijs' not in ss:
+    ss.selected_material_prijs = 'Hout'
+if 'selected_material_geo' not in ss:
+    ss.selected_material_geo = 'Hout'
+if 'heatmap_label' not in ss:
+    ss.heatmap_label = 'ESPR [2026]'
+if 'bubble_label' not in ss:
+    ss.bubble_label = 'Rvo.nl nationale subsidies'
+    
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
     margin=dict(l=40, r=5, t=20, b=60),
