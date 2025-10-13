@@ -120,7 +120,7 @@ fig.add_trace(go.Scatter(
 
 # Layout
 fig.update_layout(
-    xaxis_title="Datum",
+    xaxis_title="Jaar",
     yaxis_title="PPI (2015 = 100)",
     template="plotly_white",
     **COMMON_LAYOUT,

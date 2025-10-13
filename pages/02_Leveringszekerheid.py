@@ -47,17 +47,19 @@ st.page_link("Home.py", label="⬅ Terug naar Home")
 st.caption(f"Gefilterd op materiaal: **{ss.selected_material_geo}**")
 
 # Demo data — replace with your real geo/materials feed
-rng = np.random.default_rng(2)
-countries = ["NLD", "BEL", "DEU", "FRA", "ESP", "ITA", "SWE", "POL", "USA", "CHN", "IND", "BRA", "ZAF"]
-df = pd.DataFrame({
-    "iso3": countries,
-    "zekerheid": rng.uniform(10, 95, size=len(countries)).round(1),
-})
+df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.selected_material_geo][['iso3','country','governance_score', 'market_share']]
+hhi = ss.geo_df.groupby('material').apply(lambda g: (g['market_share']**2).sum()).rename('hhi')
+hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_material_geo].iloc[0]['hhi']
+
+with st.container(border = True, horizontal_alignment = 'center'):
+    st.metric("Herfindahl–Hirschman index (mate van geconcentreerdheid - 0, is zeer verspreid, 1 is volledig monopolie)", f"{hhi_kpi:.2f}")
+
 
 fig = px.choropleth(
-    df, locations="iso3", color="zekerheid",
+    df, locations="iso3", color="governance_score",
     color_continuous_scale=["#d62728", "#ffbf00", "#2ca02c"],  # red→yellow→green
-    range_color=(0, 100), projection="natural earth",
+    range_color=(0, 1), projection="natural earth",
+    hover_name="country", hover_data={'iso3':False, "market_share" : ':.2f', "governance_score" : ':.2f'}
 )
 fig.update_layout(
     height=600, margin=dict(l=10, r=10, t=30, b=10),

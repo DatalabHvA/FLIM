@@ -40,9 +40,15 @@ st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te
 # ---------- Session state ----------
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
-ss.prijzen_df = pd.read_excel('data/prijzen.xlsx')
+if 'prijzen_df' not in ss:
+    ss.prijzen_df = pd.read_excel('data/prijzen.xlsx')
+if 'geo_df' not in ss:
+    ss.geo_df = pd.read_excel('data/material_market_share.xlsx')
+if 'wgi_df' not in ss:
+    ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
+
 if 'selected_materials' not in ss:
-    ss.selected_materials = ['Hout','Aluminium','Textiel']
+    ss.selected_materials = ['Hout','Aluminium','Textiel', 'Katoen']
 if 'selected_material_prijs' not in ss:
     ss.selected_material_prijs = 'Hout'
 if 'selected_material_geo' not in ss:
@@ -77,25 +83,23 @@ def bar_colors(values):
 
 # --- Demo data builders (cacheable; swap with your real loaders) ---
 @st.cache_data(show_spinner=False)
-def get_prijs_kpi(materials):
+def get_prijs_kpi(materials_list):
     variance = ss.prijzen_df.drop('Jaar', axis = 1).std().rename('risk2').reset_index().rename(columns = {'index' : 'materiaal'})
-    return variance.loc[lambda d: d['materiaal'].isin(materials)]
+    return variance.loc[lambda d: d['materiaal'].isin(materials_list)]
 
 @st.cache_data(show_spinner=False)
-def get_levzeker(materials_list, seed=2):
-    rng = np.random.default_rng(seed)
-    return pd.DataFrame({
-        "materiaal": materials_list,
-        "zekerheid_index": rng.uniform(10, 95, size=len(materials_list)).round(1),
-    })
+def get_levzeker(materials_list):
+        wgi = ss.geo_df.merge(ss.wgi_df, on = 'country').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
+        return wgi.reset_index().loc[lambda d: d['material'].isin(materials_list)][['material','wgi_score']].rename(columns = {'wgi_score' : 'supply_risk'})
 
 # --- Figure builders (cached) ---
 
 @st.cache_data(show_spinner=False)
-def make_levzeker_bar_figure(x_labels: tuple, y_vals: tuple, C_LAYOUT):
-    colors = bar_colors(y_vals)
+def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
+    colors = colors = ["#2ca02c" if v >= 0.75 else "#ffbf00" if v >= 0.4 else "#d62728" for v in y]
+
     fig = go.Figure(
-        data=[go.Bar(x=list(x_labels), y=list(y_vals), marker_color=colors,
+        data=[go.Bar(x=list(x_labels), y=list(y), marker_color=colors,
                      hovertemplate="<b>%{x}</b><br>Zekerheid: %{y:.1f}<extra></extra>")]
     )
     fig.update_layout(
@@ -216,8 +220,6 @@ with st.sidebar:
 
 # ---------- Data (apply filters where appropriate) ----------
 # NOTE: Hook your real filters into these calls (branche/fte/omzet/etc.).
-prijs_now_df   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
-levzeker_df    = get_levzeker(tuple(st.session_state.selected_materials))
 klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
                               'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
                               'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
@@ -226,7 +228,9 @@ klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029
 
 # ---------- Tiles ----------
 
-def tile_prijsstijgingen(df_now: pd.DataFrame):
+def tile_prijsstijgingen(target_page):
+    df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
+
     st.subheader("Prijsstijgingen")
     st.caption("Klik op een balk voor trenddetails.")
 
@@ -256,14 +260,15 @@ def tile_prijsstijgingen(df_now: pd.DataFrame):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_material_prijs = mat
-            st.switch_page("pages/01_Prijsstijgingen.py")
+            st.switch_page(target_page)
 
-def tile_leveringszekerheid(df_now: pd.DataFrame):
+def tile_leveringszekerheid(target_page):
+    df_now = get_levzeker(tuple(st.session_state.selected_materials))
     st.subheader("Leveringszekerheid")
     st.caption("Klik op een balk om de wereldkaart te openen.")
 
-    x = tuple(df_now["materiaal"].tolist())
-    y = tuple(df_now["zekerheid_index"].tolist())
+    x = tuple(df_now["material"].tolist())
+    y = tuple(df_now["supply_risk"].tolist())
     fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
 
     clicks = plotly_events(
@@ -277,7 +282,7 @@ def tile_leveringszekerheid(df_now: pd.DataFrame):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_material_geo = mat
-            st.switch_page("pages/02_Leveringszekerheid.py")
+            st.switch_page(target_page)
 
 def tile_klantvraag(df, target_page: str):
     with st.container(border=False):
@@ -404,12 +409,8 @@ def tile_financierseisen(target_page):
         # Handle clicks
         click = plotly_events(
             fig,
-            click_event=True,
-            select_event=False,
-            hover_event=False,
-            override_height=500,
-            override_width="100%",
-            key="bubble_chart"
+            click_event=True, select_event=False, hover_event=False,
+            override_height=500, override_width="100%", key="bubble_chart"
         )
 
         if click:
@@ -421,17 +422,15 @@ def tile_financierseisen(target_page):
 
 # ---------- Layout: 3 tiles in one row ----------
 col1, col2, col3 = st.columns(3, gap="small", border = True)
-
-with col1: tile_prijsstijgingen(prijs_now_df)
-with col2: tile_leveringszekerheid(levzeker_df)
+with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
+with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
 with col3: tile_klantvraag(klantvraag_df, target_page="pages/03_Klantvraag.py")
     
-# Second row: put the heatmap in the FIRST column
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
     heat_df = get_heatmap_series()
-    tile_heatmap_to_page(heat_df, "pages/04_wet_regelgeving.py")
+    tile_heatmap_to_page(heat_df, target_page = "pages/04_wet_regelgeving.py")
 with h2:
-    tile_personeel("pages/05_personeel.py")
+    tile_personeel(target_page = "pages/05_personeel.py")
 with h3:
-    tile_financierseisen("pages/06_financierseisen.py")
+    tile_financierseisen(target_page = "pages/06_financierseisen.py")
