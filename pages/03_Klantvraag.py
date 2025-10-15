@@ -44,7 +44,7 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 st.title("Klantvraag — Analyse")
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
-st.write("Belangrijke risico's en kansen in de markt")
+st.write("Belangrijke risico's en kansen in de markt.")
 
 klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
                               'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
