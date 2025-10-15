@@ -331,7 +331,7 @@ def tile_personeel(target_page):
 
 def tile_financierseisen(target_page):
     with st.container(border=False):
-        st.subheader("Financierseisen")
+        st.subheader("Subsidies en financierseisen")
         # Example DataFrame
         df = pd.DataFrame({
             'label': [
