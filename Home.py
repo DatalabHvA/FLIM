@@ -232,6 +232,7 @@ def tile_prijsstijgingen(target_page):
     df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
 
     st.subheader("Prijsstijgingen")
+    st.caption("Conclusie van deze factor.")
     st.caption("Klik op een balk voor trenddetails.")
 
     # --- build the bar chart (any way you like) ---
