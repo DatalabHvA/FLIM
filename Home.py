@@ -34,9 +34,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("FLIM risico tool")
-st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te openen.")
-
 # ---------- Session state ----------
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
@@ -157,7 +154,7 @@ def get_heatmap_series(seed: int = 7):
 
 # --- Heatmap figure (single column, many rows)
 @st.cache_data(show_spinner=False)
-def make_single_col_heatmap(labels: tuple, values: tuple, height: int = CHART_HEIGHT):
+def make_single_col_heatmap(labels: tuple, values: tuple, cmap: list, height: int = CHART_HEIGHT):
     import plotly.graph_objects as go
 
     # Reshape z and y
@@ -169,8 +166,7 @@ def make_single_col_heatmap(labels: tuple, values: tuple, height: int = CHART_HE
         z=z,
         x=[""],
         y=labels,
-        colorscale="reds",
-        reversescale=True,
+        colorscale=cmap,
         showscale=False,
         hoverinfo = 'none'
     )
@@ -300,15 +296,17 @@ def tile_klantvraag(df, target_page: str):
             # For Heatmap, Plotly returns y = row label (our 'label')
             st.switch_page(target_page)
 
-
-
 def tile_heatmap_to_page(df, target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
         st.caption("Klik op een item om details te openen.")
+        colorscale = [
+            [0.0, '#ff0000'],  # strong red
+            [1.0, '#ffe5e5']   # very light red
+        ]
         labels = tuple(df["label"].tolist())
         values = tuple(df["value"].tolist())
-        fig = make_single_col_heatmap(labels, values, height=CHART_HEIGHT)
+        fig = make_single_col_heatmap(labels, values, cmap = colorscale, height=CHART_HEIGHT)
 
         clicks = plotly_events(
             fig,
@@ -328,7 +326,6 @@ def tile_heatmap_to_page(df, target_page: str):
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
-
 
 def tile_financierseisen(target_page):
     with st.container(border=False):
@@ -420,8 +417,41 @@ def tile_financierseisen(target_page):
             st.session_state["bubble_label"] = bubble_click
             st.switch_page(target_page)
 
+def tile_subsidies():
+    st.subheader("Subsidies")
+    st.caption("Klik op een ondersteept item om details te openen.")
+    c1, c2 = st.columns(2)
+    with c1: 
+        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg")
+    with c2: 
+        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg")
+
+
+    # Sample content and row colors
+    labels = ['<b> Verkenning</b>', 'TSE Industrie - studies', '<a href="/a_MIT_haalbaarheid", target = "_self"<u>MIT - Haalbaarheid</u></a>', '','<b>Ontwikkeling</b>', 'MIT - R&D samenwerking', 'DEI+ - Circulaire Economie', 'VEKI - Versnelde Klimaatinvesteringen', '<b>Implementatie</b>', 'MIA\Vamil', 'CKP - Circulaire Ketenprojecten', '', '<b>Opschaling</b>', 'EFRO (Regionaal)', ' ', '']
+    values = ['', 'Horizon Europe - Cluster 4', 'EIR RawMaterials - Innovation Program', 'Life Programme - Circulair Economy', '', 'Horizon Europe - Cluster 5', 'Interreg - Circular Economy & Green Growth', 'COST Action - Circular Economy Innovation', '', 'Horizon Europe - EIC Accelerator', '<a href="/b_EDFR", target = "_self"<u>EDRF - Circular Economy</u></a>', 'Life Programme',' ','Horizon Europe - Cluster 6', 'EIC Fund', 'Horizon Europe - European Green Deal']
+    row_colors = [
+        "#8BC4F9", "#BADEF9", "#BADEF9","#BADEF9", "#FFC277",
+        "#FAE3C6", "#FAE3C6", "#FAE3C6", "#6BFF70", "#CCFFCE",
+        "#CCFFCE", "#CCFFCE", "#FF94E2", "#FFDFF7","#FFDFF7", "#FFDFF7"
+    ]
+
+    # Build HTML table
+    html = '<table style="width:100%;">'
+    for i in range(16):
+        bg = row_colors[i]
+        label = labels[i]
+        value = values[i]
+        html += f'<tr style="background-color:{bg};"> <td style="font-size: 12px; padding: 2px; text-align: center;">{label}</td> <td style="font-size: 12px; padding: 2px; text-align: center">{value}</td> </tr>'
+    html += '</table>'
+
+    # Render table in Streamlit
+    st.markdown(html, unsafe_allow_html=True)
 
 # ---------- Layout: 3 tiles in one row ----------
+st.title("FLIM risico tool")
+st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te openen.")
+
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
 with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
@@ -434,4 +464,4 @@ with h1:
 with h2:
     tile_personeel(target_page = "pages/05_personeel.py")
 with h3:
-    tile_financierseisen(target_page = "pages/06_financierseisen.py")
+    tile_subsidies()
