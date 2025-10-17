@@ -6,11 +6,6 @@ sys.path.append("..")
 from Home import get_heatmap_series, make_single_col_heatmap
 
 st.set_page_config(page_title="Klantvraag", layout="wide")
-ss = st.session_state
-ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
-
-
-CHART_HEIGHT = 300
 
 hide_sidebar = """
     <style>
@@ -47,29 +42,30 @@ st.title('Wet- en regelgeving')
 st.page_link("Home.py", label="⬅ Terug naar Home")
 st.write('Belangrijke wet- en regelgeving m.b.t. grondstoffen.')
 
-heat_df = get_heatmap_series()
-
-colorscale = [
-    [0.0, '#ff0000'],  # strong red
-    [1.0, '#ffe5e5']   # very light red
+# Sample content and row colors
+labels1 = ['<b>Klein</b>','<50 medewerkers','<€10 miljoen','','','','','','','','','','']
+labels2 = ['<b>Midden</b>','50-250 medewerkers','<€50 miljoen','EUDR [2025]','EUDR [2026]','Right to repair directive','Circulaire plastics norm (schuim en verpakkingen) [2027-2030]','REACH [2007]','<a href="/b_DPP", target = "_self"<u>DPP [2027]</u></a>','<a href="/a_UPV", target = "_self"<u>UPV [2029-2030]</u></a>','(indirect via keten)','(indirect via keten)','']
+labels3 = ['<b>Groot</b>','>250 medewerkers of beursgenoteerd','>€50 miljoen','','','','','','','','CSRD [2026]','CSRD [2027]','CBAM/CO2 [2026]']
+row_colors = [
+    "#FFFFFF", "#FFFFFF", "#FFFFFF","#e60026", "#e65a41",
+    "#eea896", "#f2d6c2", "#f7e9cd", "#fdeea3", "#f5dcb7",
+    "#f9dd9e","#e0e0e0","#CFD6BB"
 ]
-labels = tuple(heat_df["label"].tolist())
-values = tuple(heat_df["value"].tolist())
-fig = make_single_col_heatmap(labels, values, cmap = colorscale, height=CHART_HEIGHT)
 
-clicks = plotly_events(
-    fig,
-    click_event=True, hover_event=False, select_event=False,
-    key=f"evt_heatmap_{st.session_state.events_epoch}",
-)
-if clicks:
-    # For Heatmap, Plotly returns y = row label (our 'label')
-    sel_label = clicks[0].get("y")
-    if sel_label:
-        # Robust: set session state and (best-effort) URL param
-        st.session_state["heatmap_label"] = sel_label
-        st.write(sel_label)
-        st.switch_page(target_page)
+# Build HTML table
+html = '<table style="width:100%;">'
+for i in range(len(labels1)):
+    bg = row_colors[i]
+    label1 = labels1[i]
+    label2 = labels2[i]
+    label3 = labels3[i]
+    html += f'<tr style="background-color:{bg};"> <td style="font-size: 16px; padding: 2px; text-align: center;">{label1}</td> <td style="font-size: 16px; padding: 2px; text-align: center">{label2}</td> <td style="font-size: 16px; padding: 2px; text-align: center">{label3}</td> </tr>'
+html += '</table>'
+
+# Render table in Streamlit
+st.markdown(html, unsafe_allow_html=True)
+
+
 
 c1, c2 = st.columns(2)
 with c1:
