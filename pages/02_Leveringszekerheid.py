@@ -3,6 +3,10 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import sys
+sys.path.append("..")
+
+from Home import get_levzeker
 
 ss = st.session_state 
 
@@ -51,8 +55,19 @@ df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.s
 hhi = ss.geo_df.groupby('material').apply(lambda g: (g['market_share']**2).sum()).rename('hhi')
 hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_material_geo].iloc[0]['hhi']
 
-with st.container(border = True, horizontal_alignment = 'center'):
-    st.metric("Herfindahl–Hirschman index (mate van geconcentreerdheid - 0, is zeer verspreid, 1 is volledig monopolie)", f"{hhi_kpi:.2f}")
+df_now = get_levzeker(tuple([ss.selected_material_geo]))
+wgi_kpi = df_now.iloc[0]['supply_risk']
+
+c1, c2 = st.columns(2)
+
+with c1:
+    with st.container(border = True, horizontal_alignment = 'center'):
+        st.metric("Herfindahl–Hirschman index (HHI)", f"{hhi_kpi:.2f}")
+        st.write('De HHI geeft de mate van geconcentreerdheid aan van de oorsprong van een grondstof (0 is zeer verspreid, 1 is volledig monopolie). Als deze indicator hoog is betekent het dat een enkele verstoring grote gevolgen kan hebben voor de leveringszekerheid.')
+with c2:
+    with st.container(border = True, horizontal_alignment = 'center'):
+        st.metric("Gemiddelde World Governance Indicactor (WGI) voor productielanden van deze grondstof", f"{wgi_kpi:.2f}")
+        st.write('De WGI geeft aan hoe stabiel het bestuur en de instituties van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
 
 
 fig = px.choropleth(

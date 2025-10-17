@@ -80,10 +80,12 @@ col1, col2 = st.columns(2)
 with col1:
     with st.container(border = True):
         st.metric("Trend (slope)", f"{model.params[1]:.2f} PPI punten per jaar")
+        st.write(f'Dit is gemiddelde stijging van de prijs van {ss.selected_material_prijs} in procentpunten ten opzichte van het 2015 niveau.')
 
 with col2:
     with st.container(border = True):
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
+        st.write(f'Dit is gemiddelde fluctuatie van de prijs van {ss.selected_material_prijs} bovenop de trend in procentpunten ten opzichte van het 2015 niveau.')
 
 # Plot
 fig = go.Figure()
@@ -121,7 +123,7 @@ fig.add_trace(go.Scatter(
 # Layout
 fig.update_layout(
     xaxis_title="Jaar",
-    yaxis_title="PPI (2015 = 100)",
+    yaxis_title="Producentenprijsindex (2015 = 100)",
     template="plotly_white",
     **COMMON_LAYOUT,
 )

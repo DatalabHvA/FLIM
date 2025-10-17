@@ -53,11 +53,11 @@ if 'personeel_df' not in ss:
                                     'Werkgever' : [0.44, 0.4, 0.36, 0.29]})
 
 if 'selected_materials' not in ss:
-    ss.selected_materials = ['Hout','Aluminium','Textiel', 'Katoen']
+    ss.selected_materials = ['Multiplex','Staal', 'Polyurethaan', 'Katoen']
 if 'selected_material_prijs' not in ss:
-    ss.selected_material_prijs = 'Hout'
+    ss.selected_material_prijs = 'Multiplex'
 if 'selected_material_geo' not in ss:
-    ss.selected_material_geo = 'Hout'
+    ss.selected_material_geo = 'Multiplex'
 if 'heatmap_label' not in ss:
     ss.heatmap_label = 'ESPR [2026]'
 if 'bubble_label' not in ss:
@@ -101,15 +101,21 @@ def get_levzeker(materials_list):
 
 @st.cache_data(show_spinner=False)
 def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
-    colors = colors = ["#2ca02c" if v >= 0.75 else "#ffbf00" if v >= 0.4 else "#d62728" for v in y]
+    colors = colors = ["#2ca02c" if v >= 0.6 else "#ffbf00" if v >= 0.45 else "#d62728" for v in y]
 
     fig = go.Figure(
         data=[go.Bar(x=list(x_labels), y=list(y), marker_color=colors,
                      hovertemplate="<b>%{x}</b><br>Zekerheid: %{y:.1f}<extra></extra>")]
     )
     fig.update_layout(
-        height=CHART_HEIGHT, xaxis_title=None, yaxis_title="Index", showlegend=False,
-        **C_LAYOUT
+        xaxis_title=None, yaxis_title="Index", showlegend=False,
+        **COMMON_LAYOUT, height = CHART_HEIGHT
+    )
+
+    fig.update_yaxes(
+        tickvals=[0.2, 0.5, 0.8],                     
+        ticktext=["Laag", "Midden", "Hoog"],
+        range=[0, 1], tickangle=-90
     )
     return fig
 
@@ -142,7 +148,7 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
         xaxis_title="Jaar",
         yaxis_title="Index (2023 = 100)",
         template="plotly_white",
-        **COMMON_LAYOUT,
+        margin=dict(l=40, r=5, t=20, b=70),
         legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -230,7 +236,7 @@ with st.sidebar:
 def tile_prijsstijgingen(target_page):
     df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
 
-    st.subheader("Prijsstijgingen")
+    st.subheader("Prijsfluctuaties")
     st.write("Conclusie van deze factor.")
     st.caption("Klik op een balk voor trenddetails.")
 
@@ -246,7 +252,7 @@ def tile_prijsstijgingen(target_page):
             hovertemplate="<b>%{x}</b><br>Stijging: %{y:.1f}%<extra></extra>"
         )
     )
-    fig.update_layout(height=CHART_HEIGHT, xaxis_title=None, yaxis_title="%", showlegend=False,
+    fig.update_layout(height=CHART_HEIGHT, xaxis_title=None, yaxis_title="Prijsvariatie t.o.v. 2015 (%)", showlegend=False,
                       **COMMON_LAYOUT)
 
     # IMPORTANT: key includes epoch so old clicks are never replayed
@@ -261,6 +267,7 @@ def tile_prijsstijgingen(target_page):
         if mat:
             ss.selected_material_prijs = mat
             st.switch_page(target_page)
+    st.caption('De balken tonen de variatie in de prijs. Dit kan een stijging of een fluctuatie zijn.')
 
 def tile_leveringszekerheid(target_page):
     df_now = get_levzeker(tuple(st.session_state.selected_materials))
@@ -271,10 +278,11 @@ def tile_leveringszekerheid(target_page):
     y = tuple(df_now["supply_risk"].tolist())
     fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
 
+    fig.update_layout(yaxis_title="Stabiliteit van productielanden")
+
     clicks = plotly_events(
         fig,
-        click_event=True, hover_event=False, select_event=False,
-        override_height=320, override_width="100%",
+        click_event=True, hover_event=False, select_event=False,override_height=CHART_HEIGHT,
         key=f"evt_zeker_{ss.events_epoch}",
     )
 
@@ -283,6 +291,7 @@ def tile_leveringszekerheid(target_page):
         if mat:
             ss.selected_material_geo = mat
             st.switch_page(target_page)
+    st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien volgens de World Governance Indicatoren.')
 
 def tile_klantvraag(df, target_page: str):
     with st.container(border=False):
@@ -296,40 +305,30 @@ def tile_klantvraag(df, target_page: str):
             key=f"evt_klantvraag_{st.session_state.events_epoch}",
         )
         if clicks:
-            # For Heatmap, Plotly returns y = row label (our 'label')
             st.switch_page(target_page)
+        st.caption('De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid meubilair groeit dubbel zo hard als normale markt.')
 
-def tile_heatmap_to_page(df, target_page: str):
+def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
-        st.caption("Klik op een item om details te openen.")
-        colorscale = [
-            [0.0, '#ff0000'],  # strong red
-            [1.0, '#ffe5e5']   # very light red
-        ]
-        labels = tuple(df["label"].tolist())
-        values = tuple(df["value"].tolist())
-        fig = make_single_col_heatmap(labels, values, cmap = colorscale, height=CHART_HEIGHT)
+        st.caption("Binnen 5 jaar gelden strengere normen op materiaalkeuze en ontwerp binnen de meubelbranche.")
+        
+        # Load switch_page JS dynamically
+        st.markdown(
+        """<style>
+            .element-container:nth-of-type(3) button {
+                height: 3em;
+            }
+            </style>""",
+        unsafe_allow_html=True,
+    )
 
-        clicks = plotly_events(
-            fig,
-            click_event=True, hover_event=False, select_event=False,
-            override_height=CHART_HEIGHT+40, override_width="100%",
-            key=f"evt_heatmap_{st.session_state.events_epoch}",
-        )
-        if clicks:
-            # For Heatmap, Plotly returns y = row label (our 'label')
-            sel_label = clicks[0].get("y")
-            if sel_label:
-                # Robust: set session state and (best-effort) URL param
-                st.session_state["heatmap_label"] = sel_label
-                st.write(sel_label)
-                st.switch_page(target_page)
+    st.button("STOP")
 
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
-        st.caption('Percentage resprondenten die opdrachten of potentiële werkgevers afgewezen hebben op basis van persoonlijke ethiek/overtuigingen.')
+        st.caption('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijk bijdrage.')
         st.caption('Klik op de grafiek voor meer informatie.')
         # Define categories and values
         #topics = ['Opdracht', 'Werkgever']
@@ -343,16 +342,16 @@ def tile_personeel(target_page):
         #     "Nederlandse millennials": [31, 29]
         # }
         values = {
-            "Global Gen Z": [44],
-            "Global millennials": [40],
+            #"Global Gen Z": [44],
+            #"Global millennials": [40],
             "Nederlandse Gen Z": [36],
             "Nederlandse millennials": [29]
         }
 
         # Define consistent colors
         colors = {
-            "Global Gen Z": "#009CA6",         # Teal
-            "Global millennials": "#5B5B5B",   # Dark grey
+            #"Global Gen Z": "#009CA6",         # Teal
+            #"Global millennials": "#5B5B5B",   # Dark grey
             "Nederlandse Gen Z": "#00726B",    # Dark teal
             "Nederlandse millennials": "#BFBFBF"  # Light grey
         }
@@ -391,98 +390,9 @@ def tile_personeel(target_page):
             # For Heatmap, Plotly returns y = row label (our 'label')
             st.switch_page(target_page)
 
-def tile_financierseisen(target_page):
-    with st.container(border=False):
-        st.subheader("Subsidies en financierseisen")
-        # Example DataFrame
-        df = pd.DataFrame({
-            'label': [
-                'BMKB-Groen', 'ISDE', 'MT / MOOI subsidies', 'Klimaatfonds', 
-                'EIC Accelerator / EIT Raw Materials', 'Wur Europe / Cluster 6', 
-                'Circular Future Funding (norm.)', 'LIFE programma', 
-                'ESPR / Ecodesign & Product passport', 'Rvo.nl nationale subsidies'
-            ],
-            'x': [0.9, 1.6, 0.55, 0.6, 3.0, 3.4, 2.4, 3.45, 3.1, 1.7],
-            'y': [2.4, 1.5, 1.85, 1.3, 2.4, 1.9, 1.0, 0.9, 1.45, 2.0],
-            'color': ['green', 'orange', 'green', 'red', 
-                    'green', 'green', 'orange', 'red', 'orange', 'yellow']
-        })
-        df["wrapped"] = df["label"].apply(lambda s: "<br>".join([s[i:i+20] for i in range(0, len(s), 20)]))
-        # Create the figure
-        fig = go.Figure()
-
-        # Add bubbles
-        fig.add_trace(go.Scatter(
-            x=[float(x) for x in df['x']],
-            y=[float(y) for y in df['y']],
-            mode='markers+text',
-            text=[str(label) for label in df['wrapped']],
-            textposition='middle center',
-            textfont=dict(color="black", size=8),
-            marker=dict(
-                size=70,
-                color=df['color'],
-                line=dict(color='black', width=1)
-            ),
-            customdata=df['label'],
-            hoverinfo='text'
-        ))
-
-        # Add flag images
-        fig.add_layout_image(
-            dict(
-                source="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
-                x=0.9,
-                y=2.7,
-                sizex=0.5,
-                sizey=0.25,
-                xref="x",
-                yref="y",
-                xanchor="center",
-                yanchor="bottom",
-                layer="above"
-            )
-        )
-
-        fig.add_layout_image(
-            dict(
-                source="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg",
-                x=3.0,
-                y=2.7,
-                sizex=0.5,
-                sizey=0.25,
-                xref="x",
-                yref="y",
-                xanchor="center",
-                yanchor="bottom",
-                layer="above"
-            )
-        )
-
-        # Layout styling
-        fig.update_layout(
-            template="plotly_white",
-            xaxis=dict(visible=False, range=[0, 4]),
-            yaxis=dict(visible=False, range=[0, 3]),
-            margin=dict(t=0, b=0, l=0, r=00),
-            height=500
-        )
-
-        # Handle clicks
-        click = plotly_events(
-            fig,
-            click_event=True, select_event=False, hover_event=False,
-            override_height=500, override_width="100%", key="bubble_chart"
-        )
-
-        if click:
-            selected = click[0]["pointIndex"]
-            bubble_click = df.iloc[selected]['label']
-            st.session_state["bubble_label"] = bubble_click
-            st.switch_page(target_page)
-
 def tile_subsidies():
     st.subheader("Subsidies")
+    st.caption("Financiële kansen voor doorontwikkeling en innovatie van ontwerp en materialen in de meubelindustrie.")
     st.caption("Klik op een ondersteept item om details te openen.")
     c1, c2 = st.columns(2)
     with c1: 
@@ -524,7 +434,7 @@ with col3: tile_klantvraag(ss.klantvraag_df, target_page="pages/03_Klantvraag.py
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
     heat_df = get_heatmap_series()
-    tile_heatmap_to_page(heat_df, target_page = "pages/04_wet_regelgeving.py")
+    tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
 with h2:
     tile_personeel(target_page = "pages/05_personeel.py")
 with h3:
