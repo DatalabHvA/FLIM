@@ -34,6 +34,7 @@ hide_sidebar = """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
 
-st.title('MIT - Haalbaarheid (link PHZ)')
 st.page_link("Home.py", label="⬅ Terug naar Home")
+st.title('MIT Haalbaarheid')
 st.write('123')
+
