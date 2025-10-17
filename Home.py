@@ -185,7 +185,7 @@ def make_single_col_heatmap(labels: tuple, values: tuple, cmap: list, height: in
         y=labels,
         mode="text",
         text=labels,
-        textfont=dict(size=12, color="black"),
+        textfont=dict(size=12, color="black", family="Arial Black"),
         hoverinfo="none",
         showlegend=False,
     )
