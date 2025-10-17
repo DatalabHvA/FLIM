@@ -332,14 +332,21 @@ def tile_personeel(target_page):
         st.caption('Percentage resprondenten die opdrachten of potentiële werkgevers afgewezen hebben op basis van persoonlijke ethiek/overtuigingen.')
         st.caption('Klik op de grafiek voor meer informatie.')
         # Define categories and values
-        topics = ['Opdracht', 'Werkgever']
+        #topics = ['Opdracht', 'Werkgever']
+        topics = ['Werkgever']
 
         # Values per group per topic
+        # values = {
+        #     "Global Gen Z": [50, 44],
+        #     "Global millennials": [43, 40],
+        #     "Nederlandse Gen Z": [41, 36],
+        #     "Nederlandse millennials": [31, 29]
+        # }
         values = {
-            "Global Gen Z": [50, 44],
-            "Global millennials": [43, 40],
-            "Nederlandse Gen Z": [41, 36],
-            "Nederlandse millennials": [31, 29]
+            "Global Gen Z": [44],
+            "Global millennials": [40],
+            "Nederlandse Gen Z": [36],
+            "Nederlandse millennials": [29]
         }
 
         # Define consistent colors
