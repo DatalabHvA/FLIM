@@ -62,6 +62,7 @@ if 'heatmap_label' not in ss:
     ss.heatmap_label = 'ESPR [2026]'
 if 'bubble_label' not in ss:
     ss.bubble_label = 'Rvo.nl nationale subsidies'
+  
     
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
@@ -313,17 +314,34 @@ def tile_wetgeving(target_page: str):
         st.subheader("Wet- en regelgeving")
         st.caption("Binnen 5 jaar gelden strengere normen op materiaalkeuze en ontwerp binnen de meubelbranche.")
         
-        # Load switch_page JS dynamically
-        st.markdown(
-        """<style>
-            .element-container:nth-of-type(3) button {
-                height: 3em;
-            }
-            </style>""",
-        unsafe_allow_html=True,
-    )
+    # --- Stijl voor de niet-klikbare knop ---
+    st.markdown("""
+    <style>
+    .custom-tile {
+        background-color: #f4f1e6;
+        border: 2px solid #333;
+        border-radius: 12px;
+        padding: 30px;
+        font-size: 20px;
+        font-family: sans-serif;
+        text-align: center;
+        line-height: 1.6;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    st.button("STOP")
+    # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
+    st.markdown("""
+    <div class="custom-tile">
+        Er zijn:<br><b>'5'</b><br>wet- en regelgevingen<br>die voor jouw bedrijf<br>van toepassing zijn
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- Echte klikbare knop eronder ---
+    if st.button("Bekijk regels", width = 'stretch'):
+        st.switch_page(target_page)
 
 def tile_personeel(target_page):
     with st.container(border=False):
@@ -376,19 +394,19 @@ def tile_personeel(target_page):
             yaxis_title="Percentage",
             template="plotly_white",
             margin=dict(l=00, r=00, t=00, b=40),  # left, right, top, bottom
-            legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5)
+            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
         )
 
 
         clicks = plotly_events(
             fig,
             click_event=True, hover_event=False, select_event=False,
-            override_width="100%",
             key=f"evt_personeel_{st.session_state.events_epoch}",
         )
         if clicks:
             # For Heatmap, Plotly returns y = row label (our 'label')
             st.switch_page(target_page)
+        st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
 
 def tile_subsidies():
     st.subheader("Subsidies")
