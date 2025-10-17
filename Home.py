@@ -43,6 +43,14 @@ if 'geo_df' not in ss:
     ss.geo_df = pd.read_excel('data/material_market_share.xlsx')
 if 'wgi_df' not in ss:
     ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
+if 'klantvraag_df' not in ss:
+    ss.klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                              'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
+                              'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+if 'personeel_df' not in ss:
+    ss.personeel_df = pd.DataFrame({'Categorie' : ['Global Gen Z', 'Global millennials', 'Nederlandse Gen Z', 'Nederlands millennials'],
+                                    'Opdracht_project' : [0.5, 0.43, 0.41, 0.31],
+                                    'Werkgever' : [0.44, 0.4, 0.36, 0.29]})
 
 if 'selected_materials' not in ss:
     ss.selected_materials = ['Hout','Aluminium','Textiel', 'Katoen']
@@ -112,8 +120,8 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
 
     # add each line
     fig.add_trace(go.Scatter(
-        x=[str(x) for x in klantvraag_df['Jaar']],
-        y=[float(x) for x in klantvraag_df['Duurzame meubels (CAGR 2,8%)']],
+        x=[str(x) for x in ss.klantvraag_df['Jaar']],
+        y=[float(x) for x in ss.klantvraag_df['Duurzame meubels (CAGR 2,8%)']],
         mode='lines+markers',
         name='Duurzame meubels (CAGR 2,8%)',
         line=dict(color='red', width=3),
@@ -121,8 +129,8 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     ))
 
     fig.add_trace(go.Scatter(
-        x=[str(x) for x in klantvraag_df['Jaar']],
-        y=[float(x) for x in klantvraag_df['Traditionele meubels (CAGR 7,3%)']],
+        x=[str(x) for x in ss.klantvraag_df['Jaar']],
+        y=[float(x) for x in ss.klantvraag_df['Traditionele meubels (CAGR 7,3%)']],
         mode='lines+markers',
         name='Traditionele meubels (CAGR 7,3%)',
         line=dict(color='green', width=3),
@@ -185,17 +193,17 @@ def make_single_col_heatmap(labels: tuple, values: tuple, cmap: list, height: in
     fig = go.Figure(data=[heatmap, scatter])
 
     fig.update_yaxes(
-        autorange="reversed", showticklabels=False, showgrid=False, zeroline=False
+        autorange="reversed", showticklabels=False, showgrid=False, zeroline=False,
     )
     fig.update_xaxes(
         showticklabels=False, showgrid=False, zeroline=False
     )
     fig.update_layout(
         template="plotly_white",
-        height=height,
+        height=60 * len(labels),
         xaxis_title=None,
         yaxis_title=None,
-        margin=dict(t=40, b=30, l=30, r=0),
+        margin=dict(t=40, b=00, l=30, r=0),
     )
 
     return fig
@@ -216,11 +224,6 @@ with st.sidebar:
 
 # ---------- Data (apply filters where appropriate) ----------
 # NOTE: Hook your real filters into these calls (branche/fte/omzet/etc.).
-klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
-                              'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
-
-
 
 # ---------- Tiles ----------
 
@@ -326,6 +329,60 @@ def tile_heatmap_to_page(df, target_page: str):
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
+        st.caption('Percentage resprondenten die opdrachten of potentiële werkgevers afgewezen hebben op basis van persoonlijke ethiek/overtuigingen.')
+        st.caption('Klik op de grafiek voor meer informatie.')
+        # Define categories and values
+        topics = ['Opdracht', 'Werkgever']
+
+        # Values per group per topic
+        values = {
+            "Global Gen Z": [50, 44],
+            "Global millennials": [43, 40],
+            "Nederlandse Gen Z": [41, 36],
+            "Nederlandse millennials": [31, 29]
+        }
+
+        # Define consistent colors
+        colors = {
+            "Global Gen Z": "#009CA6",         # Teal
+            "Global millennials": "#5B5B5B",   # Dark grey
+            "Nederlandse Gen Z": "#00726B",    # Dark teal
+            "Nederlandse millennials": "#BFBFBF"  # Light grey
+        }
+
+        # Build figure
+        fig = go.Figure()
+
+        for label, vals in values.items():
+            fig.add_trace(go.Bar(
+                x=topics,
+                y=vals,
+                name=label,
+                text=[f"{v}%" for v in vals],
+                textposition="outside",
+                marker_color=colors[label]
+            ))
+
+        # Layout settings
+        fig.update_layout(
+            barmode="group",
+            xaxis_title="",
+            yaxis_title="Percentage",
+            template="plotly_white",
+            margin=dict(l=00, r=00, t=00, b=40),  # left, right, top, bottom
+            legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5)
+        )
+
+
+        clicks = plotly_events(
+            fig,
+            click_event=True, hover_event=False, select_event=False,
+            override_width="100%",
+            key=f"evt_personeel_{st.session_state.events_epoch}",
+        )
+        if clicks:
+            # For Heatmap, Plotly returns y = row label (our 'label')
+            st.switch_page(target_page)
 
 def tile_financierseisen(target_page):
     with st.container(border=False):
@@ -455,7 +512,7 @@ st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
 with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
-with col3: tile_klantvraag(klantvraag_df, target_page="pages/03_Klantvraag.py")
+with col3: tile_klantvraag(ss.klantvraag_df, target_page="pages/03_Klantvraag.py")
     
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
