@@ -238,8 +238,8 @@ def tile_prijsstijgingen(target_page):
     df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
 
     st.subheader("Prijsfluctuaties")
-    st.write("Conclusie van deze factor.")
-    st.caption("Klik op een balk voor trenddetails.")
+    st.write("De prijsvariatie van deze belangrijke grondstoffen in de meubelindustrie is de afgelopen 10 jaar hard toegenomen.")
+    st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
 
     # --- build the bar chart (any way you like) ---
     x = tuple(df_now["materiaal"].tolist())
@@ -273,6 +273,7 @@ def tile_prijsstijgingen(target_page):
 def tile_leveringszekerheid(target_page):
     df_now = get_levzeker(tuple(st.session_state.selected_materials))
     st.subheader("Leveringszekerheid")
+    st.write("Leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
     st.caption("Klik op een balk om de wereldkaart te openen.")
 
     x = tuple(df_now["material"].tolist())
@@ -297,6 +298,7 @@ def tile_leveringszekerheid(target_page):
 def tile_klantvraag(df, target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
+        st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid meubilair groeit dubbel zo hard als normale markt.")
         st.caption("Klik op de grafiek om details te openen.")
         fig = make_klantvraag_scatter(df)
         clicks = plotly_events(
@@ -312,7 +314,7 @@ def tile_klantvraag(df, target_page: str):
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
-        st.caption("Binnen 5 jaar gelden strengere normen op materiaalkeuze en ontwerp binnen de meubelbranche.")
+        st.write("Binnen 5 jaar gelden strengere normen op materiaalkeuze en ontwerp binnen de meubelbranche.")
         
     # --- Stijl voor de niet-klikbare knop ---
     st.markdown("""
@@ -340,13 +342,13 @@ def tile_wetgeving(target_page: str):
     """, unsafe_allow_html=True)
 
     # --- Echte klikbare knop eronder ---
-    if st.button("Bekijk regels", width = 'stretch'):
+    if st.button("Bekijk wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
-        st.caption('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijk bijdrage.')
+        st.write('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijk bijdrage.')
         st.caption('Klik op de grafiek voor meer informatie.')
         # Define categories and values
         #topics = ['Opdracht', 'Werkgever']
@@ -410,7 +412,6 @@ def tile_personeel(target_page):
 
 def tile_subsidies():
     st.subheader("Subsidies")
-    st.caption("Financiële kansen voor doorontwikkeling en innovatie van ontwerp en materialen in de meubelindustrie.")
     st.caption("Klik op een ondersteept item om details te openen.")
     c1, c2 = st.columns(2)
     with c1: 
