@@ -342,7 +342,7 @@ def tile_wetgeving(target_page: str):
     """, unsafe_allow_html=True)
 
     # --- Echte klikbare knop eronder ---
-    if st.button("Bekijk wet- en regelgeving", width = 'stretch'):
+    if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
 def tile_personeel(target_page):
