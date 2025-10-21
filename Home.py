@@ -412,8 +412,8 @@ def tile_personeel(target_page):
 
 def tile_subsidies():
     st.subheader("Financiers")
-    st.write('Overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
-    st.caption("Klik op een ondersteept item om details te openen.")
+    st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
+    st.caption("Klik op de (ondersteepte) subsidies om meer te weten te komen.")
     c1, c2 = st.columns(2)
     with c1: 
         st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg")
