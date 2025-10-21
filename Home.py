@@ -443,8 +443,8 @@ def tile_subsidies():
     st.markdown(html, unsafe_allow_html=True)
 
 # ---------- Layout: 3 tiles in one row ----------
-st.title("FLIM risico tool")
-st.caption("Klik op de tegels/visualisaties om verder te navigeren of details te openen.")
+st.title("FLIM-tool")
+st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details te openen.")
 
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
