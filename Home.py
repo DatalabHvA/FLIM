@@ -274,7 +274,7 @@ def tile_leveringszekerheid(target_page):
     df_now = get_levzeker(tuple(st.session_state.selected_materials))
     st.subheader("Leveringszekerheid")
     st.write("Leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
-    st.caption("Klik op een balk om de wereldkaart te openen.")
+    st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
 
     x = tuple(df_now["material"].tolist())
     y = tuple(df_now["supply_risk"].tolist())
