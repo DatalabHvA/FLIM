@@ -348,7 +348,7 @@ def tile_wetgeving(target_page: str):
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
-        st.write('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijk bijdrage.')
+        st.write('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
         st.caption('Klik op de grafiek voor meer informatie.')
         # Define categories and values
         #topics = ['Opdracht', 'Werkgever']
@@ -411,7 +411,8 @@ def tile_personeel(target_page):
         st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
 
 def tile_subsidies():
-    st.subheader("Subsidies")
+    st.subheader("Financiers")
+    st.write('Overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
     st.caption("Klik op een ondersteept item om details te openen.")
     c1, c2 = st.columns(2)
     with c1: 
