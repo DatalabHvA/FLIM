@@ -238,7 +238,7 @@ def tile_prijsstijgingen(target_page):
     df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
 
     st.subheader("Prijsfluctuaties")
-    st.write("De prijsvariatie van deze belangrijke grondstoffen in de meubelindustrie is de afgelopen 10 jaar hard toegenomen.")
+    st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
     st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
 
     # --- build the bar chart (any way you like) ---
@@ -273,7 +273,7 @@ def tile_prijsstijgingen(target_page):
 def tile_leveringszekerheid(target_page):
     df_now = get_levzeker(tuple(st.session_state.selected_materials))
     st.subheader("Leveringszekerheid")
-    st.write("Leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
+    st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
     st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
 
     x = tuple(df_now["material"].tolist())
@@ -348,7 +348,7 @@ def tile_wetgeving(target_page: str):
 def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
-        st.write('Groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
+        st.write('Een groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
         st.caption('Klik op de grafiek voor meer informatie.')
         # Define categories and values
         #topics = ['Opdracht', 'Werkgever']
