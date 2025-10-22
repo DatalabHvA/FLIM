@@ -102,10 +102,13 @@ with st.container(border = True):
     Wist je dat **69%** van de branche aangeeft dat wervingsproblemen samenhangen met concurrentie binnen de bedrijfssector?
 
     - **Duurzaamheid en maatschappelijke betrokkenheid worden steeds meer een harde eis bij werkzoekenden**     
-    Millennials en Generatie Z hervormen de arbeidsmarkt door duurzaamheid en maatschappelijke verantwoordelijkheid te eisen als ononderhandelbare onderdelen van hun werk. Bedrijven die zich niet aanpassen aan deze verwachtingen riskeren waardevolle talenten te verliezen. [Deloitte Global Millennial Survey 2024](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
+    Millennials en Generatie Z hervormen de arbeidsmarkt door duurzaamheid en maatschappelijke verantwoordelijkheid te eisen als ononderhandelbare onderdelen van hun werk. 
+    Bedrijven die zich niet aanpassen aan deze verwachtingen riskeren waardevolle talenten te verliezen. 
+    [Deloitte Global Millennial Survey 2024](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
     - **Jongere generaties hebben steeds meer voorkeur van zingeving boven salaris**
-    Generatie Z en millennials willen werken voor bedrijven die aansluiten bij hun waarden en een positieve impact hebben op de maatschappij en het milieu. Dit gaat vaak boven salaris of functietitel. [Deloitte Global Millennial Survey 2024, Forbes, The Rise of Purpose-Driven Careers, 2023](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
+    Generatie Z en millennials willen werken voor bedrijven die aansluiten bij hun waarden en een positieve impact hebben op de maatschappij en het milieu. Dit gaat vaak boven salaris of functietitel. 
+    [Deloitte Global Millennial Survey 2024, Forbes, The Rise of Purpose-Driven Careers, 2023](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
     - **Betekenisvol werk is de sleutel tot werknemersbetrokkenheid**
     Betekenisvol werk is de belangrijkste drijfveer voor betrokkenheid bij jongere werknemers. 77% van Generatie Z geeft aan dat ze willen dat hun baan een positieve sociale of ecologische impact heeft. [Gallup State of the Global Workplace Report 2023](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf)
