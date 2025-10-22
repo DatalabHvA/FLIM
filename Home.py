@@ -423,7 +423,7 @@ def tile_subsidies():
 
     # Sample content and row colors
     labels = ['<b> Verkenning</b>', 'TSE Industrie - studies', '<a href="/a_MIT_haalbaarheid", target = "_self"<u>MIT - Haalbaarheid</u></a>', '','<b>Ontwikkeling</b>', 'MIT - R&D samenwerking', 'DEI+ - Circulaire Economie', 'VEKI - Versnelde Klimaatinvesteringen', '<b>Implementatie</b>', 'MIA\Vamil', 'CKP - Circulaire Ketenprojecten', '', '<b>Opschaling</b>', 'EFRO (Regionaal)', ' ', '']
-    values = ['', 'Horizon Europe - Cluster 4', 'EIR RawMaterials - Innovation Program', 'Life Programme - Circulair Economy', '', 'Horizon Europe - Cluster 5', 'Interreg - Circular Economy & Green Growth', 'COST Action - Circular Economy Innovation', '', 'Horizon Europe - EIC Accelerator', '<a href="/b_EDFR", target = "_self"<u>EDRF - Circular Economy</u></a>', 'Life Programme',' ','Horizon Europe - Cluster 6', 'EIC Fund', 'Horizon Europe - European Green Deal']
+    values = ['', 'Horizon Europe - Cluster 4', 'EIR RawMaterials - Innovation Program', 'Life Programme - Circulair Economy', '', 'Horizon Europe - Cluster 5', 'Interreg - Circular Economy & Green Growth', 'COST Action - Circular Economy Innovation', '', 'Horizon Europe - EIC Accelerator', '<a href="/b_EDFR", target = "_self"<u>ERDF - Circular Economy</u></a>', 'Life Programme',' ','Horizon Europe - Cluster 6', 'EIC Fund', 'Horizon Europe - European Green Deal']
     row_colors = [
         "#8BC4F9", "#BADEF9", "#BADEF9","#BADEF9", "#FFC277",
         "#FAE3C6", "#FAE3C6", "#FAE3C6", "#6BFF70", "#CCFFCE",
