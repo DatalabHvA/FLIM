@@ -103,11 +103,11 @@ with st.container(border = True):
 
     - **Duurzaamheid en maatschappelijke betrokkenheid worden steeds meer een harde eis bij werkzoekenden**     
     Millennials en Generatie Z hervormen de arbeidsmarkt door duurzaamheid en maatschappelijke verantwoordelijkheid te eisen als ononderhandelbare onderdelen van hun werk. 
-    Bedrijven die zich niet aanpassen aan deze verwachtingen riskeren waardevolle talenten te verliezen. 
+    Bedrijven die zich niet aanpassen aan deze verwachtingen riskeren waardevolle talenten te verliezen.
     [Deloitte Global Millennial Survey 2024](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
     - **Jongere generaties hebben steeds meer voorkeur van zingeving boven salaris**
-    Generatie Z en millennials willen werken voor bedrijven die aansluiten bij hun waarden en een positieve impact hebben op de maatschappij en het milieu. Dit gaat vaak boven salaris of functietitel. 
+    Generatie Z en millennials willen werken voor bedrijven die aansluiten bij hun waarden en een positieve impact hebben op de maatschappij en het milieu. Dit gaat vaak boven salaris of functietitel.
     [Deloitte Global Millennial Survey 2024, Forbes, The Rise of Purpose-Driven Careers, 2023](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
     - **Betekenisvol werk is de sleutel tot werknemersbetrokkenheid**
