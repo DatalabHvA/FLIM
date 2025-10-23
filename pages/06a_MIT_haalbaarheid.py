@@ -34,7 +34,7 @@ hide_sidebar = """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
 st.title('MIT - Haalbaarheid')
-st.subheader('(MKB Innovatiestimulering Topsectoren - Haalbaarheidstrajecten)')
+st.subheader('*M*KB Innovatiestimulering Topsectoren - Haalbaarheidstrajecten')
 
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
