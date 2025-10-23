@@ -33,8 +33,8 @@ hide_sidebar = """
 """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
-st.title('ERDF: Circular Economy')
-st.subheader('(European Regional Development Fund for Circular Economy)')
+st.title('MIT - Haalbaarheid')
+st.subheader('(MKB Innovatiestimulering Topsectoren - Haalbaarheidstrajecten)')
 
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
