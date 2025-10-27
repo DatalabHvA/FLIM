@@ -298,7 +298,7 @@ def tile_leveringszekerheid(target_page):
 def tile_klantvraag(df, target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
-        st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid meubilair groeit dubbel zo hard als de normale meubelmarkt.")
+        st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
         st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         fig = make_klantvraag_scatter(df)
         clicks = plotly_events(
@@ -309,6 +309,7 @@ def tile_klantvraag(df, target_page: str):
         )
         if clicks:
             st.switch_page(target_page)
+            st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
