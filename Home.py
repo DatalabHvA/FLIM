@@ -239,6 +239,7 @@ def tile_prijsstijgingen(target_page):
 
     st.subheader("Prijsfluctuaties")
     st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
+    st.caption("  ")
     st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
     st.caption("  ")
 
