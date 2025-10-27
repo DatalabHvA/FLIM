@@ -309,7 +309,7 @@ def tile_klantvraag(df, target_page: str):
         )
         if clicks:
             st.switch_page(target_page)
-            st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
+        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
