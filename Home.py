@@ -237,7 +237,7 @@ with st.sidebar:
 def tile_prijsstijgingen(target_page):
     df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
 
-    st.subheader("Prijsfluctuaties")
+    st.subheader("Prijsontwikkelingen")
     st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
     st.caption("  ")
     st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
