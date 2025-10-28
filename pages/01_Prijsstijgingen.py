@@ -48,7 +48,7 @@ hide_sidebar = """
 """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
-st.title("Prijsstijgingen")
+st.title("Prijsontwikkelingen")
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
 st.caption(f"Gefilterd op materiaal: **{ss.selected_material_prijs}**")
