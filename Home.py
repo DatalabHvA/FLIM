@@ -66,7 +66,7 @@ if 'bubble_label' not in ss:
     
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
-    margin=dict(l=40, r=5, t=20, b=60),
+    margin=dict(l=40, r=5, t=20, b=40),
     xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
     yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
 )
@@ -160,60 +160,6 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     )
     return fig
 
-# --- Heatmap data (labels + values). Replace with your real source.
-@st.cache_data(show_spinner=False)
-def get_heatmap_series(seed: int = 7):
-    wetgeving = pd.DataFrame({'label' : ['EUDR [2025]','ESPR [2026]', 'Right to repair directive [2026]', 'Plastics Norm [2026]', 'REACH [2007]', '(indrect via keten)'],
-                             'value' : [1,2,3,4,5,6]})
-    return wetgeving
-
-# --- Heatmap figure (single column, many rows)
-@st.cache_data(show_spinner=False)
-def make_single_col_heatmap(labels: tuple, values: tuple, cmap: list, height: int = CHART_HEIGHT):
-    import plotly.graph_objects as go
-
-    # Reshape z and y
-    z = [[value] for value in values]
-    text = [[label] for label in labels]
-
-    # Base heatmap (no text)
-    heatmap = go.Heatmap(
-        z=z,
-        x=[""],
-        y=labels,
-        colorscale=cmap,
-        showscale=False,
-        hoverinfo = 'none'
-    )
-
-    # Overlay text as scatter
-    scatter = go.Scatter(
-        x=[""]*len(labels),     # position text in center of each cell
-        y=labels,
-        mode="text",
-        text=labels,
-        textfont=dict(size=12, color="black", family="Arial Black"),
-        hoverinfo="none",
-        showlegend=False,
-    )
-
-    fig = go.Figure(data=[heatmap, scatter])
-
-    fig.update_yaxes(
-        autorange="reversed", showticklabels=False, showgrid=False, zeroline=False,
-    )
-    fig.update_xaxes(
-        showticklabels=False, showgrid=False, zeroline=False
-    )
-    fig.update_layout(
-        template="plotly_white",
-        height=60 * len(labels),
-        xaxis_title=None,
-        yaxis_title=None,
-        margin=dict(t=40, b=00, l=30, r=0),
-    )
-
-    return fig
 # ---------- Sidebar Filters ----------
 with st.sidebar:
     st.header("Filters")
@@ -339,11 +285,10 @@ def tile_wetgeving(target_page: str):
     # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
     st.markdown("""
     <div class="custom-tile">
-        Er zijn:<br><b>'5'</b><br>wet- en regelgevingen<br>die voor jouw bedrijf<br>van toepassing zijn
+        Er zijn:<br><b>        <span style="font-size: 48px; font-weight: bold;">5</span></b><br>wet- en regelgevingen<br>die voor jouw bedrijf<br>van toepassing zijn
     </div>
     """, unsafe_allow_html=True)
 
-    # --- Echte klikbare knop eronder ---
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
@@ -352,76 +297,80 @@ def tile_personeel(target_page):
         st.subheader("Personeel")
         st.write('Een groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
         st.caption('Klik op de grafiek voor meer informatie.')
-        # Define categories and values
-        #topics = ['Opdracht', 'Werkgever']
-        topics = ['Werkgever']
 
-        # Values per group per topic
-        # values = {
-        #     "Global Gen Z": [50, 44],
-        #     "Global millennials": [43, 40],
-        #     "Nederlandse Gen Z": [41, 36],
-        #     "Nederlandse millennials": [31, 29]
-        # }
-        values = {
-            #"Global Gen Z": [44],
-            #"Global millennials": [40],
-            "Nederlandse Gen Z": [36],
-            "Nederlandse millennials": [29]
-        }
+        with st.container():
+            # Define categories and values
+            #topics = ['Opdracht', 'Werkgever']
+            topics = ['Werkgever']
 
-        # Define consistent colors
-        colors = {
-            #"Global Gen Z": "#009CA6",         # Teal
-            #"Global millennials": "#5B5B5B",   # Dark grey
-            "Nederlandse Gen Z": "#00726B",    # Dark teal
-            "Nederlandse millennials": "#BFBFBF"  # Light grey
-        }
+            # Values per group per topic
+            # values = {
+            #     "Global Gen Z": [50, 44],
+            #     "Global millennials": [43, 40],
+            #     "Nederlandse Gen Z": [41, 36],
+            #     "Nederlandse millennials": [31, 29]
+            # }
+            values = {
+                #"Global Gen Z": [44],
+                #"Global millennials": [40],
+                "Nederlandse Gen Z": [36],
+                "Nederlandse millennials": [29]
+            }
 
-        # Build figure
-        fig = go.Figure()
+            # Define consistent colors
+            colors = {
+                #"Global Gen Z": "#009CA6",         # Teal
+                #"Global millennials": "#5B5B5B",   # Dark grey
+                "Nederlandse Gen Z": "#00726B",    # Dark teal
+                "Nederlandse millennials": "#BFBFBF"  # Light grey
+            }
 
-        for label, vals in values.items():
-            fig.add_trace(go.Bar(
-                x=topics,
-                y=vals,
-                name=label,
-                text=[f"{v}%" for v in vals],
-                textposition="outside",
-                marker_color=colors[label]
-            ))
+            # Build figure
+            fig = go.Figure()
 
-        # Layout settings
-        fig.update_layout(
-            barmode="group",
-            xaxis_title="",
-            yaxis_title="Percentage",
-            template="plotly_white",
-            margin=dict(l=00, r=00, t=00, b=40),  # left, right, top, bottom
-            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
-        )
+            for label, vals in values.items():
+                fig.add_trace(go.Bar(
+                    x=topics,
+                    y=vals,
+                    name=label,
+                    text=[f"{v}%" for v in vals],
+                    textposition="outside",
+                    marker_color=colors[label]
+                ))
+            fig.update_yaxes(range=[0, 36 * 1.2])  # 20% extra headroom
+            # Layout settings
+            fig.update_layout(
+                barmode="group",
+                xaxis_title="",
+                yaxis_title="Percentage",
+                template="plotly_white",
+                height=CHART_HEIGHT,
+                legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5),
+                **COMMON_LAYOUT
+            )
 
+            clicks = plotly_events(
+                fig,
+                click_event=True, hover_event=False, select_event=False,
+                override_height = CHART_HEIGHT,
+                key=f"evt_personeel_{st.session_state.events_epoch}",
+            )
+            if clicks:
+                # For Heatmap, Plotly returns y = row label (our 'label')
+                st.switch_page(target_page)
 
-        clicks = plotly_events(
-            fig,
-            click_event=True, hover_event=False, select_event=False,
-            key=f"evt_personeel_{st.session_state.events_epoch}",
-        )
-        if clicks:
-            # For Heatmap, Plotly returns y = row label (our 'label')
-            st.switch_page(target_page)
         st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
+
 
 def tile_subsidies():
     st.subheader("Financiers")
     st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
     st.caption("Klik op de (ondersteepte) subsidies om meer te weten te komen.")
-    c1, c2 = st.columns(2)
-    with c1: 
-        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg")
-    with c2: 
-        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg")
-
+    cols = st.columns([1, 2, 1, 1, 2, 1])
+    with cols[1]:
+        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg", use_container_width =True)
+    with cols[4]: 
+        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg", use_container_width =True)
 
     # Sample content and row colors
     labels = ['<b> Verkenning</b>', 'TSE Industrie - studies', '<a href="/a_MIT_haalbaarheid", target = "_self"<u>MIT - Haalbaarheid</u></a>', '','<b>Ontwikkeling</b>', 'MIT - R&D samenwerking', 'DEI+ - Circulaire Economie', 'VEKI - Versnelde Klimaatinvesteringen', '<b>Implementatie</b>', 'MIA\Vamil', 'CKP - Circulaire Ketenprojecten', '', '<b>Opschaling</b>', 'EFRO (Regionaal)', ' ', '']
@@ -455,7 +404,6 @@ with col3: tile_klantvraag(ss.klantvraag_df, target_page="pages/03_Klantvraag.py
     
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
-    heat_df = get_heatmap_series()
     tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
 with h2:
     tile_personeel(target_page = "pages/05_personeel.py")

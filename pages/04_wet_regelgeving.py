@@ -3,8 +3,6 @@ from streamlit_plotly_events import plotly_events
 import sys
 sys.path.append("..")
 
-from Home import get_heatmap_series, make_single_col_heatmap
-
 st.set_page_config(page_title="Klantvraag", layout="wide")
 
 hide_sidebar = """
