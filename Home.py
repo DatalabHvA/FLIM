@@ -45,8 +45,8 @@ if 'wgi_df' not in ss:
     ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
 if 'klantvraag_df' not in ss:
     ss.klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
-                              'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+                              'Traditionele meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
+                              'Duurzame meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
 if 'personeel_df' not in ss:
     ss.personeel_df = pd.DataFrame({'Categorie' : ['Global Gen Z', 'Global millennials', 'Nederlandse Gen Z', 'Nederlands millennials'],
                                     'Opdracht_project' : [0.5, 0.43, 0.41, 0.31],
@@ -66,7 +66,7 @@ if 'bubble_label' not in ss:
     
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
-    margin=dict(l=40, r=5, t=20, b=40),
+    margin=dict(l=40, r=5, t=20, b=60),
     xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
     yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
 )
@@ -128,18 +128,18 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     # add each line
     fig.add_trace(go.Scatter(
         x=[str(x) for x in ss.klantvraag_df['Jaar']],
-        y=[float(x) for x in ss.klantvraag_df['Duurzame meubels (CAGR 2,8%)']],
+        y=[float(x) for x in ss.klantvraag_df['Traditionele meubels (CAGR 2,8%)']],
         mode='lines+markers',
-        name='Duurzame meubels (CAGR 2,8%)',
+        name='Traditionele meubels (CAGR 2,8%)',
         line=dict(color='red', width=3),
         marker=dict(size=6)
     ))
 
     fig.add_trace(go.Scatter(
         x=[str(x) for x in ss.klantvraag_df['Jaar']],
-        y=[float(x) for x in ss.klantvraag_df['Traditionele meubels (CAGR 7,3%)']],
+        y=[float(x) for x in ss.klantvraag_df['Duurzame meubels (CAGR 7,3%)']],
         mode='lines+markers',
-        name='Traditionele meubels (CAGR 7,3%)',
+        name='Duurzame meubels (CAGR 7,3%)',
         line=dict(color='green', width=3),
         marker=dict(size=6)
     ))
@@ -185,10 +185,8 @@ def tile_prijsstijgingen(target_page):
 
     st.subheader("Prijsontwikkelingen")
     st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
-    st.caption("  ")
     st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
-    st.caption("  ")
-
+    st.caption(" ")
     # --- build the bar chart (any way you like) ---
     x = tuple(df_now["materiaal"].tolist())
     y = tuple((df_now["risk2"]*100).tolist())
@@ -223,6 +221,7 @@ def tile_leveringszekerheid(target_page):
     st.subheader("Leveringszekerheid")
     st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
     st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
+    st.caption(" ")
 
     x = tuple(df_now["material"].tolist())
     y = tuple(df_now["supply_risk"].tolist())
@@ -249,6 +248,10 @@ def tile_klantvraag(df, target_page: str):
         st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
         st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         fig = make_klantvraag_scatter(df)
+        fig.update_layout(**COMMON_LAYOUT,
+            legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
+            )
+
         clicks = plotly_events(
             fig,
             click_event=True, hover_event=False, select_event=False,
@@ -257,7 +260,7 @@ def tile_klantvraag(df, target_page: str):
         )
         if clicks:
             st.switch_page(target_page)
-        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
+        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (rode lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
