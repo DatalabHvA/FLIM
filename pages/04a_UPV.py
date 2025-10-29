@@ -41,7 +41,7 @@ st.markdown("""
 
   - **De rijksoverheid stelt als doel om in 2030 een UPV voor meubels in te stellen.** Deze moet eraan bijdragen dat meubels beter ingezameld, hergebruikt, opgeknapt, gerepareerd en gerecycled worden.
 
-**Relevantie voor de meubelbranche**
+  **Relevantie voor de meubelbranche**
     
     De Uitgebreide Producentenverantwoordelijkheid (UPV) Meubels gaat grote impact hebben op de meubelbranche, omdat producenten verantwoordelijk gemaakt worden voor de inzameling en verwerking van hun producten aan het einde van de levensduur. 
     Dat betekent dat consumenten of bedrijven hun **oude meubels kosteloos kunnen afstaan**, dus zonder kosten voor logistiek of verwerking. Deze verantwoordelijkheid komt volledig te liggen bij de producenten. In eerste instantie leidt dit tot **hogere kosten voor producenten**, omdat zij moeten bijdragen aan het opzetten en financieren van inzamel- en verwerkingssystemen.
