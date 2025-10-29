@@ -55,9 +55,9 @@ with c1:
     st.markdown("""
         **Risico's**
                 
-        - **Noodzaak te verenigen**: De initiële verantwoordelijkheid voor de wettelijke regeling ligt bij individuele producenten, wat het organiseren en financieren van de eindverwerking van producten complex maakt, waardoor fabrikanten genoodzaakt zijn zich te verenigen om de verplichtingen gezamenlijk uit te voeren.
         - **Hogere kosten**: Het opzetten van systemen om de eindverwerking en recycling van producten te organiseren kunnen in het begin leiden tot hogere operationele kosten.
         - **Verlies afzetmarkten**: Fabrikanten die niet in staat zijn om te voldoen aan de UPV-verplichtingen, kunnen het risico lopen hun producten uit bepaalde markten te verliezen, vooral in landen met strikte handhaving.
+        - **Noodzaak voor vereniging**: De initiële verantwoordelijkheid voor de wettelijke regeling ligt bij individuele producenten, wat het organiseren en financieren van de eindverwerking van producten complex maakt, waardoor fabrikanten genoodzaakt zijn zich te verenigen om de verplichtingen gezamenlijk uit te voeren.
         """)
 with c2: 
     st.markdown("""
