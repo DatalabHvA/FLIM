@@ -73,7 +73,7 @@ with c1:
                     
 De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een **wettelijke verplichting**. 
 
-Voor de meubelbranche betekent dit dat de manier waarop *producten worden ontworpen, geproduceerd en verwerkt* fundamenteel verandert .
+Voor de meubelbranche betekent dit dat de manier waarop producten worden **ontworpen, geproduceerd en verwerkt** fundamenteel verandert.
 
 Bedrijven moeten aantonen waar hun materialen vandaan komen, hoe producten zijn opgebouwd, hoe ze onderhouden of gerepareerd kunnen worden, en wat ermee gebeurt na gebruik.
 
