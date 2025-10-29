@@ -68,15 +68,14 @@ st.markdown(html, unsafe_allow_html=True)
 c1, c2 = st.columns(2)
 with c1:
     with st.container():
-        st.subheader("Samenhang en doel wet- en regelgevingen")
+        st.subheader("Wet- en regelgeving: wat verandert er voor de meubelbranche?")
         st.markdown("""
-        **1. Wet- en regelgeving: wat verandert er voor de meubelbranche?** 
                     
 De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een *wettelijke verplichting*. 
 
-    Voor de meubelbranche betekent dit dat de manier waarop producten worden ontworpen, geproduceerd en verwerkt fundamenteel verandert .
+Voor de meubelbranche betekent dit dat de manier waarop producten worden ontworpen, geproduceerd en verwerkt fundamenteel verandert .
 
-    Bedrijven moeten aantonen waar hun materialen vandaan komen, hoe producten zijn opgebouwd, hoe ze onderhouden of gerepareerd kunnen worden, en wat ermee gebeurt na gebruik.
+Bedrijven moeten aantonen waar hun materialen vandaan komen, hoe producten zijn opgebouwd, hoe ze onderhouden of gerepareerd kunnen worden, en wat ermee gebeurt na gebruik.
 
 
 Niet langer is circulariteit vrijblijvend of alleen “maatschappelijk wenselijk” – het wordt wettelijk verplichtend, met eisen over ontwerp, materialen, hergebruik en afvalfase.**
