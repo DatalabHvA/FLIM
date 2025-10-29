@@ -48,7 +48,7 @@ st.markdown("""
 
     Binnen de regeling wordt onder een producent niet alleen de fabrikant verstaan, maar ook **importeurs** en **wederverkopers** die meubels voor het eerst op de Nederlandse markt brengen. Ook zij dragen verantwoordelijkheid voor de producten die zij introduceren.
     
-    De UPV Meubels stimuleert daarmee de hele keten (producent tot importeur) om na te denken over ontwerp voor hergebruik/demontage en de materiaalkeuze, zodat producten aan het einde van hun levensduur makkelijker verwerkt en herbestemd kunnen worden. Uiteindelijk moet dit ertoe leiden dat de afvalstroom uit meubilair teruggedrongen wordt en en dat de waarde van materialen zoveel mogelijk behouden blijft.
+    De UPV Meubels stimuleert daarmee de hele keten (producent tot importeur) om na te denken over ontwerp voor hergebruik en demontage maar ook de materiaalkeuze, zodat producten aan het einde van hun levensduur makkelijker verwerkt en herbestemd kunnen worden. Uiteindelijk moet dit ertoe leiden dat de afvalstroom uit meubilair teruggedrongen wordt en en dat de waarde van materialen zoveel mogelijk behouden blijft.
             """)
 
 c1, c2 = st.columns(2)
