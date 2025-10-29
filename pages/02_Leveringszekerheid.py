@@ -51,9 +51,7 @@ st.page_link("Home.py", label="⬅ Terug naar Home")
 st.caption(f"Gefilterd op materiaal: **{ss.selected_material_geo}**")
 
 st.markdown("""
-    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van twee indicatoren. 
-    1.	**Herfindahl-Hirschman Index (HHI)**
-    2.	**Worldwide Governance Indicator (WGI)**
+    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
                 """)
 
 
@@ -77,8 +75,9 @@ with c2:
         st.write('De WGI geeft aan hoe stabiel het bestuur en de instituties van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
 
 st.markdown("""
-    Deze kaart toont de herkomst en leveringszekerheid van het geselecteerde materiaal wereldwijd.
-    De kleuren geven aan hoe stabiel en betrouwbaar de productie per land is (groen = hoge zekerheid, rood = lage zekerheid).
+    Onderstaande kaart toont de herkomst en leveringszekerheid van het geselecteerde materiaal wereldwijd.
+    De kleuren geven aan hoe stabiel en betrouwbaar de productie per land is: 
+    groen = hoge zekerheid, rood = lage zekerheid).
             """)
 
 
