@@ -81,3 +81,23 @@ fig.update_layout(
     coloraxis_colorbar=dict(title="Zekerheid")
 )
 st.plotly_chart(fig, use_container_width=True)
+
+st.markdown("""
+    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van twee indicatoren. 
+    1.	**Herfindahl-Hirschman Index (HHI)**
+    2.	**Worldwide Governance Indicator (WGI)**
+
+    **Herfindahl–Hirschman Index (HHI)**
+            
+    De HHI is een maatstaf voor marktconcentratie en heeft daarmee indirecte gevolgen voor leveringszekerheid. 
+    - Bij een lage HHI  is de markt competitief met veel aanbieders van het geselecteerde materiaal.  Een lage HHI wijst op meer concurrentie en spreiding, wat doorgaans gunstig is voor leveringszekerheid.
+    - Bij een hoge HHI is er sprake van een sterk geconcentreerde markt met weinig aanbieders. De markt is in dat geval kwetsbaar voor storingen of geopolitieke risico’s; één speler kan de markt domineren. (bron: investopedia.com)
+
+    **Worldwide Governance Indicators (WGI)**
+            
+    Leveringszekerheid van grondstoffen hangt sterk af van governance van een land waar materialen vandaan komen. De WGI wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten (bron: worldbank.org). 
+    In de WGI zijn onder andere de volgende dimensies meegenomen die invloed hebben op leveringszekerheid van de geselecteerde materialen:
+    - **Betrouwbaarheid** van **overheidsdiensten** en **consistente beleidsuitvoering**: deze  verminderen risico’s op verstoringen in levering. 
+    - Een **sterke rechtsstaat** zorgt voor contracthandhaving en eigendomsrechten: dit is cruciaal voor stabiele toeleveringsketens. 
+    - **Politieke stabiliteit**: minder kans op conflicten of politieke crises die leveringen kunnen onderbreken.
+            """)

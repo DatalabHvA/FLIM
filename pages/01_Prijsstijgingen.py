@@ -129,3 +129,19 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+st.markdown("""
+    De prijsontwikkelingen zijn uitdrukt met behulp van de **producentenprijsindex (PPI) over de geselecteerde materialen**. De PPI is een **economische indicator** die de gemiddelde prijsveranderingen meet die **producenten ontvangen voor deze geleverde materialen**. Het gaat dus om prijzen op het **niveau van de producent**. Dit maakt de PPI een belangrijke maatstaf voor inflatie voor de inkopers van de materialen (bron: investingnomads.nl).
+
+    Door de balkjes aan te klikken kun je meer inzichten krijgen in 
+    1.	de **trendlijn** (stijging of daling over een periode) en 
+    2.	de **fluctuatie** van de materiaalprijzen over een periode.
+
+    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een stijgende trendlijn betekent dit: 
+    - Hogere grondstofkosten. Meubelmakers zijn sterk afhankelijk van de gekozen grondstoffen. Een stijgende PPI betekent dat deze materialen duurder worden, wat direct de productiekosten verhoogt.
+    - Druk op marges en prijsstrategie. Als meubelmakers de hogere kosten niet volledig kunnen doorberekenen aan klanten, daalt hun winstgevendheid. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
+    - Invloed op vraag en concurrentie. Hogere verkoopprijzen kunnen de vraag naar meubels verminderen, vooral in prijsgevoelige segmenten. Dit dwingt meubelmakers tot innovatie of kostenbesparing. 
+
+    Een sterke **fluctuatie** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
+
+            """)
