@@ -54,6 +54,10 @@ st.page_link("Home.py", label="⬅ Terug naar Home")
 st.caption(f"Gefilterd op materiaal: **{ss.selected_material_prijs}**")
 filtered_df = ss.prijzen_df[['Jaar',ss.selected_material_prijs]].dropna()
 
+st.markdown("""
+    De prijsontwikkelingen zijn uitdrukt met behulp van de **producentenprijsindex (PPI) over de geselecteerde materialen**. De PPI is een **economische indicator** die de gemiddelde prijsveranderingen meet die **producenten ontvangen voor deze geleverde materialen**. Het gaat dus om prijzen op het **niveau van de producent**. Dit maakt de PPI een belangrijke maatstaf voor inflatie voor de inkopers van de materialen (bron: investingnomads.nl).
+            """)
+
 # Ensure datetime
 x_dt = pd.to_datetime(filtered_df['Jaar'])
 
