@@ -44,10 +44,11 @@ st.markdown("""
     **Relevantie voor de meubelbranche**
     
     De Uitgebreide Producentenverantwoordelijkheid (UPV) Meubels gaat grote impact hebben op de meubelbranche, omdat producenten verantwoordelijk gemaakt worden voor de inzameling en verwerking van hun producten aan het einde van de levensduur. 
-    Dat betekent dat consumenten of bedrijven hun oude meubels kosteloos kunnen afstaan, dus zonder kosten voor logistiek of verwerking. Deze verantwoordelijkheid komt volledig te liggen bij de producenten. In eerste instantie leidt dit tot hogere kosten voor producenten, omdat zij moeten bijdragen aan het opzetten en financieren van inzamel- en verwerkingssystemen.
-    - Producenten verantwoordelijk worden voor de eindfase van hun product, kostenloos voor de ontdoener. (geen kosten voor logistiek, geen kosten voor verwerking). In eerste instantie een kostenverhoging voor producenten. 
-        - Wat is een producent?
-    - Dit geldt ook voor importeurs, als het voor het eerst in de handel gebracht wordt in Nederland
+    Dat betekent dat consumenten of bedrijven hun **oude meubels kosteloos kunnen afstaan**, dus zonder kosten voor logistiek of verwerking. Deze verantwoordelijkheid komt volledig te liggen bij de producenten. In eerste instantie leidt dit tot **hogere kosten voor producenten**, omdat zij moeten bijdragen aan het opzetten en financieren van inzamel- en verwerkingssystemen.
+
+    Binnen de regeling wordt onder een producent niet alleen de fabrikant verstaan, maar ook **importeurs** en **wederverkopers** die meubels voor het eerst op de Nederlandse markt brengen. Ook zij dragen verantwoordelijkheid voor de producten die zij introduceren.
+    
+    De UPV Meubels stimuleert daarmee de hele keten (producent tot importeur) om na te denken over ontwerp voor hergebruik/demontage en de materiaalkeuze, zodat producten aan het einde van hun levensduur makkelijker verwerkt en herbestemd kunnen worden. Uiteindelijk moet dit ertoe leiden dat de afvalstroom uit meubilair teruggedrongen wordt en en dat de waarde van materialen zoveel mogelijk behouden blijft.
             """)
 
 c1, c2 = st.columns(2)
