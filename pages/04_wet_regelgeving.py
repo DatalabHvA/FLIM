@@ -38,7 +38,6 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 
 st.title('Wet- en regelgeving')
 st.page_link("Home.py", label="⬅ Terug naar Home")
-st.subtitle('Belangrijke wet- en regelgeving m.b.t. grondstoffen in de meubelbranche:')
 
 # Sample content and row colors
 labels1 = ['<b>Klein</b>','<50 medewerkers','<€10 miljoen','','','','','','','','','','']
