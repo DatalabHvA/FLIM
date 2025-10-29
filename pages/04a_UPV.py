@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="UPV", layout="wide")
+st.set_page_config(page_title="Uitgebreide producentenverantwoordelijkheid (UPV)", layout="wide")
 
 hide_sidebar = """
     <style>
@@ -33,15 +33,15 @@ hide_sidebar = """
 """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
-st.title('UPV')
+st.title('Uitgebreide producentenverantwoordelijkheid (UPV)')
 st.page_link("pages/04_wet_regelgeving.py", label="⬅ Terug naar Wet- en regelgeving")
 
 st.markdown("""
-    **Uitgebreide producentenverantwoordelijkheid (UPV)** maakt producenten (waaronder importeurs) verantwoordelijk voor het afvalbeheer van de producten die zij in Nederland in de handel brengen. Er zijn bijvoorbeeld verplichtingen voor het inzamelen en recyclen van afvalstoffen. Voor een groot aantal productgroepen is er al een UPV. 
+    Uitgebreide producentenverantwoordelijkheid (UPV) maakt producenten (waaronder importeurs) verantwoordelijk voor het afvalbeheer van de producten die zij in Nederland in de handel brengen. Er zijn bijvoorbeeld verplichtingen voor het inzamelen en recyclen van afvalstoffen. Voor een groot aantal productgroepen is er al een UPV. 
 
   - **De rijksoverheid stelt als doel om in 2030 een UPV voor meubels in te stellen.** Deze moet eraan bijdragen dat meubels beter ingezameld, hergebruikt, opgeknapt, gerepareerd en gerecycled worden.
 
-    **Relevantie voor de meubelbranche**
+**Relevantie voor de meubelbranche**
     
     De Uitgebreide Producentenverantwoordelijkheid (UPV) Meubels gaat grote impact hebben op de meubelbranche, omdat producenten verantwoordelijk gemaakt worden voor de inzameling en verwerking van hun producten aan het einde van de levensduur. 
     Dat betekent dat consumenten of bedrijven hun **oude meubels kosteloos kunnen afstaan**, dus zonder kosten voor logistiek of verwerking. Deze verantwoordelijkheid komt volledig te liggen bij de producenten. In eerste instantie leidt dit tot **hogere kosten voor producenten**, omdat zij moeten bijdragen aan het opzetten en financieren van inzamel- en verwerkingssystemen.
