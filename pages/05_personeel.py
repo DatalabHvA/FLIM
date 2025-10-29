@@ -30,7 +30,7 @@ hide_sidebar = """
 """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
-st.subheader('1. Ontwikkelingen rond personeel in de meubelbranche')
+st.subheader('Ontwikkelingen rond personeel')
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
 st.markdown('''
