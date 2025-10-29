@@ -91,10 +91,6 @@ with col2:
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
         st.write(f'Dit is gemiddelde fluctuatie van de prijs van {ss.selected_material_prijs} bovenop de trend in procentpunten ten opzichte van het 2015 niveau.')
 
-st.markdown("""
-    De prijsontwikkelingen zijn uitdrukt met behulp van de **producentenprijsindex (PPI) over de geselecteerde materialen**. De PPI is een **economische indicator** die de gemiddelde prijsveranderingen meet die **producenten ontvangen voor deze geleverde materialen**. Het gaat dus om prijzen op het **niveau van de producent**. Dit maakt de PPI een belangrijke maatstaf voor inflatie voor de inkopers van de materialen (bron: investingnomads.nl).
-            """)
-
 # Plot
 fig = go.Figure()
 
