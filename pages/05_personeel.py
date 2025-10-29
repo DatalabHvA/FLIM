@@ -33,9 +33,10 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 st.subheader('Ontwikkelingen rond personeel')
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
-st.markdown('''
-**1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**
 
+with st.container(border = True):**1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**
+
+st.markdown('''
 Uit de Conjunctuurmonitor 2024 van CBM blijkt dat de meubelbranche continu nieuw personeel moet aannemen. 87% van de ondervraagde WMB-bedrijven zagen hun personeelsbestand groeien, en 22% van hen ervoer een toename in de wervingsinspanningen ten opzichte van voorgaande jaren.
 ''')
 
