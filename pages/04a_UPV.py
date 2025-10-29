@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Uitgebreide producentenverantwoordelijkheid (UPV)", layout="wide")
+st.set_page_config(page_title="Uitgebreide ProducentenVerantwoordelijkheid (UPV)", layout="wide")
 
 hide_sidebar = """
     <style>
@@ -33,7 +33,7 @@ hide_sidebar = """
 """
 st.markdown(hide_sidebar, unsafe_allow_html=True)
 
-st.title('Uitgebreide producentenverantwoordelijkheid (UPV)')
+st.title('Uitgebreide Producentenverantwoordelijkheid (UPV)')
 st.page_link("pages/04_wet_regelgeving.py", label="⬅ Terug naar Wet- en regelgeving")
 
 st.markdown("""
