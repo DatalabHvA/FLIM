@@ -91,6 +91,21 @@ with col2:
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
         st.write(f'Dit is gemiddelde fluctuatie van de prijs van {ss.selected_material_prijs} bovenop de trend in procentpunten ten opzichte van het 2015 niveau.')
 
+st.markdown("""
+   
+    Door de balkjes aan te klikken kun je meer inzichten krijgen in 
+    1.	de **trendlijn** (stijging of daling over een periode) en 
+    2.	de **fluctuatie** van de materiaalprijzen over een periode.
+
+    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een stijgende trendlijn betekent dit: 
+    - Hogere grondstofkosten. Meubelmakers zijn sterk afhankelijk van de gekozen grondstoffen. Een stijgende PPI betekent dat deze materialen duurder worden, wat direct de productiekosten verhoogt.
+    - Druk op marges en prijsstrategie. Als meubelmakers de hogere kosten niet volledig kunnen doorberekenen aan klanten, daalt hun winstgevendheid. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
+    - Invloed op vraag en concurrentie. Hogere verkoopprijzen kunnen de vraag naar meubels verminderen, vooral in prijsgevoelige segmenten. Dit dwingt meubelmakers tot innovatie of kostenbesparing. 
+
+    Een sterke **fluctuatie** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
+
+            """)
+
 # Plot
 fig = go.Figure()
 
@@ -134,17 +149,4 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("""
-   
-    Door de balkjes aan te klikken kun je meer inzichten krijgen in 
-    1.	de **trendlijn** (stijging of daling over een periode) en 
-    2.	de **fluctuatie** van de materiaalprijzen over een periode.
 
-    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een stijgende trendlijn betekent dit: 
-    - Hogere grondstofkosten. Meubelmakers zijn sterk afhankelijk van de gekozen grondstoffen. Een stijgende PPI betekent dat deze materialen duurder worden, wat direct de productiekosten verhoogt.
-    - Druk op marges en prijsstrategie. Als meubelmakers de hogere kosten niet volledig kunnen doorberekenen aan klanten, daalt hun winstgevendheid. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
-    - Invloed op vraag en concurrentie. Hogere verkoopprijzen kunnen de vraag naar meubels verminderen, vooral in prijsgevoelige segmenten. Dit dwingt meubelmakers tot innovatie of kostenbesparing. 
-
-    Een sterke **fluctuatie** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
-
-            """)
