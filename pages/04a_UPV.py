@@ -71,4 +71,5 @@ with c2:
                 
                 """)
 
-st.markdown('Meer informatie over Uitgebreide Producentenverantwoordelijkheid (UPV): https://www.afvalcirculair.nl/uitgebreide-producentenverantwoordelijkheid-upv/') 
+st.markdown('Meer informatie over Uitgebreide Producentenverantwoordelijkheid (UPV): 
+    https://www.afvalcirculair.nl/uitgebreide-producentenverantwoordelijkheid-upv/') 
