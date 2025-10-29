@@ -110,7 +110,10 @@ def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
     )
     fig.update_layout(
         xaxis_title=None, yaxis_title="Index", showlegend=False,
-        **COMMON_LAYOUT, height = CHART_HEIGHT
+        margin=dict(l=40, r=5, t=20, b=60),
+        xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10, categoryorder="category ascending"),
+        yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
+        height = CHART_HEIGHT
     )
 
     fig.update_yaxes(
@@ -131,7 +134,7 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
         y=[float(x) for x in ss.klantvraag_df['Traditionele meubels (CAGR 2,8%)']],
         mode='lines+markers',
         name='Traditionele meubels (CAGR 2,8%)',
-        line=dict(color='red', width=3),
+        line=dict(color='black', width=3),
         marker=dict(size=6)
     ))
 
@@ -199,8 +202,14 @@ def tile_prijsstijgingen(target_page):
             hovertemplate="<b>%{x}</b><br>Stijging: %{y:.1f}%<extra></extra>"
         )
     )
-    fig.update_layout(height=CHART_HEIGHT, xaxis_title=None, yaxis_title="Prijsvariatie t.o.v. 2015 (%)", showlegend=False,
-                      **COMMON_LAYOUT)
+    fig.update_layout(height=CHART_HEIGHT, 
+                      xaxis_title=None, 
+                      yaxis_title="Prijsvariatie t.o.v. 2015 (%)", 
+                      showlegend=False,
+                      margin=dict(l=40, r=5, t=20, b=60),
+                      xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10, categoryorder="category ascending"),
+                      yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
+)
 
     # IMPORTANT: key includes epoch so old clicks are never replayed
     clicks = plotly_events(
@@ -260,7 +269,7 @@ def tile_klantvraag(df, target_page: str):
         )
         if clicks:
             st.switch_page(target_page)
-        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (rode lijn).')
+        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):

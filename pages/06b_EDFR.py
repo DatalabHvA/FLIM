@@ -38,7 +38,7 @@ st.subheader('(European Regional Development Fund for Circular Economy)')
 
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
-st.image('assets/ERDF.PNG')
+st.image('assets/ERDF.jpg', width = 1000)
 
 st.markdown('''
 ****1. Beschrijving subsidie****
