@@ -50,6 +50,13 @@ st.page_link("Home.py", label="⬅ Terug naar Home")
 
 st.caption(f"Gefilterd op materiaal: **{ss.selected_material_geo}**")
 
+st.markdown("""
+    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van twee indicatoren. 
+    1.	**Herfindahl-Hirschman Index (HHI)**
+    2.	**Worldwide Governance Indicator (WGI)**
+                """)
+
+
 # Demo data — replace with your real geo/materials feed
 df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.selected_material_geo][['iso3','country','governance_score', 'market_share']]
 hhi = ss.geo_df.groupby('material').apply(lambda g: (g['market_share']**2).sum()).rename('hhi')
@@ -69,6 +76,11 @@ with c2:
         st.metric("Gemiddelde World Governance Indicactor (WGI) voor productielanden van deze grondstof", f"{wgi_kpi:.2f}")
         st.write('De WGI geeft aan hoe stabiel het bestuur en de instituties van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
 
+st.markdown("""
+    Deze kaart toont de herkomst en leveringszekerheid van het geselecteerde materiaal wereldwijd.
+    De kleuren geven aan hoe stabiel en betrouwbaar de productie per land is (groen = hoge zekerheid, rood = lage zekerheid).
+            """)
+
 
 fig = px.choropleth(
     df, locations="iso3", color="governance_score",
@@ -83,10 +95,6 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("""
-    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van twee indicatoren. 
-    1.	**Herfindahl-Hirschman Index (HHI)**
-    2.	**Worldwide Governance Indicator (WGI)**
-
     **Herfindahl–Hirschman Index (HHI)**
             
     De HHI is een maatstaf voor marktconcentratie en heeft daarmee indirecte gevolgen voor leveringszekerheid. 
