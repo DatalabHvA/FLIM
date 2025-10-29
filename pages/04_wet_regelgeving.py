@@ -90,12 +90,11 @@ c1, c2 = st.columns(2)
 with c1: 
     st.markdown("""
         **Risico's**
-        
-    Wie niet tijdig inspeelt op deze regels, loopt risico’s:                
-        - Kostenbesparing: slimmer ontwerp en hergebruik verlagen materiaalkosten.
-                - Nieuwe verdienmodellen: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
-                - Concurrentievoordeel: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
-        - Toegang tot aanbestedingen en subsidies: overheden vragen om circulaire producten.
+                
+        - **Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
+        - **Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
+        - **Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
+        - **Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
         """)
 with c2: 
     st.markdown("""
