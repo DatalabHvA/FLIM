@@ -91,20 +91,18 @@ with c1:
     st.markdown("""
         **Risico's**
                 
-        - **Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
-        - **Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
-        - **Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
-        - **Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
+        - **Marktuitsluiting**: producten die niet voldoen, mogen in de toekomst niet meer verkocht worden.
+        - **Kostenstijging**: late aanpassing leidt tot hogere grondstof- en nalevingskosten.
+        - **Datadruk**: nieuwe eisen vragen om transparantie in de hele keten – van leverancier tot eindgebruiker.
+        - **Verlies aan concurrentiekracht: bedrijven die niet voldoen, verliezen terrein aan spelers die wel voldoen en hun circulaire waarde kunnen aantonen.
         """)
 with c2: 
     st.markdown("""
         **Kansen**
-                
-        - **Tariefdifferentiatie** biedt een financiële prikkel voor duurzaam of circulair ontwerpen. Bijvoorbeeld: korting bij toepassing van +50% recycled content
-        - Om te komen tot een goed werkend systeem wordt **samenwerking met ketenpartners** (producenten, retailers, inzamelaars, recyclers) belangrijk, dit biedt kansen voor nieuwe businessmodellen.
-        - De UPV zal bijdragen aan betere inzameling van meubels en biedt kansen voor **hergebruik** en refurbishment. 
-        - De UPV-wetgeving kan fabrikanten stimuleren om **innovatie in productontwikkeling** en nieuwe businessmodellen te omarmen, zoals product-as-a-service (verhuurmodellen) of circulaire productlijnen. Dit opent mogelijkheden voor het ontwikkelen van nieuwe producten met langere levenscycli.
-        - Overheden en grote bedrijven stellen steeds vaker **duurzaamheidsvereisten in aanbestedingen**. Fabrikanten die proactief inspelen op de UPV-verplichtingen kunnen zich positioneren als duurzame pioniers, wat hen een concurrentievoordeel oplevert.
-                
+                 
+        - **Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
+        - **Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
+        - **Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
+        - **Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
                 """)
 
