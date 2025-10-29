@@ -88,8 +88,6 @@ with c1:
         - Geen toegang tot markten die circulariteit vereisen.
         - Verlies aan concurrentiekracht t.o.v. bedrijven die wél voldoen
                 """)
-with c2: 
-    st.image('assets/wetgeving.png')
 
 st.subheader("Wat betekent dit voor de branche?")
 st.markdown("""
