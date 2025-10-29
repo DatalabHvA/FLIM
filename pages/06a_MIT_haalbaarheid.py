@@ -43,13 +43,11 @@ st.image('assets/MIT.jpg', width = 1000)
 st.markdown('''
 ****1. Beschrijving subsidie****
            
-Het European Regional Development Fund (ERDF) is een belangrijke Europese subsidieregeling die gericht is op het ondersteunen van regionale ontwikkeling en economische groei in Europa. Het ondersteunt samenwerkingsprojecten die bijdragen aan het versterken van de regionale economie, waaronder projecten in:
-- de circulaire economie, 
-- duurzame productie 
-- en innovatie in verschillende sectoren. 
-De regeling is in de basis gericht op minder ontwikkelde en overgangsregio's, maar bedrijven in heel Europa, inclusief Nederland, kunnen profiteren van de subsidiemogelijkheden. 
+De MIT Haalbaarheidssubsidie (Mkb-Innovatiestimulering Regio en Topsectoren) is een Nederlandse regeling bedoeld om mkb-ondernemers te helpen bij het verkennen van de haalbaarheid van een innovatieproject.
 
-Binnen het kader van de circulaire economie biedt de ERDF subsidies voor projecten die gericht zijn op duurzame productontwikkeling, innovatie en hergebruik van materialen.
+De subsidie ondersteunt bedrijven in de beginfase van innovatie, waarin nog onderzocht wordt of een idee technisch, economisch en organisatorisch uitvoerbaar is.
+
+In deze fase kan het mkb marktonderzoek doen, technische analyses uitvoeren of de benodigde partners en grondstoffen in kaart brengen. De MIT Haalbaarheid is vaak een opstap naar een groter R&D-project of naar andere subsidie-instrumenten zoals MIT-R&D-samenwerkingsprojecten of Europese regelingen (zoals Horizon of ERDF).
 
 ****2. Relevantie meubelbranche**** 
             
