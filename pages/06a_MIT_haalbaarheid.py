@@ -38,7 +38,7 @@ st.subheader('*MKB Innovatiestimulering Topsectoren - Haalbaarheidstrajecten*')
 
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
-st.image('assets/ERDF.PNG')
+st.image('assets/MIT.jpg', width = 1000)
 
 st.markdown('''
 ****1. Beschrijving subsidie****
