@@ -78,6 +78,7 @@ Voor de meubelbranche betekent dit dat de manier waarop *producten worden ontwor
 Bedrijven moeten aantonen waar hun materialen vandaan komen, hoe producten zijn opgebouwd, hoe ze onderhouden of gerepareerd kunnen worden, en wat ermee gebeurt na gebruik.
 
 ***Samenhang wet- en regelgeving***
+
 De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De te ontwikkelen **Uitgebreide Producentenverantwoordelijkheid (UPV)** legt de basis: producenten blijven verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn. 
 Daarom stelt de **Ecodesign for Sustainable Products Regulation (ESPR)** eisen aan het ontwerp van meubels, gericht op een langere levensduur, betere repareerbaarheid en het gebruik van hernieuwbare of gerecyclede materialen. 
 Om deze verbeteringen inzichtelijk te maken en informatie over materialen, onderhoud en recycling te kunnen delen, komt daarbovenop het **Digitaal Productpaspoort (DPP)**. Dit digitale systeem maakt het mogelijk om elke stap in de levenscyclus van een meubel te volgen en de oplossingen die onder ESPR zijn bedacht bekend te maken bij reparateur, consument en uiteindelijk de reststroomverwerker. 
