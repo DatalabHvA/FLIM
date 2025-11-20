@@ -84,7 +84,6 @@ Over het algemeen volgt de aanvraagprocedure voor de MIT-subsidie de volgende st
            
 ****6. Externe links****
             
-[MIT Haalbaarheid – RVO.nl](https://www.rvo.nl/subsidies-financiering/mit-haalbaarheid)
 [MIT Haalbaarheidsprojecten – Provincie Zuid-Holland](https://www.zuid-holland.nl/online-regelen/subsidies/subsidies/mit-haalbaarheidsprojecten/)
 [MIT R&D – Samenwerkingsprojecten – RVO.nl](https://www.rvo.nl/subsidies-financiering/mit-rd-samenwerkingsprojecten)
 ''')
