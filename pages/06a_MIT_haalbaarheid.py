@@ -43,43 +43,47 @@ st.image('assets/MIT.jpg', width = 1000)
 st.markdown('''
 ****1. Beschrijving subsidie****
            
-Het European Regional Development Fund (ERDF) is een belangrijke Europese subsidieregeling die gericht is op het ondersteunen van regionale ontwikkeling en economische groei in Europa. Het ondersteunt samenwerkingsprojecten die bijdragen aan het versterken van de regionale economie, waaronder projecten in:
-- de circulaire economie, 
-- duurzame productie 
-- en innovatie in verschillende sectoren. 
-De regeling is in de basis gericht op minder ontwikkelde en overgangsregio's, maar bedrijven in heel Europa, inclusief Nederland, kunnen profiteren van de subsidiemogelijkheden. 
+De MIT Haalbaarheidssubsidie (Mkb-Innovatiestimulering Regio en Topsectoren) is een Nederlandse regeling bedoeld om mkb-ondernemers te helpen bij het verkennen van de haalbaarheid van een innovatieproject.
 
-Binnen het kader van de circulaire economie biedt de ERDF subsidies voor projecten die gericht zijn op duurzame productontwikkeling, innovatie en hergebruik van materialen.
+De subsidie ondersteunt bedrijven in de beginfase van innovatie, waarin nog onderzocht wordt of een idee technisch, economisch en organisatorisch uitvoerbaar is.
+
+In deze fase kan het mkb marktonderzoek doen, technische analyses uitvoeren of de benodigde partners en grondstoffen in kaart brengen. De MIT Haalbaarheid is vaak een opstap naar een groter R&D-project of naar andere subsidie-instrumenten zoals MIT-R&D-samenwerkingsprojecten of Europese regelingen (zoals Horizon of ERDF).
 
 ****2. Relevantie meubelbranche**** 
             
-De ERDF is zeer relevant voor Nederlandse mkb-meubelmakers, omdat het hen de kans biedt om circulaire economie-initiatieven op te schalen, nieuwe duurzame productiemethoden te ontwikkelen en te investeren in innovatieve oplossingen voor materiaalhergebruik en recycling. Specifiek kunnen meubelbedrijven de ERDF-subsidie gebruiken voor de volgende projecten:
-- **Circulaire productontwikkeling**: Het ontwikkelen van nieuwe meubelconcepten die circulair zijn, bijvoorbeeld meubels die eenvoudig gedemonteerd kunnen worden voor hergebruik van materialen.
-- **Materialeninnovatie**: Het inzetten van innovatieve materialen (biobased of gerecycled materiaal) in meubelproductie.
-- **Procesoptimalisatie**: Investeren in technologieën die de productieprocessen verduurzamen en afval verminderen, zoals het verbeteren van het recyclingproces of het sluiten van de materialenkringloop.
-- **Lokaal hergebruik van materialen**: Het opzetten van terugname en refurbish systemen voor meubels, of het stimuleren van regionale samenwerking voor het hergebruik van materialen in de meubelindustrie.            
+Voor de meubel- en interieurbranche is de MIT Haalbaarheid een kans om circulaire innovatieprojecten goed voor te bereiden.
+De regeling helpt bedrijven bij het onderzoeken of een circulair product- of productie-idee technisch uitvoerbaar en economisch rendabel is. Denk aan:
+
+- **Nieuwe circulaire productconcepten**: Onderzoeken of meubels ontworpen kunnen worden voor demontage, hergebruik of modulair onderhoud.
+- **Biobased materialen**: Testen van de sterkte, kwaliteit en beschikbaarheid van alternatieve grondstoffen, zoals hennep, vlas, of gerecycled textiel.
+- **Procesinnovatie**: Verkennen van mogelijkheden voor efficiënter materiaalgebruik, minder verspilling of energiezuinige productie.
+- **Nieuwe businessmodellen**: Onderzoek naar haalbaarheid van terugname-, lease- of refurbished-concepten.            
+
+Zo vormt de MIT Haalbaarheid vaak de eerste stap richting concrete circulaire productontwikkeling.
 
 ****3. Samenwerkingspojecten****
             
-Voor veel ERDF-projecten is samenwerking een belangrijke vereiste. In veel gevallen is het noodzakelijk om samen te werken met andere bedrijven, kennisinstellingen, gemeenten, of onderzoeksorganisaties die expertise in de circulaire economie en duurzame productie kunnen leveren.
+Hoewel de MIT Haalbaarheid bedoeld is voor individuele mkb-bedrijven, kan samenwerking met kennisinstellingen of ketenpartners (zoals toeleveranciers of ontwerpers) de aanvraag versterken.
+
+Let op: voor grotere gezamenlijke innovatieprojecten is er de MIT R&D-Samenwerkingsprojectenregeling.
 
 ****4. Details van de subsidie****
             
 |**Fase** | **Subsidie** | **Bedrag per aanvraag** | **Potgrootte** | **Looptijd regeling** | **Deadline (huidige ronde) aanvraag** | **Partij** |
 | -------- | ------ | -------- | ------ | -------- | ------ | -------- |
-| Implementatie  | ERDF - Circular Economy | Tussen €500.000 en €10 miljoen per consortium | €313 miljoen | 2021–2027 | Per regio (verschillende deadlines) | Regio afhankelijk |
+| Verkenning  | MIT Haalbaarheid | Max €20.000 (tot 40% van de kosten) | €5 miljoen | Jaarlijks geopend | Per regio verschillende deadlines | Regionale ontwikkelings-maatschappijen |
 
 ****5. De aanvraag****
             
-Over het algemeen volgt de aanvraagprocedure voor de ERDF-subsidie de volgende stappen:
+Over het algemeen volgt de aanvraagprocedure voor de MIT-subsidie de volgende stappen:
 
-1. Projectvoorstel indienen: Meubelmakers dienen een gedetailleerd projectvoorstel in waarin ze de doelen, resultaten, en begroting van het project beschrijven.
-2. Beoordeling door de uitvoeringsinstantie: Het voorstel wordt beoordeeld door de regionale uitvoeringsinstantie, die bepaalt of het project in aanmerking komt voor subsidie.
-3. Toekenning en uitbetaling: Indien goedgekeurd, wordt de subsidie verstrekt op basis van de goedgekeurde begroting en de afgesproken projectresultaten.
-
-De deadlines voor aanvragen verschillen per regio. Er worden meestal jaarlijkse calls gehouden, dus het is belangrijk om goed op de hoogte te blijven van de regio-specifieke deadlines.
-            
+1. Voorbereiding: Breng de technische, economische en organisatorische haalbaarheid van het project in kaart.
+2. Aanvraag indienen: Via het loket van de regionale uitvoeringsorganisatie (ROM's).
+3. Beoordeling: De aanvragen worden beoordeeld op innovatiegehalte, haalbaarheid en verwachte economische impact
+4. Toekenning en uitvoering: Na goedkeuring heeft de aanvrager maximaal één jaar om het haalbaarheidsonderzoek uit te voeren en te rapporteren.
+           
 ****6. Externe links****
             
-[ERDF (website Europese Commissie)](https://ec.europa.eu/regional_policy/funding/erdf_en)
+[MIT Haalbaarheidsprojecten – Provincie Zuid-Holland](https://www.zuid-holland.nl/online-regelen/subsidies/subsidies/mit-haalbaarheidsprojecten/)
+[MIT R&D – Samenwerkingsprojecten – RVO.nl](https://www.rvo.nl/subsidies-financiering/mit-rd-samenwerkingsprojecten)
 ''')

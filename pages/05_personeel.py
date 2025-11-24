@@ -31,10 +31,11 @@ with st.sidebar:
     ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
 
 
-st.subheader('1. Ontwikkelingen rond personeel in de meubelbranche')
+st.subheader('Ontwikkelingen rond personeel')
+st.page_link("Home.py", label="⬅ Terug naar Home")
 
 st.markdown('''
-**Tekort aan arbeidskrachten vormt een grote productiebelemmering**
+**1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**
 
 Uit de Conjunctuurmonitor 2024 van CBM blijkt dat de meubelbranche continu nieuw personeel moet aannemen. 87% van de ondervraagde WMB-bedrijven zagen hun personeelsbestand groeien, en 22% van hen ervoer een toename in de wervingsinspanningen ten opzichte van voorgaande jaren.
 ''')
@@ -106,17 +107,17 @@ with st.container(border = True):
     Bedrijven die zich niet aanpassen aan deze verwachtingen riskeren waardevolle talenten te verliezen.
     [Deloitte Global Millennial Survey 2024](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
-    - **Jongere generaties hebben steeds meer voorkeur van zingeving boven salaris**
+    - **Jongere generaties hebben steeds meer voorkeur van zingeving boven salaris**     
     Generatie Z en millennials willen werken voor bedrijven die aansluiten bij hun waarden en een positieve impact hebben op de maatschappij en het milieu. Dit gaat vaak boven salaris of functietitel.
     [Deloitte Global Millennial Survey 2024, Forbes, The Rise of Purpose-Driven Careers, 2023](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html)
 
-    - **Betekenisvol werk is de sleutel tot werknemersbetrokkenheid**
+    - **Betekenisvol werk is de sleutel tot werknemersbetrokkenheid**     
     Betekenisvol werk is de belangrijkste drijfveer voor betrokkenheid bij jongere werknemers. 77% van Generatie Z geeft aan dat ze willen dat hun baan een positieve sociale of ecologische impact heeft. [Gallup State of the Global Workplace Report 2023](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf)
 
-    - **Duurzaamheids verbintenis versterkt behoud van jonge generatie werknemers**
+    - **Duurzaamheids verbintenis versterkt behoud van jonge generatie werknemers**     
     Jongere generaties blijven vaker bij organisaties die een authentieke betrokkenheid bij  maatschappelijke verantwoordelijkheid tonen. Organisaties die deze thema’s integreren in hun cultuur, zullen in staat zijn om jong talent langer aan zich te binden. [PwC Workforce of the Future Report 2024](https://www.pwc.com.tr/global-workforce-sustainability-study-2024)
 
-    - **Duurzaamheid verhoogt de aantrekkelijkheid van techniek**
+    - **Duurzaamheid verhoogt de aantrekkelijkheid van techniek**     
     Uit onderzoek voor de Tech Barometer 2024 blijkt dat 55% van de zij-instromers in technische beroepen het groeiend belang van duurzaamheid als een belangrijke factor ziet die de technieksector aantrekkelijker maakt.. - [Tech Barometer 2024](https://www.rovc.nl/over-rovc/meer-over-rovc/documenten-en-downloads/algemene-brochures-en-publicaties/techbarometer-2024)
          
                 
