@@ -32,11 +32,6 @@ with st.sidebar:
 
 
 st.title('Wet- en regelgeving')
-<<<<<<< HEAD
-st.write('Belangrijke wet- en regelgeving m.b.t. grondstoffen.')
-=======
-st.page_link("Home.py", label="⬅ Terug naar Home")
->>>>>>> dedc43bc56540f7d765c63e4e3f4c0c49e7e1a4a
 
 # Sample content and row colors
 labels1 = ['<b>Klein</b>','<50 medewerkers','<€10 miljoen','','','','','','','','','','']
