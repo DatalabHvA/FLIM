@@ -1,43 +1,37 @@
 import streamlit as st
 from streamlit_plotly_events import plotly_events
-import sys
-sys.path.append("..")
+
+ss = st.session_state
+
 
 st.set_page_config(page_title="Klantvraag", layout="wide")
-
-hide_sidebar = """
+st.markdown("""
     <style>
-        /* Hide sidebar completely */
-        [data-testid="stSidebar"] {
+        /* Hide all sidebar navigation links */
+        section[data-testid="stSidebar"] li {
             display: none !important;
         }
-        [data-testid="stSidebarNav"] {
-            display: none !important;
-        }
-        [data-testid="collapsedControl"] {
-            display: none !important;
-        }
-
-        /* Reduce top padding/margin of main container */
-        .main > div {
-            padding-top: 0rem !important;
-        }
-
-        /* Reduce top padding on container blocks */
-        .block-container {
-            padding-top: 1.0rem !important;
-        }
-
-        /* Optional: reduce title block spacing if used */
-        h1, h2, h3 {
-            margin-top: 0.2rem;
+        
+        /* Verminder padding bovenaan hoofdpagina */
+        div.block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
         }
     </style>
-"""
-st.markdown(hide_sidebar, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.page_link("Home.py", label="⬅ Terug naar Home")
+
+    st.header("Filters")
+    
+    options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
+    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
+    options_omzet = ["<€10M", "<€50M", ">€50M"]
+    ss.omzet = st.selectbox("Omzet",options_omzet, index = options_omzet.index(ss.omzet))
+
 
 st.title('Wet- en regelgeving')
-st.page_link("Home.py", label="⬅ Terug naar Home")
 st.write('Belangrijke wet- en regelgeving m.b.t. grondstoffen.')
 
 # Sample content and row colors

@@ -8,41 +8,35 @@ sys.path.append("..")
 
 from Home import make_klantvraag_scatter
 
+ss = st.session_state
+
 st.set_page_config(page_title="Klantvraag • Analyse", layout="wide")
-
-hide_sidebar = """
+st.markdown("""
     <style>
-        /* Hide sidebar completely */
-        [data-testid="stSidebar"] {
+        /* Hide all sidebar navigation links */
+        section[data-testid="stSidebar"] li {
             display: none !important;
         }
-        [data-testid="stSidebarNav"] {
-            display: none !important;
-        }
-        [data-testid="collapsedControl"] {
-            display: none !important;
-        }
-
-        /* Reduce top padding/margin of main container */
-        .main > div {
-            padding-top: 0rem !important;
-        }
-
-        /* Reduce top padding on container blocks */
-        .block-container {
-            padding-top: 1.0rem !important;
-        }
-
-        /* Optional: reduce title block spacing if used */
-        h1, h2, h3 {
-            margin-top: 0.2rem;
+        
+        /* Verminder padding bovenaan hoofdpagina */
+        div.block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
         }
     </style>
-"""
-st.markdown(hide_sidebar, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.page_link("Home.py", label="⬅ Terug naar Home")
+
+    st.header("Filters")
+    
+    options_klantsegment =  ["Laag", "Midden", "Hoog"]
+    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+    options_klanttype = ["B2C", "B2B", "Overheid"]
+    ss.klanttype = st.selectbox("Klanttype", options_klanttype, index = options_klanttype.index(ss.klanttype))
 
 st.title("Klantvraag — Analyse")
-st.page_link("Home.py", label="⬅ Terug naar Home")
 
 klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
                               'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],

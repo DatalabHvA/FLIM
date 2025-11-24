@@ -1,37 +1,37 @@
 import streamlit as st
 import plotly.graph_objects as go
 
+ss = st.session_state
+
 st.set_page_config(page_title="Personeel", layout="wide")
 
-hide_sidebar = """
+st.markdown("""
     <style>
-        /* Hide sidebar completely */
-        [data-testid="stSidebar"] {
+        /* Hide all sidebar navigation links */
+        section[data-testid="stSidebar"] li {
             display: none !important;
         }
-        [data-testid="stSidebarNav"] {
-            display: none !important;
+        
+        /* Verminder padding bovenaan hoofdpagina */
+        div.block-container {
+            padding-top: 2rem !important;
+            padding-bottom: 1rem !important;
         }
-        [data-testid="collapsedControl"] {
-            display: none !important;
-        }
-
-        /* Reduce top padding/margin of main container */
-        .main > div {
-            padding-top: 0rem !important;
-        }
-
-        /* Reduce top padding on container blocks */
-        .block-container {
-            padding-top: 2.0rem !important;
-        }
-
     </style>
-"""
-st.markdown(hide_sidebar, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.page_link("Home.py", label="⬅ Terug naar Home")
+
+    st.header("Filters")
+    
+    options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
+    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
+    options_klantsegment =  ["Laag", "Midden", "Hoog"]
+    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+
 
 st.subheader('1. Ontwikkelingen rond personeel in de meubelbranche')
-st.page_link("Home.py", label="⬅ Terug naar Home")
 
 st.markdown('''
 **Tekort aan arbeidskrachten vormt een grote productiebelemmering**

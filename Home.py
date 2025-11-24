@@ -54,15 +54,22 @@ if 'personeel_df' not in ss:
 
 if 'selected_materials' not in ss:
     ss.selected_materials = ['Multiplex','Staal', 'Polyurethaan', 'Katoen']
-if 'selected_material_prijs' not in ss:
-    ss.selected_material_prijs = 'Multiplex'
-if 'selected_material_geo' not in ss:
-    ss.selected_material_geo = 'Multiplex'
+if 'selected_materiaal' not in ss:
+    ss.selected_materiaal = 'Multiplex'
 if 'heatmap_label' not in ss:
     ss.heatmap_label = 'ESPR [2026]'
 if 'bubble_label' not in ss:
     ss.bubble_label = 'Rvo.nl nationale subsidies'
-  
+if 'medewerkers' not in ss:
+    ss.medewerkers = "51–250 fte"
+if 'branche' not in ss:
+    ss.branche = "Meubelmakers"
+if 'omzet' not in ss:
+    ss.omzet = "<€50M"
+if 'klantsegment' not in ss:
+    ss.klantsegment = "Midden"
+if 'klanttype' not in ss:
+    ss.klanttype = "B2C"
     
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
@@ -166,16 +173,21 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
 # ---------- Sidebar Filters ----------
 with st.sidebar:
     st.header("Filters")
-    branche = st.selectbox("Branche", ["Meubelmakers", "Interieurbouw"], index=0)
-    medewerkers = st.selectbox("Aantal medewerkers", ["0–50 fte", "51–250 fte", "250+ fte"], index=0)
-    omzet = st.selectbox("Omzet", ["<€10M", "<€50M", ">€50M"], index=1)
-    klantsegment = st.selectbox("Klantsegment", ["Laag", "Midden", "Hoog"], index=1)
-    klanttype = st.selectbox("Klanttype", ["B2C", "B2B", "Overheid"], index=1)
+    options_branche = ["Meubelmakers", "Interieurbouw"]
+    ss.branche = st.selectbox("Branche", options_branche, index=options_branche.index(ss.branche))
+    options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
+    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
+    options_omzet = ["<€10M", "<€50M", ">€50M"]
+    ss.omzet = st.selectbox("Omzet",options_omzet, index = options_omzet.index(ss.omzet))
+    options_klantsegment =  ["Laag", "Midden", "Hoog"]
+    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+    options_klanttype = ["B2C", "B2B", "Overheid"]
+    ss.klanttype = st.selectbox("Klanttype", options_klanttype, index = options_klanttype.index(ss.klanttype))
 
-    st.session_state.selected_materials = st.multiselect(
+    ss.selected_materials = st.multiselect(
         "Materialen",
         ss.prijzen_df.drop('Jaar', axis = 1).columns,
-        default=st.session_state.selected_materials,
+        default=ss.selected_materials,
     )
 
 # ---------- Data (apply filters where appropriate) ----------
@@ -184,7 +196,7 @@ with st.sidebar:
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
-    df_now   = get_prijs_kpi(tuple(st.session_state.selected_materials))      # cache key: selected materials
+    df_now   = get_prijs_kpi(tuple(ss.selected_materials))      # cache key: selected materials
 
     st.subheader("Prijsontwikkelingen")
     st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
@@ -221,12 +233,12 @@ def tile_prijsstijgingen(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_material_prijs = mat
+            ss.selected_materiaal = mat
             st.switch_page(target_page)
     st.caption('De balken tonen de variatie in de prijs. Dit kan een stijging of een fluctuatie zijn.')
 
 def tile_leveringszekerheid(target_page):
-    df_now = get_levzeker(tuple(st.session_state.selected_materials))
+    df_now = get_levzeker(tuple(ss.selected_materials))
     st.subheader("Leveringszekerheid")
     st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
     st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
@@ -247,7 +259,7 @@ def tile_leveringszekerheid(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_material_geo = mat
+            ss.selected_materiaal = mat
             st.switch_page(target_page)
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien volgens de World Governance Indicatoren.')
 
@@ -265,7 +277,7 @@ def tile_klantvraag(df, target_page: str):
             fig,
             click_event=True, hover_event=False, select_event=False,
             override_height=CHART_HEIGHT, override_width="100%",
-            key=f"evt_klantvraag_{st.session_state.events_epoch}",
+            key=f"evt_klantvraag_{ss.events_epoch}",
         )
         if clicks:
             st.switch_page(target_page)
@@ -365,7 +377,7 @@ def tile_personeel(target_page):
                 fig,
                 click_event=True, hover_event=False, select_event=False,
                 override_height = CHART_HEIGHT,
-                key=f"evt_personeel_{st.session_state.events_epoch}",
+                key=f"evt_personeel_{ss.events_epoch}",
             )
             if clicks:
                 # For Heatmap, Plotly returns y = row label (our 'label')

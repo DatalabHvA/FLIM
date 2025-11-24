@@ -10,52 +10,45 @@ from Home import get_levzeker
 
 ss = st.session_state 
 
-st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
-
-hide_sidebar = """
+st.markdown("""
     <style>
-        /* Hide sidebar completely */
-        [data-testid="stSidebar"] {
+        /* Hide all sidebar navigation links */
+        section[data-testid="stSidebar"] li {
             display: none !important;
         }
-        [data-testid="stSidebarNav"] {
-            display: none !important;
-        }
-        [data-testid="collapsedControl"] {
-            display: none !important;
-        }
-
-        /* Reduce top padding/margin of main container */
-        .main > div {
-            padding-top: 0rem !important;
-        }
-
-        /* Reduce top padding on container blocks */
-        .block-container {
-            padding-top: 1.0rem !important;
-        }
-
-        /* Optional: reduce title block spacing if used */
-        h1, h2, h3 {
-            margin-top: 0.2rem;
+        
+        /* Verminder padding bovenaan hoofdpagina */
+        div.block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
         }
     </style>
-"""
-st.markdown(hide_sidebar, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
 
 st.title("Leveringszekerheid — Wereldkaart")
-st.page_link("Home.py", label="⬅ Terug naar Home")
+
+with st.sidebar:
+    st.page_link("Home.py", label="⬅ Terug naar Home")
+
+    st.header("Filters")
+    ss.selected_materiaal = st.selectbox(
+        "Materiaal",
+        ss.prijzen_df.drop('Jaar', axis = 1).columns,
+        index=list(ss.prijzen_df.drop('Jaar', axis = 1).columns).index(ss.selected_materiaal)
+    )
 
 # Read selected materiaal from query params (or fallback)
 
-st.caption(f"Gefilterd op materiaal: **{ss.selected_material_geo}**")
+st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal}**")
 
 # Demo data — replace with your real geo/materials feed
-df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.selected_material_geo][['iso3','country','governance_score', 'market_share']]
+df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.selected_materiaal][['iso3','country','governance_score', 'market_share']]
 hhi = ss.geo_df.groupby('material').apply(lambda g: (g['market_share']**2).sum()).rename('hhi')
-hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_material_geo].iloc[0]['hhi']
+hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_materiaal].iloc[0]['hhi']
 
-df_now = get_levzeker(tuple([ss.selected_material_geo]))
+df_now = get_levzeker(tuple([ss.selected_materiaal]))
 wgi_kpi = df_now.iloc[0]['supply_risk']
 
 c1, c2 = st.columns(2)
