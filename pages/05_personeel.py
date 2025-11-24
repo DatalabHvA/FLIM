@@ -31,8 +31,7 @@ with st.sidebar:
     ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
 
 
-st.subheader('Ontwikkelingen rond personeel')
-st.page_link("Home.py", label="⬅ Terug naar Home")
+st.title('Ontwikkelingen rond personeel')
 
 st.markdown('''
 **1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**
