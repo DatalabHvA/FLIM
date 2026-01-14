@@ -180,7 +180,7 @@ with st.sidebar:
     options_omzet = ["<€10M", "<€50M", ">€50M"]
     ss.omzet = st.selectbox("Omzet",options_omzet, index = options_omzet.index(ss.omzet))
     options_klantsegment =  ["Laag", "Midden", "Hoog"]
-    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+    ss.klantsegment = st.selectbox("Marktsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
     options_klanttype = ["B2C", "B2B", "Overheid"]
     ss.klanttype = st.selectbox("Klanttype", options_klanttype, index = options_klanttype.index(ss.klanttype))
 
