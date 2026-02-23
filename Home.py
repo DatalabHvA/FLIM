@@ -320,7 +320,7 @@ def tile_personeel(target_page):
     with st.container(border=False):
         st.subheader("Bedrijfsprofilering")
         st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
-        st.caption('Klik op de afbeelding voor meer informatie.')
+        st.caption('Klik op onderstaand blok om te leren wat jij kunt doen.')
 
         with st.container():
             # Define categories and values
