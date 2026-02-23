@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 ss = st.session_state
 
-st.set_page_config(page_title="Personeel", layout="wide")
+st.set_page_config(page_title="Profilering", layout="wide")
 
 st.markdown("""
     <style>
@@ -31,7 +31,7 @@ with st.sidebar:
     ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
 
 
-st.title('Ontwikkelingen rond personeel')
+st.title('Bedrijfsprofilering')
 
 st.markdown('''
 **1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**
