@@ -31,7 +31,7 @@ with st.sidebar:
     st.selectbox("Klantsegment", options_klantsegment, key = 'klantsegment')
 
 
-st.title('Ontwikkelingen rond personeel')
+st.title('Bedrijfsprofilering')
 
 st.markdown('''
 **1. Tekort aan arbeidskrachten vormt een grote productiebelemmering**

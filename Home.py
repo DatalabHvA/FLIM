@@ -397,9 +397,9 @@ def tile_wetgeving(target_page: str):
 
 def tile_profilering(target_page):
     with st.container(border=False):
-        st.subheader("Personeel")
-        st.write('Een groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
-        st.caption('Klik op de grafiek voor meer informatie.')
+        st.subheader("Bedrijfsprofilering")
+        st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
+        st.caption('Klik op onderstaand blok om te leren wat jij kunt doen.')
 
         with st.container():
             # Define categories and values
