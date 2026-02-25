@@ -7,6 +7,7 @@ import sys
 sys.path.append("..")
 
 from Home import get_levzeker
+from widgets import *
 
 ss = st.session_state 
 
@@ -33,15 +34,11 @@ with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
-    ss.selected_materiaal = st.selectbox(
-        "Materiaal",
-        ss.prijzen_df.drop('Jaar', axis = 1).columns,
-        index=list(ss.prijzen_df.drop('Jaar', axis = 1).columns).index(ss.selected_materiaal)
-    )
+    widget_materiaal()
 
 # Read selected materiaal from query params (or fallback)
 
-st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal}**")
+st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
 
 st.markdown("""
     Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
@@ -49,11 +46,11 @@ st.markdown("""
 
 
 # Demo data — replace with your real geo/materials feed
-df = ss.geo_df.merge(ss.wgi_df, on = 'country').loc[lambda d: d.material == ss.selected_materiaal][['iso3','country','governance_score', 'market_share']]
+df = ss.geo_df.merge(ss.wgi_df, on = 'ISO').loc[lambda d: d.material == ss.selected_materiaal_value][['ISO','country','governance_score', 'market_share']]
 hhi = ss.geo_df.groupby('material').apply(lambda g: (g['market_share']**2).sum()).rename('hhi')
-hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_materiaal].iloc[0]['hhi']
+hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_materiaal_value].iloc[0]['hhi']
 
-df_now = get_levzeker(tuple([ss.selected_materiaal]))
+df_now = get_levzeker(tuple([ss.selected_materiaal_value]))
 wgi_kpi = df_now.iloc[0]['supply_risk']
 
 c1, c2 = st.columns(2)
@@ -75,10 +72,10 @@ st.markdown("""
 
 
 fig = px.choropleth(
-    df, locations="iso3", color="governance_score",
+    df, locations="ISO", color="governance_score",
     color_continuous_scale=["#d62728", "#ffbf00", "#2ca02c"],  # red→yellow→green
     range_color=(0, 1), projection="natural earth",
-    hover_name="country", hover_data={'iso3':False, "market_share" : ':.2f', "governance_score" : ':.2f'}
+    hover_name="country", hover_data={'ISO':False, "market_share" : ':.2f', "governance_score" : ':.2f'}
 )
 fig.update_layout(
     height=600, margin=dict(l=10, r=10, t=30, b=10),

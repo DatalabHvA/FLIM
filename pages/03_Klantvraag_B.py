@@ -10,7 +10,7 @@ from Home import make_klantvraag_scatter
 
 ss = st.session_state
 
-st.set_page_config(page_title="Klantvraag • Analyse", layout="wide")
+st.set_page_config(page_title="Klantvraag B2B/B2C • Analyse", layout="wide")
 st.markdown("""
     <style>
         /* Hide all sidebar navigation links */
@@ -32,10 +32,10 @@ with st.sidebar:
     st.header("Filters")
     
     options_klantsegment =  ["Laag", "Midden", "Hoog"]
-    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+    st.selectbox("Klantsegment", options_klantsegment, key = 'klantsegment')
     options_klanttype = ["B2C", "B2B", "Overheid"]
-    ss.klanttype = st.selectbox("Klanttype", options_klanttype, index = options_klanttype.index(ss.klanttype))
-
+    st.selectbox("Klanttype", options_klanttype, key = 'klanttype')
+    
 st.title("Klantvraag — Analyse")
 
 klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],

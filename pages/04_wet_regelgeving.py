@@ -26,9 +26,9 @@ with st.sidebar:
     st.header("Filters")
     
     options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
-    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
+    st.selectbox("Aantal medewerkers", options_medewerkers, key = 'medewerkers')
     options_omzet = ["<€10M", "<€50M", ">€50M"]
-    ss.omzet = st.selectbox("Omzet",options_omzet, index = options_omzet.index(ss.omzet))
+    st.selectbox("Omzet",options_omzet, key = 'omzet')
 
 
 st.title('Wet- en regelgeving')

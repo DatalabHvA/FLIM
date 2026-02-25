@@ -1,4 +1,4 @@
-plotly
-streamlit_plotly_events
+plotly == 5.24.1
+streamlit_plotly_events == 0.0.6
 openpyxl
 statsmodels

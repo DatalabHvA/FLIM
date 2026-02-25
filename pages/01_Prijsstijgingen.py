@@ -5,6 +5,11 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import statsmodels.api as sm
+import sys
+
+sys.path.append("..")
+from widgets import *
+
 
 COMMON_LAYOUT = dict(
     margin=dict(l=40, r=5, t=20, b=60),
@@ -35,16 +40,12 @@ with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
-    ss.selected_materiaal = st.selectbox(
-        "Materiaal",
-        ss.prijzen_df.drop('Jaar', axis = 1).columns,
-        index=list(ss.prijzen_df.drop('Jaar', axis = 1).columns).index(ss.selected_materiaal)
-    )
+    widget_materiaal()
 
 st.title("Prijsontwikkelingen")
 
-st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal}**")
-filtered_df = ss.prijzen_df[['Jaar',ss.selected_materiaal]].dropna()
+st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
+filtered_df = ss.prijzen_df[['Jaar',ss.selected_materiaal_value]].dropna()
 
 st.markdown("""
     De prijsontwikkelingen zijn uitdrukt met behulp van de **producentenprijsindex (PPI) over de geselecteerde materialen**. De PPI is een **economische indicator** die de gemiddelde prijsveranderingen meet die **producenten ontvangen voor deze geleverde materialen**. Het gaat dus om prijzen op het **niveau van de producent**. Dit maakt de PPI een belangrijke maatstaf voor inflatie voor de inkopers van de materialen (bron: investingnomads.nl).
@@ -56,7 +57,7 @@ x_dt = pd.to_datetime(filtered_df['Jaar'])
 # Convert to numeric for regression
 x_num = x_dt.dt.year + (x_dt.dt.month - 1) / 12
 x_labels = x_dt.dt.strftime('%Y-%m')
-y = filtered_df[ss.selected_materiaal].astype(float)*100
+y = filtered_df[ss.selected_materiaal_value].astype(float)*100
 
 # Fit linear regression
 X = sm.add_constant(x_num)
@@ -74,14 +75,50 @@ ci_lower = y_fit - std_dev
 col1, col2 = st.columns(2)
 
 with col1:
-    with st.container(border = True):
+    with st.container(border=True):
         st.metric("Trend (slope)", f"{model.params[1]:.2f} PPI punten per jaar")
-        st.write(f'Dit is gemiddelde stijging van de prijs van {ss.selected_materiaal} in procentpunten ten opzichte van het 2015 niveau.')
+        st.write(
+            f"Dit is de gemiddelde stijging van de prijs van {ss.selected_materiaal_value} "
+            "in PPI-punten per jaar (index t.o.v. 2015 = 100)."
+        )
 
+        with st.expander("ℹ️ Interpretatie (klik om uit te klappen)"):
+            st.markdown(f"""
+                **Wat betekent dit?**  
+                - De *slope* is de gemiddelde jaarlijkse verandering in de PPI-index (punten/jaar).  
+                - Bijvoorbeeld: **+2.5** betekent dat de index gemiddeld **2.5 punten per jaar** stijgt.
+
+                **Hoe lees je dit t.o.v. 2015=100?**  
+                - Bij een start rond 100 betekent +2.5 dat je na 4 jaar grofweg rond **110** kunt zitten (ruwe trend, zonder schommelingen).
+
+                **Let op**  
+                - Dit is een lineaire trend: pieken/dalen (bv. corona, energiecrisis) worden “gemiddeld”.  
+                - Kijk ook naar het betrouwbaarheidsinterval / p-value als je wil weten hoe zeker de trend is.
+                """)
 with col2:
-    with st.container(border = True):
+    with st.container(border=True):
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
-        st.write(f'Dit is gemiddelde fluctuatie van de prijs van {ss.selected_materiaal} bovenop de trend in procentpunten ten opzichte van het 2015 niveau.')
+        st.write(
+            f"Dit is de gemiddelde fluctuatie van de prijs van {ss.selected_materiaal_value} "
+            "rond de lineaire trend (in PPI-indexpunten, 2015=100)."
+        )
+
+        with st.expander("ℹ️ Interpretatie (klik om uit te klappen)"):
+            st.markdown(f"""
+                **Wat betekent σ?**  
+                - σ is de standaarddeviatie van de residuen (de afwijkingen t.o.v. de trend).
+                - Het geeft aan hoe sterk de prijs schommelt rond de structurele ontwikkeling.
+
+                **Hoe lees je dit?**  
+                - Bijvoorbeeld: **σ = 4.2** betekent dat de prijs typisch ongeveer ±4.2 indexpunten rond de trend beweegt.
+                - Ongeveer 68% van de observaties ligt binnen ±1σ.
+                - Ongeveer 95% ligt binnen ±2σ (bij benadering normaal verdeeld).
+
+                **Interpretatie in beleid / risico-context**  
+                - Lage σ → stabiele markt.
+                - Hoge σ → volatiele markt (meer onzekerheid).
+                - Vergelijk σ tussen materialen om volatiliteit te beoordelen.
+                """)
 
 st.markdown("""
    
@@ -98,6 +135,14 @@ st.markdown("""
 
             """)
 
+events = [
+    {"date": "2020-03-11", "label": "COVID-19", "color": "gray", "dash": "dot", "width": 3},
+    {"date": "2022-02-24", "label": "Invasie Oekraïne", "color": "green", "dash": "dash", "width": 4,},
+    #{"date": "2023-12-06", "label": "Pieter Jarig", "color": "purple", "dash": "solid", "width": 10,}
+]
+
+#Mogelijke dash opties: "solid", "dot", "dash", "longdash", "dashdot", "longdashdot"
+
 # Plot
 fig = go.Figure()
 
@@ -106,7 +151,7 @@ fig.add_trace(go.Scatter(
     x=x_labels,
     y=y,
     mode='lines+markers',
-    name=f"Historisch prijs van {ss.selected_materiaal}",
+    name=f"Historisch prijs van {ss.selected_materiaal_value}",
     line=dict(color='blue', width=3),
     marker=dict(size=6)
 ))
@@ -130,6 +175,30 @@ fig.add_trace(go.Scatter(
     hoverinfo="skip",
     name='Spreiding (±1σ)'
 ))
+
+
+
+for e in events:
+    x = pd.to_datetime(e["date"])
+    fig.add_shape(
+        type="line",
+        x0=x, x1=x,
+        y0=0, y1=1,
+        xref="x", yref="paper",          # y in [0..1] over hele plothoogte
+        line=dict(color=e["color"], width=e["width"], dash=e["dash"]),
+        opacity=0.7,
+    )
+    fig.add_annotation(
+        x=x, y=1, xref="x", yref="paper",
+        text=e["label"],
+        showarrow=False,
+        xanchor="left",
+        yanchor="bottom",
+        bgcolor="white",
+        bordercolor=e["color"],
+        borderwidth=1,
+        opacity=0.9,
+    )
 
 # Layout
 fig.update_layout(

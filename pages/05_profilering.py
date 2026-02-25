@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 ss = st.session_state
 
-st.set_page_config(page_title="Personeel", layout="wide")
+st.set_page_config(page_title="Profilering B2B en B2C", layout="wide")
 
 st.markdown("""
     <style>
@@ -26,9 +26,9 @@ with st.sidebar:
     st.header("Filters")
     
     options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
-    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
+    st.selectbox("Aantal medewerkers", options_medewerkers, key = 'medewerkers')
     options_klantsegment =  ["Laag", "Midden", "Hoog"]
-    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
+    st.selectbox("Klantsegment", options_klantsegment, key = 'klantsegment')
 
 
 st.title('Ontwikkelingen rond personeel')

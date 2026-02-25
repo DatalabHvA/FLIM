@@ -1,14 +1,18 @@
 # Home.py
 import numpy as np
+import json
 import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
+import plotly.io as pio
 from datetime import datetime, timedelta
 from PIL import Image
 import base64
 from pathlib import Path
+
+from widgets import *
 
 # --- Layout ---
 st.set_page_config(page_title="Dashboard • Home", layout="wide")
@@ -38,39 +42,36 @@ st.markdown(
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
 if 'prijzen_df' not in ss:
-    ss.prijzen_df = pd.read_excel('data/prijzen.xlsx')
+    df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='Data per factor (incl kwal)')
+    df1['Factor'] = df1['Factor'].ffill()
+    df1 = df1.loc[lambda d: d.Factor == 'Prijsstijgingen']
+    targets = set(df1.loc[df1['Data gebruikt'] == 'Ja']['ID'].dropna().unique().astype(int).astype(str))
+    targets.add('ID')
+    prijzen_indices = pd.read_excel('data/prijzen.xlsx').columns
+    prijzen_indices = pd.Series(prijzen_indices).apply(lambda x: str(x).split('.')[0])
+    indices = [i for i, x in enumerate(prijzen_indices) if str(x) in targets]
+    ss.prijzen_df = pd.read_excel('data/prijzen.xlsx', skiprows = 1).iloc[:,indices]
+    ss.prijzen_df.columns = pd.Series(ss.prijzen_df.columns).apply(lambda x: x.split('.')[0])
 if 'geo_df' not in ss:
-    ss.geo_df = pd.read_excel('data/material_market_share.xlsx')
+    #df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='factor_productielanden')
+    #targets = set(df1.loc[df1['Opgenomen in Webapp'] == 'Ja']['id'].dropna().unique())
+    #ss.geo_df = pd.read_excel('data/material_market_share.xlsx').loc[lambda d: d['id'].isin(targets)].drop('id', axis = 1)
+    ss.geo_df = pd.read_excel('data/material_market_share.xlsx').loc[lambda d: d.market_share > 0.03]
 if 'wgi_df' not in ss:
     ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
 if 'klantvraag_df' not in ss:
     ss.klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
                               'Traditionele meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
                               'Duurzame meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+if 'klantvraag_overheid_df' not in ss:
+    ss.klantvraag_overheid_df = pd.DataFrame({'years' : [2020, 2030, 2050],
+                              'normale' : [90, 50, 0],
+                              'circulair' : [10, 50, 100]})
 if 'personeel_df' not in ss:
     ss.personeel_df = pd.DataFrame({'Categorie' : ['Global Gen Z', 'Global millennials', 'Nederlandse Gen Z', 'Nederlands millennials'],
                                     'Opdracht_project' : [0.5, 0.43, 0.41, 0.31],
                                     'Werkgever' : [0.44, 0.4, 0.36, 0.29]})
 
-if 'selected_materials' not in ss:
-    ss.selected_materials = ['Multiplex','Staal', 'Polyurethaan', 'Katoen']
-if 'selected_materiaal' not in ss:
-    ss.selected_materiaal = 'Multiplex'
-if 'heatmap_label' not in ss:
-    ss.heatmap_label = 'ESPR [2026]'
-if 'bubble_label' not in ss:
-    ss.bubble_label = 'Rvo.nl nationale subsidies'
-if 'medewerkers' not in ss:
-    ss.medewerkers = "51–250 fte"
-if 'branche' not in ss:
-    ss.branche = "Meubelmakers"
-if 'omzet' not in ss:
-    ss.omzet = "<€50M"
-if 'klantsegment' not in ss:
-    ss.klantsegment = "Midden"
-if 'klanttype' not in ss:
-    ss.klanttype = "B2C"
-    
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
     margin=dict(l=40, r=5, t=20, b=60),
@@ -93,17 +94,6 @@ def bar_colors(values):
         else:
             cols.append("#d62728")   # red
     return cols
-
-# --- Demo data builders (cacheable; swap with your real loaders) ---
-@st.cache_data(show_spinner=False)
-def get_prijs_kpi(materials_list):
-    variance = ss.prijzen_df.drop('Jaar', axis = 1).std().rename('risk2').reset_index().rename(columns = {'index' : 'materiaal'})
-    return variance.loc[lambda d: d['materiaal'].isin(materials_list)]
-
-@st.cache_data(show_spinner=False)
-def get_levzeker(materials_list):
-        wgi = ss.geo_df.merge(ss.wgi_df, on = 'country').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
-        return wgi.reset_index().loc[lambda d: d['material'].isin(materials_list)][['material','wgi_score']].rename(columns = {'wgi_score' : 'supply_risk'})
 
 # --- Figure builders (cached) ---
 
@@ -170,25 +160,99 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     )
     return fig
 
+def make_klantvraag_overheid_plot():
+    years = ss.klantvraag_overheid_df.years
+    normale = ss.klantvraag_overheid_df.normale
+    circulair = ss.klantvraag_overheid_df.circulair
+    arrow_year = 2026
+    # linear interpolation between 2020 (90) and 2030 (50)
+    arrow_y = 90 + (50 - 90) * ((arrow_year - 2020) / 10)
+
+    # Dense line for dashed boundary (piecewise linear)
+    x_dense = list(range(2020, 2051))
+    def normale_interp(x):
+        if x <= 2030:
+            return 90 + (50 - 90) * ((x - 2020) / 10)
+        return 50 + (0 - 50) * ((x - 2030) / 20)
+    normale_dense = [normale_interp(x) for x in x_dense]
+
+    fig = go.Figure()
+
+    # Stacked area: Normale + Circulaire
+    fig.add_trace(go.Scatter(
+        x=years,
+        y=normale,
+        stackgroup="one",
+        name="Normale inkoop",
+        mode="lines",
+        line=dict(width=0.5),   # keep >0 for maximum compatibility
+        fillcolor="#5A5A5A",
+        hovertemplate="Jaar: %{x}<br>Normale inkoop: %{y:.0f}%<extra></extra>",
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=years,
+        y=circulair,
+        stackgroup="one",
+        name="Circulaire inkoop",
+        mode="lines",
+        line=dict(width=0.5),
+        fillcolor="#00B050",
+        hovertemplate="Jaar: %{x}<br>Circulaire inkoop: %{y:.0f}%<extra></extra>",
+    ))
+
+    # Dashed boundary = top of 'normale'
+    fig.add_trace(go.Scatter(
+        x=x_dense,
+        y=normale_dense,
+        mode="lines",
+        showlegend=False,
+        line=dict(color="white", width=5, dash="dash"),
+        hoverinfo="skip",
+    ))
+
+    # Arrow + label
+    fig.add_annotation(
+        x=arrow_year, y=arrow_y,
+        ax=arrow_year, ay=0,
+        xref="x", yref="y", axref="x", ayref="y",
+        showarrow=True,
+        arrowhead=3,
+        arrowsize=1.2,
+        arrowwidth=3,
+        arrowcolor="red",
+        text="",
+    )
+    fig.add_annotation(
+        x=arrow_year, y=0,
+        xref="x", yref="y",
+        showarrow=False,
+        text="<b>2026</b>",
+        font=dict(color="red"),
+        yshift=-22
+    )
+
+    fig.update_layout(
+        #title=dict(text="Publieke markt verschuift:<br>van lineair naar circulair", x=0.5),
+        xaxis=dict(range=[2020, 2050], tickmode="array", tickvals=[2020, 2030, 2050], showgrid=False, zeroline=False),
+        yaxis=dict(range=[0, 100], ticksuffix="%", tick0=0, dtick=20, showgrid=False, zeroline=False),
+        legend=dict(orientation="h", x=0.5, xanchor="center", y=-0.18, yanchor="top"),
+        margin=dict(l=40, r=15, t=5, b=60),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+    )
+
+    return fig
+
 # ---------- Sidebar Filters ----------
 with st.sidebar:
     st.header("Filters")
-    options_branche = ["Meubelmakers", "Interieurbouw"]
-    ss.branche = st.selectbox("Branche", options_branche, index=options_branche.index(ss.branche))
-    options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
-    ss.medewerkers = st.selectbox("Aantal medewerkers", options_medewerkers, index = options_medewerkers.index(ss.medewerkers))
-    options_omzet = ["<€10M", "<€50M", ">€50M"]
-    ss.omzet = st.selectbox("Omzet",options_omzet, index = options_omzet.index(ss.omzet))
-    options_klantsegment =  ["Laag", "Midden", "Hoog"]
-    ss.klantsegment = st.selectbox("Klantsegment", options_klantsegment, index = options_klantsegment.index(ss.klantsegment))
-    options_klanttype = ["B2C", "B2B", "Overheid"]
-    ss.klanttype = st.selectbox("Klanttype", options_klanttype, index = options_klanttype.index(ss.klanttype))
-
-    ss.selected_materials = st.multiselect(
-        "Materialen",
-        ss.prijzen_df.drop('Jaar', axis = 1).columns,
-        default=ss.selected_materials,
-    )
+    widget_branche()
+    widget_medewerkers()
+    widget_omzet()
+    widget_klantsegment()
+    widget_klanttype()
+    widget_materialen()
 
 # ---------- Data (apply filters where appropriate) ----------
 # NOTE: Hook your real filters into these calls (branche/fte/omzet/etc.).
@@ -196,15 +260,13 @@ with st.sidebar:
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
-    df_now   = get_prijs_kpi(tuple(ss.selected_materials))      # cache key: selected materials
-
     st.subheader("Prijsontwikkelingen")
     st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
     st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
     st.caption(" ")
     # --- build the bar chart (any way you like) ---
-    x = tuple(df_now["materiaal"].tolist())
-    y = tuple((df_now["risk2"]*100).tolist())
+    x = tuple(ss.df_now_prijs["materiaal"].tolist())
+    y = tuple((ss.df_now_prijs["risk2"]*100).tolist())
     
     colors = ["#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y]
 
@@ -233,19 +295,19 @@ def tile_prijsstijgingen(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_materiaal = mat
+            ss.selected_materiaal_value = mat
             st.switch_page(target_page)
     st.caption('De balken tonen de variatie in de prijs. Dit kan een stijging of een fluctuatie zijn.')
 
 def tile_leveringszekerheid(target_page):
-    df_now = get_levzeker(tuple(ss.selected_materials))
     st.subheader("Leveringszekerheid")
+    
     st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
     st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
     st.caption(" ")
 
-    x = tuple(df_now["material"].tolist())
-    y = tuple(df_now["supply_risk"].tolist())
+    x = tuple(ss.df_now_lev["material"].tolist())
+    y = tuple(ss.df_now_lev["supply_risk"].tolist())
     fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
 
     fig.update_layout(yaxis_title="Stabiliteit van productielanden")
@@ -259,11 +321,28 @@ def tile_leveringszekerheid(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_materiaal = mat
+            ss.selected_materiaal_value = mat
             st.switch_page(target_page)
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien volgens de World Governance Indicatoren.')
 
-def tile_klantvraag(df, target_page: str):
+def tile_klantvraag_overheid(df, target_page: str):
+    with st.container(border=False):
+        st.subheader("Klantvraag")
+        st.write("Publieke markt verschuift: van lineair naar circulair")
+        st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
+        fig = make_klantvraag_overheid_plot()
+
+        clicks = plotly_events(
+            fig,
+            click_event=True, hover_event=False, select_event=False,
+            override_height=CHART_HEIGHT, override_width="100%",
+            key=f"evt_klantvraag_onderwijs_{ss.events_epoch}"
+        )
+        if clicks:
+            st.switch_page(target_page)
+        #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
+
+def tile_klantvraag_B(df, target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
         st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
@@ -276,11 +355,11 @@ def tile_klantvraag(df, target_page: str):
         clicks = plotly_events(
             fig,
             click_event=True, hover_event=False, select_event=False,
-            override_height=CHART_HEIGHT, override_width="100%",
-            key=f"evt_klantvraag_{ss.events_epoch}",
+            override_height=CHART_HEIGHT, override_width="110%",
+            key=f"evt_klantvraag_{ss.events_epoch}"
         )
         if clicks:
-            st.switch_page(target_page)
+            st.page_link(target_page)
         st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
@@ -316,7 +395,7 @@ def tile_wetgeving(target_page: str):
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
-def tile_personeel(target_page):
+def tile_profilering(target_page):
     with st.container(border=False):
         st.subheader("Personeel")
         st.write('Een groeiend aantal jonge werknemers weigert te werken voor werkgevers zonder maatschappelijke ambitie.')
@@ -385,16 +464,15 @@ def tile_personeel(target_page):
 
         st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
 
-
 def tile_subsidies():
     st.subheader("Financiers")
     st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
     st.caption("Klik op de (ondersteepte) subsidies om meer te weten te komen.")
     cols = st.columns([1, 2, 1, 1, 2, 1])
     with cols[1]:
-        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg", use_container_width =True)
+        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg", width = 'stretch')
     with cols[4]: 
-        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg", use_container_width =True)
+        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg", width = 'stretch')
 
     # Sample content and row colors
     labels = ['<b> Verkenning</b>', 'TSE Industrie - studies', '<a href="/a_MIT_haalbaarheid", target = "_self"<u>MIT - Haalbaarheid</u></a>', '','<b>Ontwikkeling</b>', 'MIT - R&D samenwerking', 'DEI+ - Circulaire Economie', 'VEKI - Versnelde Klimaatinvesteringen', '<b>Implementatie</b>', 'MIA\Vamil', 'CKP - Circulaire Ketenprojecten', '', '<b>Opschaling</b>', 'EFRO (Regionaal)', ' ', '']
@@ -424,12 +502,17 @@ st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
 with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
-with col3: tile_klantvraag(ss.klantvraag_df, target_page="pages/03_Klantvraag.py")
+with col3: 
+    if ss.klanttype_value == 'Overheid':
+        tile_klantvraag_overheid(ss.klantvraag_overheid_df, target_page="pages/03_Klantvraag_overheid.py")
+    else: 
+        tile_klantvraag_B(ss.klantvraag_df, target_page = "pages/03_Klantvraag_B.py")
+
     
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
     tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
 with h2:
-    tile_personeel(target_page = "pages/05_personeel.py")
+    tile_profilering(target_page = "pages/05_profilering.py") 
 with h3:
     tile_subsidies()
