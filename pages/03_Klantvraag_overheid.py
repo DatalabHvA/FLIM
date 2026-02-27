@@ -31,8 +31,8 @@ with st.sidebar:
 
     st.header("Filters")
     
-    widget_klantsegment()
-    widget_klanttype()
+    #widget_klantsegment()
+    #widget_klanttype()
 
 st.title("Klantvraag Overheid — Analyse")
 

@@ -40,7 +40,7 @@ with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
-    widget_materiaal()
+    widget_materiaal_prijs()
 
 st.title("Prijsontwikkelingen")
 

@@ -101,7 +101,7 @@ def widget_klanttype():
     )
 
 def widget_materialen():
-    OPTIONS = ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()
+    OPTIONS = list(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()) | set(ss.geo_df['material'].unique()))
 
     if "selected_materials_value" not in ss:
         ss.selected_materials_value = ['Hout - Multiplex', 'Polyurethaan', 'Wol', 'RVS 305']
@@ -125,9 +125,27 @@ def widget_materialen():
         on_change=_sync,
     )
 
-def widget_materiaal():
+def widget_materiaal_prijs():
 
-    OPTIONS_MATERIAAL = list(ss.prijzen_df.drop('Jaar', axis = 1).columns)
+    OPTIONS_MATERIAAL = list(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()))
+
+    if 'selected_materiaal_value' not in ss:
+        ss.selected_materiaal_value = 'Katoen'
+
+    def _sync():
+        ss.selected_materiaal_value = ss.selected_materiaal_widget
+
+    st.selectbox(
+        "Materiaal",
+        OPTIONS_MATERIAAL,
+        index=OPTIONS_MATERIAAL.index(ss["selected_materiaal_value"]),
+        key = 'selected_materiaal_widget',
+        on_change = _sync
+    )
+
+def widget_materiaal_lev():
+
+    OPTIONS_MATERIAAL = list(set(ss.geo_df['material'].unique()))
 
     if 'selected_materiaal_value' not in ss:
         ss.selected_materiaal_value = 'Katoen'

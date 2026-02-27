@@ -59,10 +59,14 @@ if 'geo_df' not in ss:
     ss.geo_df = pd.read_excel('data/material_market_share.xlsx').loc[lambda d: d.market_share > 0.03]
 if 'wgi_df' not in ss:
     ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
-if 'klantvraag_df' not in ss:
-    ss.klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Traditionele meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
-                              'Duurzame meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+if 'klantvraag_df_b2c' not in ss:
+    ss.klantvraag_df_b2c = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                              'Traditionele meubels (CAGR 2,8%)' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
+                              'Duurzame meubels (CAGR 7,3%)' : [100,110.3,121.7,134.2,148.0,163.3,180.1,198.6]})
+if 'klantvraag_df_b2b' not in ss:
+    ss.klantvraag_df_b2b = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                              'Traditionele meubels (CAGR 2,8%)' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
+                              'Duurzame meubels (CAGR 7,3%)' : [100,110.1,121.2,133.5,146.9,161.8,178.1,196.]})
 if 'klantvraag_overheid_df' not in ss:
     ss.klantvraag_overheid_df = pd.DataFrame({'years' : [2020, 2030, 2050],
                               'normale' : [90, 50, 0],
@@ -74,7 +78,7 @@ if 'personeel_df' not in ss:
 
 # ---- shared layout so axes are fully visible and consistent
 COMMON_LAYOUT = dict(
-    margin=dict(l=40, r=5, t=20, b=60),
+    margin=dict(l=40, r=15, t=20, b=60),
     xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
     yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
 )
@@ -127,8 +131,8 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
 
     # add each line
     fig.add_trace(go.Scatter(
-        x=[str(x) for x in ss.klantvraag_df['Jaar']],
-        y=[float(x) for x in ss.klantvraag_df['Traditionele meubels (CAGR 2,8%)']],
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Traditionele meubels (CAGR 2,8%)']],
         mode='lines+markers',
         name='Traditionele meubels (CAGR 2,8%)',
         line=dict(color='black', width=3),
@@ -136,8 +140,8 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     ))
 
     fig.add_trace(go.Scatter(
-        x=[str(x) for x in ss.klantvraag_df['Jaar']],
-        y=[float(x) for x in ss.klantvraag_df['Duurzame meubels (CAGR 7,3%)']],
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Duurzame meubels (CAGR 7,3%)']],
         mode='lines+markers',
         name='Duurzame meubels (CAGR 7,3%)',
         line=dict(color='green', width=3),
@@ -149,7 +153,7 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
         xaxis_title="Jaar",
         yaxis_title="Index (2023 = 100)",
         template="plotly_white",
-        margin=dict(l=40, r=5, t=20, b=70),
+        margin=dict(l=40, r=15, t=20, b=70),
         legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -342,12 +346,15 @@ def tile_klantvraag_overheid(df, target_page: str):
             st.switch_page(target_page)
         #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
-def tile_klantvraag_B(df, target_page: str):
+def tile_klantvraag_B(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
         st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
         st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
-        fig = make_klantvraag_scatter(df)
+        if ss.klanttype_value == 'B2C':
+            fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
+        elif ss.klanttype_value == 'B2B':
+            fig = make_klantvraag_scatter(ss.klantvraag_df_b2b)
         fig.update_layout(**COMMON_LAYOUT,
             legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
             )
@@ -359,7 +366,7 @@ def tile_klantvraag_B(df, target_page: str):
             key=f"evt_klantvraag_{ss.events_epoch}"
         )
         if clicks:
-            st.page_link(target_page)
+            st.switch_page(target_page)
         st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
@@ -504,9 +511,9 @@ with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
 with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
 with col3: 
     if ss.klanttype_value == 'Overheid':
-        tile_klantvraag_overheid(ss.klantvraag_overheid_df, target_page="pages/03_Klantvraag_overheid.py")
+        tile_klantvraag_overheid(target_page="pages/03_Klantvraag_overheid.py")
     else: 
-        tile_klantvraag_B(ss.klantvraag_df, target_page = "pages/03_Klantvraag_B.py")
+        tile_klantvraag_B(target_page = "pages/03_Klantvraag_B.py")
 
     
 h1, h2, h3 = st.columns(3, gap="small", border = True)

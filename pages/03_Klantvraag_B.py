@@ -7,6 +7,7 @@ import sys
 sys.path.append("..")
 
 from Home import make_klantvraag_scatter
+from widgets import *
 
 ss = st.session_state
 
@@ -30,25 +31,26 @@ with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
+    widget_klantsegment()
+    widget_klanttype()
     
-    options_klantsegment =  ["Laag", "Midden", "Hoog"]
-    st.selectbox("Klantsegment", options_klantsegment, key = 'klantsegment')
-    options_klanttype = ["B2C", "B2B", "Overheid"]
-    st.selectbox("Klanttype", options_klanttype, key = 'klanttype')
-    
-st.title("Klantvraag — Analyse")
 
-klantvraag_df = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Duurzame meubels (CAGR 2,8%)' : [100.0,102.8,105.7,108.6,111.7,114.8,118.0,121.3],
-                              'Traditionele meubels (CAGR 7,3%)' : [100.0,107.3,115.1,123.5,132.6,142.2,152.6,163.8]})
+st.title("Klantvraag — Analyse")
 
 c1, c2 = st.columns(2)
 with c1: 
     with st.container(border = True):
         st.subheader("1. Risico's (in de markt)")
 
-        pie = go.Pie(labels=['Duurzame meubels', 'Traditionele meubels'], 
-                    values=[0.13, 0.87], name='Meubelmarkt in 2030')
+        if ss.klanttype_value == 'B2C':
+            pie = go.Pie(labels=['Duurzame meubels', 'Traditionele meubels'], 
+                    values=[0.07, 0.93], name='Meubelmarkt in 2030')
+        elif ss.klanttype_value == 'B2B':
+            pie = go.Pie(labels=['Duurzame meubels', 'Traditionele meubels'], 
+                    values=[0.19, 0.81], name='Meubelmarkt in 2030')
+        else:
+            pie = go.Pie(labels=['Duurzame meubels', 'Traditionele meubels'], 
+                    values=[0.16, 0.84], name='Meubelmarkt in 2030')
         fig = go.Figure(data=[pie])
         fig.update_layout(
             title='Meubelmarkt in 2030',
@@ -61,17 +63,67 @@ with c1:
 with c2:
     with st.container(border = True):
         st.subheader('2. Kansen (in de markt)')
-        fig = make_klantvraag_scatter(klantvraag_df)
+        if ss.klanttype_value == 'B2C':
+            fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
+        elif ss.klanttype_value == 'B2B':
+            fig = make_klantvraag_scatter(ss.klantvraag_df_b2b)        
         fig.update_layout(
             title='Verglijking marktgroei: normale vs duurzame markt',
-            legend=dict(orientation="h", x=0.5, xanchor="center", y=-0.2),
-            margin=dict(t=40, b=40, l=40, r=40),
+            legend=dict(orientation="h", x=0.5, xanchor="center", y=-0.35),
+            margin=dict(t=40, b=60, l=40, r=40),
         )
         st.plotly_chart(fig)
         st.write('Laat de sterke stijging zien van de vraag naar duurzame producten. Groeitempo is meer dan 2x sneller dan traditionele productcategorieën. Duidelijke marktkans om te benutten/nu in te stappen.')
 
 with st.container(border = True):
-    st.subheader('3. Klantwens vs afzet')
+
+    st.subheader('3.1 Klantkeuze voor duurzaam')
+
+    st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk dan wel heel erg belangrijk gevonden wordt. Daarbij komt ook dat slechts 15% van de consumenten dit als ‘ (helemaal) niet belangrijk’ ervaart.')
+    # Data
+    categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
+    values = [8, 42, 34, 16]
+    colors = ["#005B26", '#27AE60', '#F1C40F', '#E74C3C']  # red, orange, yellow, green
+
+    # Cumulative values for text positioning
+    cumulative = [sum(values[:i+1]) for i in range(len(values))]
+
+    # Build the figure
+    fig = go.Figure()
+
+    for i, (category, value, color) in enumerate(zip(categories, values, colors)):
+        fig.add_trace(go.Bar(
+            y=["Consumenten"],
+            x=[value],
+            name=f"{value}% van respondenten",
+            orientation='h',
+            marker=dict(color=color),
+            text=category,
+            textposition='inside',
+            insidetextanchor='middle',
+            textfont=dict(color="black", size=14),
+            hovertemplate=f"{category}<br>{value}% van respondenten<extra></extra>"
+        ))
+
+    # Layout
+    fig.update_layout(
+        barmode='stack',
+        title='Bereidheid Duitse consumenten om meer te betalen voor duurzame producten',
+        xaxis_title='Percentage respondenten',
+        yaxis_title='',
+        xaxis=dict(range=[0, 100]),
+        template='plotly_white',
+        height=400,
+        legend_title="Verdeling",
+        legend=dict(traceorder="reversed")
+    )
+
+    # Optional: to center label text better
+    fig.update_traces(textfont_size=14, cliponaxis=False)
+
+    st.plotly_chart(fig)
+
+    st.subheader('3.2 Klantwens vs afzet')
     # Gegevens
     # Data
     categorieën = [
@@ -128,49 +180,104 @@ with st.container(border = True):
     st.plotly_chart(fig)
 
     st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Conclusie: ruim 40-50% van de duurzame vraag naar meubels blijft onvervuld.')
+    st.markdown('bron: [Milieu Centraal, D&B (iov Rijkswaterstaat)](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf)')
+
+    st.subheader('3.3 Voorkeur voor lokale productie')
+
+    st.write('1 op de 3 Nederlandse consumenten vindt het (heel erg) belangrijk dat meubels geproduceerd worden in het land waar zij zelf wonen. Hierin lopen de hoge inkomens voorop.')
+    st.markdown('bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie)')
+
+    data = [
+        ("Tot 80.000 euro", 25, "#4285F4"),        # blauw
+        ("80.000 tot 120.000 euro", 27, "#EA4335"),# rood
+        ("Meer dan 120.000 euro", 46, "#FBBC05"),  # geel
+        ("Nederland totaal", 31, "#34A853"),       # groen
+    ]
+
+    # Plotly toont horizontale bar-categorieën standaard van onder naar boven.
+    # Daarom draaien we de lijst om zodat "Nederland totaal" bovenaan komt.
+    labels = [d[0] for d in data]
+    values = [d[1] for d in data]
+    colors = [d[2] for d in data]
+
+    fig = go.Figure(
+        go.Bar(
+            x=values,
+            y=labels,
+            orientation="h",
+            marker=dict(color=colors),
+            text=[f"{v}%" for v in values],
+            textposition="outside",
+            cliponaxis=False,  # laat tekst buiten de as zien
+            hovertemplate="%{y}: %{x}%<extra></extra>",
+        )
+    )
+
+    fig.update_layout(
+        title=dict(
+            text="Het is van groot belang dat mijn meubels in<br>eigen land geproduceerd zijn",
+            x=0.5,
+            xanchor="center",
+        ),
+        height=360,
+        margin=dict(l=170, r=60, t=80, b=30),
+        plot_bgcolor="white",
+        xaxis=dict(
+            range=[0, 50],          # zodat 46% nog net past + ruimte voor label
+            showgrid=False,
+            ticks="",
+            title=None,
+        ),
+        yaxis=dict(
+            title=None,
+            ticks="",
+        ),
+        showlegend=False,
+    )
+
+    st.plotly_chart(fig)
 
 with st.container(border = True):
     st.subheader('4. Prijsperceptie en -acceptatie')
 
     # Data
-    categories = ['Niet bereid', '5% premium', '10% premium', '>10% premium']
-    values = [31, 25, 30, 14]
-    colors = ['#E74C3C', '#E67E22', '#F1C40F', '#27AE60']  # red, orange, yellow, green
+    categories = ["Niet bereid", "5% toeslag", "10% toeslag", ">10% toeslag"]
+    values = [19.0, 25.0, 24.0, 32.0]
+    colors = ["#E38178", "#FBBC05", "#0FAD4E", "#2E7D3E"]
 
-    # Cumulative values for text positioning
-    cumulative = [sum(values[:i+1]) for i in range(len(values))]
-
-    # Build the figure
     fig = go.Figure()
 
-    for i, (category, value, color) in enumerate(zip(categories, values, colors)):
-        fig.add_trace(go.Bar(
-            y=["Consumenten"],
-            x=[value],
-            name=f"{value}% van respondenten",
-            orientation='h',
-            marker=dict(color=color),
-            text=category,
-            textposition='inside',
-            insidetextanchor='middle',
+    fig.add_trace(
+        go.Bar(
+            x=categories,
+            y=values,
+            marker=dict(color=colors),
+            text=[f"{v:.1f}%" for v in values],
+            textposition="inside",
             textfont=dict(color="black", size=14),
-            hovertemplate=f"{category}<br>{value}% van respondenten<extra></extra>"
-        ))
-
-    # Layout
-    fig.update_layout(
-        barmode='stack',
-        title='Bereidheid Duitse consumenten om meer te betalen voor duurzame producten',
-        xaxis_title='Percentage respondenten',
-        yaxis_title='',
-        xaxis=dict(range=[0, 100]),
-        template='plotly_white',
-        height=400,
-        legend_title="Verdeling",
+            hovertemplate="%{x}: %{y:.1f}%<extra></extra>",
+        )
     )
 
-    # Optional: to center label text better
-    fig.update_traces(textfont_size=14, cliponaxis=False)
+    fig.update_layout(
+        title=dict(
+            text="Bereidheid consument om meer te betalen<br>voor duurzaamheid",
+            x=0.5,
+            xanchor="center",
+            font=dict(size=22)
+        ),
+        height=420,
+        margin=dict(l=60, r=40, t=100, b=60),
+        showlegend=False,
+        yaxis=dict(
+            range=[0, 35],
+            showgrid=False,
+            ticks=""
+        ),
+        xaxis=dict(
+            ticks="",
+        ),
+    )
 
     st.plotly_chart(fig)
 
@@ -178,13 +285,67 @@ with st.container(border = True):
 
 with st.container(border = True):
     st.subheader('5. Voorbeelden uit de praktijk')
-    st.markdown('''
-    | Bedrijfsnaam| Korte beschrijving | 
-    | ----------- | ------------| 
-    | [Gispen](https://www.gispen.com/nl/circulair-inrichten/nieuw-circulair-meubilair/) | Ontwikkelt circulair meubilair volgens strenge duurzame ontwerpcriteria, met hergebruikte en recyclebare materialen en een focus op maximale levensduur en reparatie. | 
-    | [OPNIEUW!](https://www.opnieuw.nl/) | Biedt volledig circulaire inrichting met een focus op hergebruik en refurbishing van bestaand meubilair, met meetbare circulaire impact |
-    | [Ahrend](https://www.ahrend.com/nl/diensten/furniture-as-a-service/) | Furniture-as-a-service |
-    | [Lande Family](https://www.landefamily.nl/duurzaamheid) | Circulair design, nemen producten terug om ze te repareren, opnieuw te stofferen of in onderdelen te hergebruiken en hebben de ambitie om afvalvrij te produceren | 
-    | [Label vandenBerg](https://label.nl/wp-content/uploads/2022/07/LABEL-Vandenberg_NL_Onderhoudsboekje_Online.pdf) | Focust op het (opnieuw) bekleden, repareren en hergebruiken van meubels. Gebruik van lokale materialen en minimaliseren van transport. |
-                
-    ''')
+
+    data = [
+        ["Gispen",
+        "Gispen Circulair (diverse meubellijnen)",
+        "Ontwikkelt circulair meubilair volgens strenge duurzame ontwerpcriteria, met hergebruikte en recyclebare materialen en een focus op maximale levensduur, reparatie en herstoffering.",
+        "Kantoren, overheid, zorg, onderwijs",
+        "Meubel",
+        "https://www.gispen.com/nl/circulair-inrichten/nieuw-circulair-meubilair/"],
+
+        ["OPNIEUW!",
+        "Refurbished & hergebruikte meubelinrichtingen",
+        "Biedt volledig circulaire inrichting met een sterke focus op hergebruik, refurbishing en reconfiguratie van bestaand meubilair, met meetbare circulaire impact (CO₂- en grondstoffenbesparing).",
+        "Kantoren, overheid, onderwijs, corporate",
+        "Meubel",
+        "https://www.opnieuw.nl/"],
+
+        ["Ahrend",
+        "Furniture-as-a-Service (o.a. Ahrend Revived, 2020, Balance)",
+        "Levert circulair kantoormeubilair via een dienstmodel, waarbij producten eigendom blijven van de producent en ontworpen zijn voor hergebruik, refurbishment en recycling.",
+        "Kantoren, overheid, maatschappelijke organisaties",
+        "Meubel",
+        "https://www.ahrend.com/nl/diensten/furniture-as-a-service/"],
+
+        ["Lande Family",
+        "Circulaire collecties (o.a. Lande, De Vorm, Functionals)",
+        "Ontwerpt circulair meubilair en neemt producten terug om te repareren, opnieuw te stofferen of in onderdelen te hergebruiken, met de ambitie om afvalvrij te produceren.",
+        "Kantoren, hospitality, publieke ruimtes",
+        "Meubel",
+        "https://www.landefamily.nl/duurzaamheid"],
+
+        ["Label Vandenberg",
+        "Herstoffering & refurbishment services",
+        "Richt zich op het (opnieuw) bekleden, repareren en hergebruiken van meubels, met gebruik van lokale materialen en minimalisering van transport en afval.",
+        "Hospitality, culturele sector, high-end interieur",
+        "Meubel",
+        "https://label.nl/wp-content/uploads/2022/07/LABEL-Vandenberg_NL_Onderhoudsboekje_Online.pdf"],
+
+        ["Triboo",
+        "Greengridz – tafels",
+        "Circulaire (werk)tafels opgebouwd uit modulaire componenten, ontworpen voor hergebruik, herconfiguratie en eenvoudige demontage, met een lage milieu-impact.",
+        "Kantoren, projectinrichting, overheid",
+        "Meubel",
+        "https://www.triboo.eu"],
+
+        ["Triboo",
+        "Greengridz – bezels",
+        "Circulaire tafelbezels die los vervangbaar zijn, ontworpen om esthetische en functionele aanpassingen mogelijk te maken zonder het volledige product te vervangen.",
+        "Kantoren, projectinrichting, overheid",
+        "Meubel",
+        "https://www.triboo.eu"]
+    ]
+
+    columns = [
+        "Bedrijfsnaam",
+        "Circulaire producten/diensten",
+        "Korte beschrijving",
+        "Primaire filters (marktsegment)",
+        "Branche",
+        "Link"
+    ]
+
+    df = pd.DataFrame(data, columns=columns)
+
+    st.table(df)
