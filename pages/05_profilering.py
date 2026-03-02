@@ -33,6 +33,9 @@ st.markdown("""
 st.title("Profilering & certificering")
 
 with st.sidebar:
+
+    st.page_link("Home.py", label="➡ Terug naar Home")
+
     st.header("Navigatie")
     page = st.radio(
         "Ga naar",
