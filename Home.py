@@ -329,7 +329,7 @@ def tile_leveringszekerheid(target_page):
             st.switch_page(target_page)
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien volgens de World Governance Indicatoren.')
 
-def tile_klantvraag_overheid(df, target_page: str):
+def tile_klantvraag_overheid(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
         st.write("Publieke markt verschuift: van lineair naar circulair")
