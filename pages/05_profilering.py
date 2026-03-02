@@ -306,15 +306,29 @@ elif page == "Employer branding":
     st.header("Employer branding")
     st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
     st.markdown("""
-                > **Bijna 70% van de ondervraagde branchepartijen bevestigt de samenhang tussen concurrentie binnen de sector met de ervaren wervingsproblemen.**
-                > [Conjunctuurmonitor 2024, CBM](https://cbm.nl/publicatie)
+                <div style="
+                    font-size: 32px;
+                    font-style: italic;
+                    text-align: center;
+                    margin: 3rem 1rem;
+                    line-height: 1.4;
+                ">
+                Bijna 70% van de ondervraagde branchepartijen bevestigt de samenhang tussen concurrentie binnen de sector met de ervaren wervingsproblemen. <a href='https://cbm.nl/publicatie' target="_blank"> Conjunctuurmonitor 2024, CBM</a>.
+                </div>
 
                 Juist in een sector waar de concurrentie op personeel groot is, wordt onderscheidend vermogen op de arbeidsmarkt een strategische noodzaak. Duurzaamheid en maatschappelijke verantwoordelijkheid worden vooral voor de jongere generaties steeds vaker een harde eis in hun loopbaankeuze. Uit onder meer de [Deloitte Global Millennial Survey (2024)](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html) blijkt dat Millennials en Generatie Z verwachten dat bedrijven actief bijdragen aan maatschappelijke en ecologische vraagstukken. Zingeving en impact wegen daarbij voor veel werkzoekenden zwaarder dan salaris of functietitel. Ook recent onderzoek van [Gallup (2023)](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf) en [PwC (2024)](https://www.pwc.com.tr/global-workforce-sustainability-study-2024)  laat zien dat betekenisvol werk en authentieke duurzaamheidsambities bijdragen aan hogere betrokkenheid en langer behoud van jong talent.
                 
-                > **Ruim 50% van de Gen Z'ers zegt ‘NEE’ tegen werkgevers/opdrachten die niet matchen met hun persoonlijke ethiek of overtuigingen**
-                > [Deloitte - Gen Z en Millennial Survey 2024](https://www.deloitte.com/content/dam/assets-zone2/nl/nl/docs/about/2024/deloitte-nl-con-genz-millennial-survey-2024-country-report-netherlands.pdf)
-                
+                <div style="
+                    font-size: 32px;
+                    font-style: italic;
+                    text-align: center;
+                    margin: 3rem 1rem;
+                    line-height: 1.4;
+                ">
+                Ruim 50% van de Gen Z'ers zegt ‘NEE’ tegen werkgevers/opdrachten die niet matchen met hun persoonlijke ethiek of overtuigingen. <a href='https://www.deloitte.com/content/dam/assets-zone2/nl/nl/docs/about/2024/deloitte-nl-con-genz-millennial-survey-2024-country-report-netherlands.pdf' target="_blank"> Deloitte - Gen Z en Millennial Survey 2024</a>.
+                </div>
+
                 Door duurzaamheidsinspanningen expliciet te communiceren en te verbinden aan bredere maatschappelijke doelen – bijvoorbeeld die van publieke opdrachtgevers of sectorale transities – vergroot een bedrijf zijn aantrekkelijkheid als werkgever, stelt [TNO (2024)](https://repository.tno.nl/SingleDoc?docId=55561). Dit versterkt niet alleen de instroom van (jong) talent, maar vergroot ook trots, betrokkenheid en loyaliteit onder bestaande medewerkers, doordat betekenisvol en impactgericht werk aantoonbaar samenhangt met hogere employee engagement en retentie [Gallup (2023)](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf),[PwC (2024)](https://www.pwc.com.tr/global-workforce-sustainability-study-2024). Employer branding maakt daarmee dat duurzame profilering niet alleen extern waardevol is, maar ook intern bijdraagt aan continuïteit en concurrentiekracht.
 
                 
-                """)
+                """, unsafe_allow_html=True)
