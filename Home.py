@@ -472,7 +472,7 @@ def tile_profilering(target_page):
         st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
 
 def tile_subsidies():
-    st.subheader("Financiers")
+    st.subheader("Subsidies")
     st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
     st.caption("Klik op de (ondersteepte) subsidies om meer te weten te komen.")
     cols = st.columns([1, 2, 1, 1, 2, 1])
