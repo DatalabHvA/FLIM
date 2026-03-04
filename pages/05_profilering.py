@@ -56,28 +56,76 @@ with st.sidebar:
 # -----------------------------
 if page == "Overzicht":
     st.header("Profilering")
-    st.write("Profilering beschrijft hoe bedrijven hun duurzaamheidsinspanningen zichtbaar, geloofwaardig en strategisch inzetten richting de markt. Het gaat daarbij om de samenhang tussen (1) de bewijslaag, (2) transparantie, (3) ketenprofilering en (4) employer branding. Door verduurzaming te onderbouwen met objectief bewijs (zoals certificeringen en meetbare prestaties), hier transparant over te rapporteren en deze informatie actief te benutten in ketensamenwerking, ontstaat een consistent en herkenbaar duurzaam profiel. Deze profilering werkt door in het werkgeversmerk, doordat medewerkers en nieuw talent zich herkennen in de maatschappelijke ambities van het bedrijf, en in de relatie met financiers, die in de toekomst duurzaamheid steeds vaker meenemen in hun risicobeoordeling en financieringsvoorwaarden. Samen laten deze categorieën binnen deze factor zien dat profilering geen los communicatie-instrument is, maar een integrale factor die inhoudelijke verduurzaming verbindt met marktpositie, vertrouwen en concurrentievoordeel.")
+    st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
+    st.subheader("Relevantie en urgentie")
+    st.write("Door je duurzame prestaties objectief te onderbouwen, hier open over te rapporteren en dit actief te benutten in je ketensamenwerking, bouw je aan een herkenbaar en onderscheidend duurzaam profiel. Dat profiel werkt door in je aantrekkelijkheid voor klanten, opdrachtgevers én talent. Profilering is daarmee geen communicatie achteraf, maar een strategische hefboom: het verbindt inhoudelijke verduurzaming met vertrouwen, markttoegang en concurrentievoordeel.")
+    st.write("In een markt waarin transparantie en aantoonbare impact steeds vaker randvoorwaarde zijn, bepaalt de manier waarop je je profileert of je wordt gekozen/gepasseerd. Wie dit niet zichtbaar en geloofwaardig positioneert, laat waarde liggen.")
+    st.write("Daarom bekijken we profilering vanuit verschillende perspectieven: als werkgever (employer branding), richting andere marktpartijen (ketenprofilering en transparantie). Daarna kijken we richting consument en opdrachtgevers, waar certificeringen en labels een steeds grotere rol spelen in onderscheidend vermogen. Tenslotte richting overheid en wet- en regelgeving, waar aantoonbaarheid en verantwoording steeds belangrijker worden.")
+    st.write("Samen vormen deze perspectieven jouw strategische positionering in een veranderende markt.")
+
 
 elif page == "Bewijslaag":
     st.header("Bewijslaag")
+    st.write("Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.")
+    st.subheader("Certificeringen")
+    st.write("Certificeringen bieden een onafhankelijk en betrouwbaar kader om te laten zien dat keuzes op het gebied van grondstoffen, materialen, ontwerp, lokale productie en ketenverantwoordelijkheid voldoen aan vastgestelde normen. Door gebruik te maken van relevante certificeringen maak je inzichtelijk dat duurzaamheid is ingebed in processen en besluitvorming, en niet afhankelijk is van losse claims. Klik op onderstaande logo van certificeringen om meer te lezen.")
+
     st.markdown("""
-                Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:25px; text-align:center;">
 
-                **Certificering**
+    <a href="https://www.bcorpbenelux.com/" target="_blank">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.AW6-CEhFzNxFzrmKGEUVeQHaHa"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
 
-                Certificeringen bieden een onafhankelijk en betrouwbaar kader om te laten zien dat keuzes op het gebied van grondstoffen, materialen, ontwerp, lokale productie en ketenverantwoordelijkheid voldoen aan vastgestelde normen. Door gebruik te maken van relevante certificeringen maak je inzichtelijk dat duurzaamheid is ingebed in processen en besluitvorming, en niet afhankelijk is van losse claims.
-                -	B Corp
-                -	Prestatieladder Circulair (BRL K11006)
-                -	CO₂ Prestatieladder
-                -	FSC
-                -	PEFC
-                -	GREENGUARD
-                -	Cradle to cradle
-                -	Natureplus
+    <a href="https://www.kiwa.com/nl/nl/expertisegebieden/duurzaamheid/circulair-ondernemen/brl-k11006-prestatieladder-circulair/" target="_blank">
+    <img src="https://tse3.mm.bing.net/th/id/OIP.pHw7USyv97ejUAktZz7aTwHaHY?pid=Api"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
 
-                """)
+    <a href="https://www.co2-prestatieladder.nl/" target="_blank">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.j-1A2AENEes7A_uVHemnmQHaFW"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
 
-    st.subheader("Duurzaamheidslabel")
+    <a href="https://nl.fsc.org/nl-nl" target="_blank">
+    <img src="https://tse2.mm.bing.net/th/id/OIP.k7bSDCFeVqW9zQICeyIKdQHaFj?pid=Api"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    <a href="https://pefc.nl/" target="_blank">
+    <img src="https://cdn.pefc.org/igen/pefc.org/media/2020-02/cb2334c4-b4a8-4570-95dd-00cd266bbbbc/b155e4b5-439a-5b1a-9465-4e39c7ab8585.png?m%5B%5D=t%28inside%2C900%2C900%29"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    <a href="https://www.stip.org/stip-certificering/" target="_blank">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.BCIl8XB-Sp4rAKhCsaLFagHaHZ?pid=Api"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    <a href="https://greenguard.nl/" target="_blank">
+    <img src="https://www.buildingenclosureonline.com/ext/resources/ARWWCA/Breaking-News-2017/10-4-17-Kingspan.jpg?1507124114"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    <a href="https://www.keurmerkenwijzer.nl/alle-keurmerken/overig/cradle-to-cradle-certified" target="_blank">
+    <img src="https://tse2.mm.bing.net/th/id/OIP.a3LQpSz-lYnvqv_rTn9GfwHaE8"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    <a href="https://natureplus.org/" target="_blank">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.fw6giwPUeZJr9IlWDkJBYQHaIu"
+    style="max-width:160px; max-height:110px; object-fit:contain;">
+    </a>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("Lees in [dit artikel van Artisan Furniture](https://www.artisanfurniture.net/nl/furniture-trends/certifications-for-sustainable-furniture/) verder over de invloed van certificeringen op meubelwaarde maar ook de toepassingen, authenticatie en kosten die hierbij kunnen komen kijken.")
+
+
+
+    st.subheader("Duurzaamheidslabels")
     st.write("Betrouwbare duurzaamheidslabels maken in één oogopslag zichtbaar dat producten of materialen voldoen aan duidelijke duurzaamheidscriteria. Ze vertalen complexe eisen rond grondstoffen, productie en ketenverantwoordelijkheid naar herkenbare en vergelijkbare signalen. Door erkende labels te voeren, verlaag je de informatie­drempel voor retailers, opdrachtgevers, consumenten en partners en versterk je het vertrouwen dat duurzame keuzes onafhankelijk zijn getoetst.")
 
     rows = [
@@ -235,7 +283,7 @@ elif page == "Bewijslaag":
         st.image('assets/blauwer_engel.jpg')
 
     if ss.klanttype_value == 'B2B':
-        st.subheader('Duurzaamheidsindex')
+        st.subheader('Duurzaamheidsindices')
         st.write("Duurzaamheidsindices plaatsen de prestaties van een organisatie in een bredere context en maken vergelijking met andere bedrijven (benchmarking) mogelijk. Ze geven inzicht in hoe duurzaamheidsbeleid en -resultaten zich verhouden tot markt en sector. Door goed te scoren op relevante indices wordt herkenbaarheid en daarmee zichtbaarheid gecreëerd, wat bijdraagt aan duurzame positionering en profilering van de organisatie richting keten en financiers.")
         cols4 = st.columns([1,6])
         with cols4[0]:
