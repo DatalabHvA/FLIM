@@ -265,8 +265,8 @@ with st.sidebar:
 
 def tile_prijsstijgingen(target_page):
     st.subheader("Prijsontwikkelingen")
-    st.write("De prijsvariatie van deze belangrijke grondstoffen is de afgelopen 10 jaar het meest toegenomen.")
-    st.caption("Klik op een balk voor de achterliggende grafiek en toelichting.")
+    st.write("De prijs en prijsschommelingen van deze belangrijke grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
+    st.caption("Klik op een balk voor de achterliggende informatie en toelichting.")
     st.caption(" ")
     # --- build the bar chart (any way you like) ---
     x = tuple(ss.df_now_prijs["materiaal"].tolist())
@@ -301,20 +301,20 @@ def tile_prijsstijgingen(target_page):
         if mat:
             ss.selected_materiaal_value = mat
             st.switch_page(target_page)
-    st.caption('De balken tonen de variatie in de prijs. Dit kan een stijging of een fluctuatie zijn.')
+    st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
 
 def tile_leveringszekerheid(target_page):
     st.subheader("Leveringszekerheid")
     
-    st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen.")
-    st.caption("Klik op een balk om de globale grondstofspreiding en de onderbouwing van de risicoscore te zien.")
+    st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
+    st.caption("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
     st.caption(" ")
 
     x = tuple(ss.df_now_lev["material"].tolist())
     y = tuple(ss.df_now_lev["supply_risk"].tolist())
     fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
 
-    fig.update_layout(yaxis_title="Stabiliteit van productielanden")
+    fig.update_layout(yaxis_title="Stabiliteit van productielanden (WGI)")
 
     clicks = plotly_events(
         fig,
@@ -327,7 +327,7 @@ def tile_leveringszekerheid(target_page):
         if mat:
             ss.selected_materiaal_value = mat
             st.switch_page(target_page)
-    st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien volgens de World Governance Indicatoren.')
+    st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien.')
 
 def tile_klantvraag_overheid(target_page: str):
     with st.container(border=False):
@@ -421,7 +421,7 @@ def tile_subsidies(target_page):
 
 # ---------- Layout: 3 tiles in one row ----------
 st.title("FLIM-tool")
-st.write("De Financial Linear IMpact Tool (FLIM-tool) helpt bedrijven in de meubelbranche om financiële en materiële kansen en risico’s rond grondstoffen te onderzoeken. Met zes factoren laat de tool zien wat de gevolgen zijn van keuzes in soort grondstof, hoeveelheid en levensduur van uw producten.")
+st.write("De Financial Linear IMpact Tool (FLIM-tool) helpt bedrijven in de meubelbranche om financiële en materiële kansen en risico’s rond grondstoffen te onderzoeken. Met zes factoren laat de tool zien wat de gevolgen zijn van keuzes in toepassing van diverse soorten grondstoffen en materialen.")
 st.write("Met de filters aan de linkerzijde bepaalt u zelf wat u wilt bekijken. De FLIM-tool geeft zo duidelijke, praktische adviezen om grondstoffen te besparen, risico’s te verlagen en nieuwe circulaire verdienmodellen te ontwikkelen.")
 st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details te openen.")
 
