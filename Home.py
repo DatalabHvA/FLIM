@@ -421,7 +421,7 @@ def tile_subsidies(target_page):
 
 # ---------- Layout: 3 tiles in one row ----------
 st.title("FLIM-tool")
-st.write("De Financial Linear IMpact Tool (FLIM-tool) helpt bedrijven in de meubelbranche om financiële en materiële kansen en risico’s rond grondstoffen te onderzoeken. Met zes factoren laat de tool zien wat de gevolgen zijn van keuzes in toepassing van diverse soorten grondstoffen en materialen.")
+st.write("De Financial Linear IMpact Tool (FLIM-tool) helpt bedrijven in de meubelbranche om financiële en materiële kansen en risico’s rond toegepaste grondstoffen en materialen te onderzoeken. Met zes factoren laat de tool zien wat de gevolgen zijn van keuzes in toepassing van diverse soorten grondstoffen en materialen.")
 st.write("Met de filters aan de linkerzijde bepaalt u zelf wat u wilt bekijken. De FLIM-tool geeft zo duidelijke, praktische adviezen om grondstoffen te besparen, risico’s te verlagen en nieuwe circulaire verdienmodellen te ontwikkelen.")
 st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details te openen.")
 
