@@ -1,35 +1,41 @@
 import streamlit as st
 from streamlit_plotly_events import plotly_events
+import sys
+sys.path.append("..")
+from widgets import *
 
 ss = st.session_state
 
 
 st.set_page_config(page_title="Klantvraag", layout="wide")
-st.markdown("""
+st.markdown(
+    """
     <style>
-        /* Hide all sidebar navigation links */
-        section[data-testid="stSidebar"] li {
-            display: none !important;
-        }
-        
-        /* Verminder padding bovenaan hoofdpagina */
-        div.block-container {
-            padding-top: 1rem !important;
-            padding-bottom: 1rem !important;
-        }
+      /* pull content up */
+      .block-container { padding-top: 0.9rem !important; }
+      /* compact header */
+      header[data-testid="stHeader"] { height: 1.2rem; }
+      [data-testid="stSidebarNav"] {display: none;}
+      [data-testid="stSidebar"] .block-container {
+          padding-top: 0 !important;
+      }
+
+    section[data-testid="stSidebar"] .block-container > div:first-child,
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div:first-child {
+    margin-top: -60px !important;   /* <- adjust this number */
+    }
+
     </style>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True,
+)
 
 with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
-    
-    options_medewerkers = ["0–50 fte", "51–250 fte", "250+ fte"]
-    st.selectbox("Aantal medewerkers", options_medewerkers, key = 'medewerkers')
-    options_omzet = ["<€10M", "<€50M", ">€50M"]
-    st.selectbox("Omzet",options_omzet, key = 'omzet')
-
+    widget_omzet()
+    widget_klantsegment()
 
 st.title('Wet- en regelgeving')
 
@@ -56,47 +62,57 @@ html += '</table>'
 # Render table in Streamlit
 st.markdown(html, unsafe_allow_html=True)
 
+with st.container():
+    st.subheader("Wet- en regelgeving: wat verandert er voor de meubelbranche?")
+    st.markdown("""
+    De Europese Unie zet met nieuwe wetgeving stevig in op een **zuiniger en slimmer gebruik van grondstoffen**. Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een wettelijke verplichting.
 
-
-c1, c2 = st.columns(2)
-with c1:
-    with st.container():
-        st.subheader("Wet- en regelgeving: wat verandert er voor de meubelbranche?")
-        st.markdown("""
-                    
-De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een **wettelijke verplichting**. 
-
-Voor de meubelbranche betekent dit dat de manier waarop producten worden **ontworpen, geproduceerd en verwerkt** fundamenteel verandert.
-
+Voor de meubelbranche betekent dit dat de manier waarop producten ontworpen, geproduceerd en verwerkt worden fundamenteel gaat veranderen. 
+                
 Bedrijven moeten aantonen waar hun materialen vandaan komen, hoe producten zijn opgebouwd, hoe ze onderhouden of gerepareerd kunnen worden, en wat ermee gebeurt na gebruik.
+-	**Ecodesign for Sustainable Products Regulation (ESPR)**: stelt eisen aan ontwerp, repareerbaarheid, levensduur en het gebruik van hernieuwbare of gerecyclede materialen.
+-	**Digitaal Productpaspoort (DPP)**: verplicht producenten om productinformatie digitaal vast te leggen en te delen met klanten, leveranciers en recyclers.
+-	**Uitgebreide Producentenverantwoordelijkheid (UPV)**: maakt fabrikanten verantwoordelijk voor de inzameling, verwerking en recycling van hun producten aan het einde van de levensduur.
+Samen vormen deze wetten een systeem dat bedrijven **verplicht om grip te krijgen op hun materiaalstromen** en hun producten zó te ontwikkelen dat ze in de toekomst kunnen worden teruggenomen, hersteld of als grondstof opnieuw ingezet.
 
-**Samenhang wet- en regelgeving:**
+De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De te ontwikkelen **Uitgebreide Producentenverantwoordelijkheid (UPV)** legt de basis: producenten blijven verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn. Daarom stelt de **Ecodesign for Sustainable Products Regulation (ESPR)** eisen aan het ontwerp van meubels, gericht op een langere levensduur, betere repareerbaarheid en het gebruik van hernieuwbare of gerecyclede materialen. Om deze verbeteringen inzichtelijk te maken en informatie over materialen, onderhoud en recycling te kunnen delen, komt daarbovenop het **Digitaal Productpaspoort (DPP)**. Dit digitale systeem maakt het mogelijk om elke stap in de levenscyclus van een meubel te volgen en de oplossingen die onder ESPR zijn bedacht bekend te maken bij reparateur, consument en uiteindelijk de reststroomverwerker. Samen zorgen deze regelgevingen voor meer grip op grondstoffen- en productstromen binnen de EU, waarmee de meubelbranche beter kan sturen op toekomstbestendig materiaalgebruik en daarbij toekomstbestendig ondernemen.
 
-De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De naderende **Uitgebreide Producentenverantwoordelijkheid (UPV)** legt de basis: producenten blijven verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn. 
-Daarom stelt de **Ecodesign for Sustainable Products Regulation (ESPR)** eisen aan het ontwerp van meubels, gericht op een langere levensduur, betere repareerbaarheid en het gebruik van hernieuwbare of gerecyclede materialen. 
-Om deze verbeteringen inzichtelijk te maken en informatie over materialen, onderhoud en recycling te kunnen delen, komt daarbovenop het **Digitaal Productpaspoort (DPP)**. Dit digitale systeem maakt het mogelijk om inzicht te krijgen in elke stap in de levenscyclus van een meubel en om de oplossingen die onder ESPR zijn bedacht bekend te maken bij reparateur, consument en uiteindelijk de reststroomverwerker. 
-Samen zorgen deze regelgevingen voor meer grip op grondstoffen- en productstromen binnen de EU, waarmee de meubelbranche beter kan sturen op toekomstbestendig materiaalgebruik en daarbij toekomstbestendig ondernemen.
-
-Samen vormen deze wetten een systeem dat bedrijven verplicht om grip te krijgen op hun materiaalstromen en hun producten zó te ontwikkelen dat ze in de toekomst kunnen worden teruggenomen, hersteld of als grondstof opnieuw ingezet.
-                """)
+            """)
 
 c1, c2 = st.columns(2)
 with c1: 
-    st.markdown("""
-        **Risico's**
-                
-        - **Marktuitsluiting**: producten die niet voldoen, mogen in de toekomst niet meer verkocht worden.
-        - **Kostenstijging**: late aanpassing leidt tot hogere grondstof- en nalevingskosten.
-        - **Datadruk**: nieuwe eisen vragen om transparantie in de hele keten – van leverancier tot eindgebruiker.
-        - **Verlies aan concurrentiekracht**: bedrijven die niet voldoen, verliezen terrein aan spelers die wel voldoen en hun circulaire waarde kunnen aantonen.
+    st.subheader("KANSEN")
+    st.markdown("""          
+Voor bedrijven die nu al voorsorteren, liggen grote voordelen:
+-	**Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
+-	**Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
+-	**Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
+-	**Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
         """)
 with c2: 
-    st.markdown("""
-        **Kansen**
-                 
-        - **Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
-        - **Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
-        - **Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de veranderende klantvraag.
-        - **Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
+    st.subheader("RISICO’S")
+    st.markdown("""         
+Wie niet tijdig inspeelt op deze regels, loopt risico’s:
+-	**Marktuitsluiting**: producten die niet voldoen, mogen in de toekomst niet meer verkocht worden.
+-	**Kostenstijging**: late aanpassing leidt tot hogere grondstof- en nalevingskosten.
+-	**Datadruk**: nieuwe eisen vragen om transparantie in de hele keten – van leverancier tot eindgebruiker.
+-	**Verlies aan concurrentiekracht**: bedrijven die niet voldoen, verliezen terrein aan spelers die wel voldoen en hun circulaire waarde kunnen aantonen.
+
                 """)
 
+st.subheader('FINANCIËLE RISICO’S')
+st.markdown("""
+| **Boetes, sancties & handhavingskosten** | **Markttoegang verliezen / productverboden** | **Ketenrisico’s** |
+|---|---|---|
+| *Directe financiële consequenties vanuit toezichthouders.* | *Producten mogen niet in de EU worden ingevoerd of verkocht.* | *Non-compliance veroorzaakt schadeclaims door klanten, retailers, financiers of afnemers.* |            
+| EUDR (2025) – forse boetes (tot 4% van omzet), inbeslagname goederen, exportstop.<br><br>ESPR (2026) – boetes bij schending ecodesign- en duurzaamheidseisen; productverboden.<br><br>Right to Repair – sancties bij niet naleven reparatieplicht / informatieplicht.<br><br>Circulaire plastics norm (2027–2030) – boetes voor niet halen van recyclaat- en ontwerpnormen.<br><br>REACH – hoge boetes, stillegging productie, recall-opdrachten.<br><br>DPP – boetes bij onvolledige of foutieve digitale productpaspoorten.<br><br>UPV – boetes bij onderbetaling of onderregistratie van producentenverantwoordelijkheid.<br><br>CBAM/CO₂ (2026) – naheffingen bij verkeerde rapportage. | EUDR – blokkade van grondstoffen/halffabricaten (risicogrondstoffen).<br><br>ESPR – producten zonder vereiste ecodesign- of circulariteitswaarden kunnen worden geweerd.<br><br>Circulaire plastics norm – niet-conforme verpakkingen en schuimen mogen worden verboden.<br><br>REACH – verboden stoffen maken producten onverkoopbaar.<br><br>DPP – producten zonder geldige paspoorten worden geweigerd.<br><br>CBAM – import zonder correcte CO₂-verklaring kan worden tegengehouden. | EUDR – retailers/merken kunnen claims indienen als ketenonderbouwing niet klopt.<br><br>ESPR – OEM’s kunnen leveranciers aansprakelijk stellen voor ontbrekende conformiteit.<br><br>DPP – incorrecte productdata → aansprakelijkheid voor misleidende informatie.<br><br>UPV / plastics norm – kosten en claims voor verpakkings-non-compliance door brand-owners.<br>CSRD (2026/2027, indirect) – bedrijven leggen contractueel verplichtingen op aan leveranciers (data quality, emissie-info). Niet leveren = contractbreuk. |
+""", unsafe_allow_html = True)
+
+st.subheader("Wat betekent dit voor de branche?")
+
+st.markdown("""
+-	**MKB-bedrijven** moeten anticiperen op verplichtingen met hulp van tools (zoals FLIM).
+-	**Ketenregie** wordt cruciaal: de informatie- en materiaalstromen moeten traceerbaar worden.
+-	**Collectieve actie** (via brancheverenigingen zoals CBM) wordt noodzakelijk om de regeldruk behapbaar te maken.
+-	**Compliance = concurrentiekracht** – bedrijven die voorbereid zijn, worden aantrekkelijker voor investeerders, klanten en partners.
+""")

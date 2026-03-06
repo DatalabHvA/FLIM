@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+sys.path.append("..")
+from widgets import *
 
 st.set_page_config(page_title="MIT - Haalbaarheid", layout="wide")
 
@@ -36,19 +39,20 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 st.title('MIT - Haalbaarheid')
 st.subheader('*MKB Innovatiestimulering Topsectoren - Haalbaarheidstrajecten*')
 
-st.page_link("Home.py", label="⬅ Terug naar Home")
+st.page_link("pages/06_subsidies.py", label="⬅ Terug naar Subsidies")
 
-st.image('assets/MIT.jpg', width = 1000)
+html = generate_table("Verkenning", "Max €25K",  "Individuele aanvraag")
+st.markdown(html, unsafe_allow_html=True)
 
 st.markdown('''
 ****1. Beschrijving subsidie****
            
-De MIT Haalbaarheidssubsidie (Mkb-Innovatiestimulering Regio en Topsectoren) is een Nederlandse regeling bedoeld om mkb-ondernemers te helpen bij het verkennen van de haalbaarheid van een innovatieproject.
+De MIT Haalbaarheidssubsidie is een Nederlandse regeling bedoeld om mkb-ondernemers te helpen bij het verkennen van de haalbaarheid van een innovatieproject. De subsidie ondersteunt bedrijven in de beginfase van innovatie, waarin nog onderzocht wordt of een idee technisch, economisch en organisatorisch uitvoerbaar is.
 
-De subsidie ondersteunt bedrijven in de beginfase van innovatie, waarin nog onderzocht wordt of een idee technisch, economisch en organisatorisch uitvoerbaar is.
-
-In deze fase kan het mkb marktonderzoek doen, technische analyses uitvoeren of de benodigde partners en grondstoffen in kaart brengen. De MIT Haalbaarheid is vaak een opstap naar een groter R&D-project of naar andere subsidie-instrumenten zoals MIT-R&D-samenwerkingsprojecten of Europese regelingen (zoals Horizon of ERDF).
-
+In deze fase kan het mkb marktonderzoek doen, technische analyses uitvoeren of de benodigde partners en grondstoffen in kaart brengen. De MIT Haalbaarheid is vaak een opstap naar een groter R&D-project of naar andere subsidie-instrumenten zoals MIT-R&D-samenwerkingsprojecten of Europese regelingen zoals Horizon of ERDF.
+''')
+st.page_link("pages/06b_ERDF.py", label = "→ Lees meer over de ERDF")
+st.markdown('''         
 ****2. Relevantie meubelbranche**** 
             
 Voor de meubel- en interieurbranche is de MIT Haalbaarheid een kans om circulaire innovatieprojecten goed voor te bereiden.

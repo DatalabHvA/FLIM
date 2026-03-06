@@ -11,20 +11,27 @@ from widgets import *
 ss = st.session_state
 
 st.set_page_config(page_title="Klantvraag Overheid • Analyse", layout="wide")
-st.markdown("""
+st.markdown(
+    """
     <style>
-        /* Hide all sidebar navigation links */
-        section[data-testid="stSidebar"] li {
-            display: none !important;
-        }
-        
-        /* Verminder padding bovenaan hoofdpagina */
-        div.block-container {
-            padding-top: 1rem !important;
-            padding-bottom: 1rem !important;
-        }
+      /* pull content up */
+      .block-container { padding-top: 0.9rem !important; }
+      /* compact header */
+      header[data-testid="stHeader"] { height: 1.2rem; }
+      [data-testid="stSidebarNav"] {display: none;}
+      [data-testid="stSidebar"] .block-container {
+          padding-top: 0 !important;
+      }
+
+    section[data-testid="stSidebar"] .block-container > div:first-child,
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div:first-child {
+    margin-top: -60px !important;   /* <- adjust this number */
+    }
+
     </style>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True,
+)
 
 with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")

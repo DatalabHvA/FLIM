@@ -160,3 +160,42 @@ def widget_materiaal_lev():
         key = 'selected_materiaal_widget',
         on_change = _sync
     )
+
+def generate_table(fase, budget, vorm):
+
+    markdown = f"""
+        <table style="border-collapse: collapse; width: 70%; text-align: center; font-family: Arial;">
+        <tr style="background-color:#d9d9d9;">
+        <th style="border:1px solid #666; padding:12px;">
+        Fase<br><br>
+        <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/refs/heads/main/assets/route.png" width="60">
+        </th>
+
+        <th style="border:1px solid #666; padding:12px;">
+        Aanvraagbaar budget<br>(dekking)<br><br>
+        <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/refs/heads/main/assets/envelope.png" width="70">
+        </th>
+
+        <th style="border:1px solid #666; padding:12px;">
+        Vorm<br><br>
+        <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/refs/heads/main/assets/people.png" width="70">
+        </th>
+        </tr>
+
+        <tr style="background-color:#efefef;">
+        <td style="border:1px solid #666; padding:25px; font-style:italic; font-size:22px;">
+        {fase}
+        </td>
+
+        <td style="border:1px solid #666; padding:25px; font-style:italic; font-size:22px;">
+        {budget}
+        </td>
+
+        <td style="border:1px solid #666; padding:25px; font-style:italic; font-size:22px;">
+        {vorm}
+        </td>
+        </tr>
+        </table>
+        """ 
+
+    return markdown
