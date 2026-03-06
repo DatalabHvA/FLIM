@@ -118,7 +118,7 @@ def widget_materialen():
         ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
 
     st.multiselect(
-        "Materialen",
+        "Grondstoffen en materialen",
         OPTIONS,
         default=ss.selected_materials_value,
         key="selected_materials_widget",
