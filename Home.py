@@ -406,101 +406,18 @@ def tile_profilering(target_page):
     with st.container(border=False):
         st.subheader("Bedrijfsprofilering")
         st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
-        st.caption('Klik op onderstaand blok om te leren wat jij kunt doen.')
 
-        with st.container():
-            # Define categories and values
-            #topics = ['Opdracht', 'Werkgever']
-            topics = ['Werkgever']
+        st.image('assets/Tegel - profilering.png')
+        if st.button("Bekijk informatie over bedrijfsprofilering", width = 'stretch'):
+            st.switch_page(target_page)
 
-            # Values per group per topic
-            # values = {
-            #     "Global Gen Z": [50, 44],
-            #     "Global millennials": [43, 40],
-            #     "Nederlandse Gen Z": [41, 36],
-            #     "Nederlandse millennials": [31, 29]
-            # }
-            values = {
-                #"Global Gen Z": [44],
-                #"Global millennials": [40],
-                "Nederlandse Gen Z": [36],
-                "Nederlandse millennials": [29]
-            }
-
-            # Define consistent colors
-            colors = {
-                #"Global Gen Z": "#009CA6",         # Teal
-                #"Global millennials": "#5B5B5B",   # Dark grey
-                "Nederlandse Gen Z": "#00726B",    # Dark teal
-                "Nederlandse millennials": "#BFBFBF"  # Light grey
-            }
-
-            # Build figure
-            fig = go.Figure()
-
-            for label, vals in values.items():
-                fig.add_trace(go.Bar(
-                    x=topics,
-                    y=vals,
-                    name=label,
-                    text=[f"{v}%" for v in vals],
-                    textposition="outside",
-                    marker_color=colors[label]
-                ))
-            fig.update_yaxes(range=[0, 36 * 1.2])  # 20% extra headroom
-            # Layout settings
-            fig.update_layout(
-                barmode="group",
-                xaxis_title="",
-                yaxis_title="Percentage",
-                template="plotly_white",
-                height=CHART_HEIGHT,
-                legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5),
-                **COMMON_LAYOUT
-            )
-
-            clicks = plotly_events(
-                fig,
-                click_event=True, hover_event=False, select_event=False,
-                override_height = CHART_HEIGHT,
-                key=f"evt_personeel_{ss.events_epoch}",
-            )
-            if clicks:
-                # For Heatmap, Plotly returns y = row label (our 'label')
+def tile_subsidies(target_page):
+    with st.container(border=False):
+        st.subheader("Subsidies")
+        st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
+        st.image('assets/Tegel - subsidies.png')
+        if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
-
-        st.caption("Percentage van respondenten die een opdracht of een potentiele werkgever hebben afgewezen op basis van hun persoonlijk ethiek/overtuigingen.")
-
-def tile_subsidies():
-    st.subheader("Subsidies")
-    st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
-    st.caption("Klik op de (ondersteepte) subsidies om meer te weten te komen.")
-    cols = st.columns([1, 2, 1, 1, 2, 1])
-    with cols[1]:
-        st.image("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg", width = 'stretch')
-    with cols[4]: 
-        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg", width = 'stretch')
-
-    # Sample content and row colors
-    labels = ['<b> Verkenning</b>', 'TSE Industrie - studies', '<a href="/a_MIT_haalbaarheid", target = "_self"<u>MIT - Haalbaarheid</u></a>', '','<b>Ontwikkeling</b>', 'MIT - R&D samenwerking', 'DEI+ - Circulaire Economie', 'VEKI - Versnelde Klimaatinvesteringen', '<b>Implementatie</b>', 'MIA\\Vamil', 'CKP - Circulaire Ketenprojecten', '', '<b>Opschaling</b>', 'EFRO (Regionaal)', ' ', '']
-    values = ['', 'Horizon Europe - Cluster 4', 'EIR RawMaterials - Innovation Program', 'Life Programme - Circulair Economy', '', 'Horizon Europe - Cluster 5', 'Interreg - Circular Economy & Green Growth', 'COST Action - Circular Economy Innovation', '', 'Horizon Europe - EIC Accelerator', '<a href="/b_EDFR", target = "_self"<u>ERDF - Circular Economy</u></a>', 'Life Programme',' ','Horizon Europe - Cluster 6', 'EIC Fund', 'Horizon Europe - European Green Deal']
-    row_colors = [
-        "#8BC4F9", "#BADEF9", "#BADEF9","#BADEF9", "#FFC277",
-        "#FAE3C6", "#FAE3C6", "#FAE3C6", "#6BFF70", "#CCFFCE",
-        "#CCFFCE", "#CCFFCE", "#FF94E2", "#FFDFF7","#FFDFF7", "#FFDFF7"
-    ]
-
-    # Build HTML table
-    html = '<table style="width:100%;">'
-    for i in range(16):
-        bg = row_colors[i]
-        label = labels[i]
-        value = values[i]
-        html += f'<tr style="background-color:{bg};"> <td style="font-size: 12px; padding: 2px; text-align: center;">{label}</td> <td style="font-size: 12px; padding: 2px; text-align: center">{value}</td> </tr>'
-    html += '</table>'
-
-    # Render table in Streamlit
-    st.markdown(html, unsafe_allow_html=True)
 
 # ---------- Layout: 3 tiles in one row ----------
 st.title("FLIM-tool")
@@ -509,17 +426,15 @@ st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details
 col1, col2, col3 = st.columns(3, gap="small", border = True)
 with col1: tile_prijsstijgingen(target_page = "pages/01_Prijsstijgingen.py")
 with col2: tile_leveringszekerheid(target_page = "pages/02_Leveringszekerheid.py")
-with col3: 
+with col3: tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
+    
+h1, h2, h3 = st.columns(3, gap="small", border = True)
+with h1:
     if ss.klanttype_value == 'Overheid':
         tile_klantvraag_overheid(target_page="pages/03_Klantvraag_overheid.py")
     else: 
         tile_klantvraag_B(target_page = "pages/03_Klantvraag_B.py")
-
-    
-h1, h2, h3 = st.columns(3, gap="small", border = True)
-with h1:
-    tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
 with h2:
     tile_profilering(target_page = "pages/05_profilering.py") 
 with h3:
-    tile_subsidies()
+    tile_subsidies(target_page = "pages/06_subsidies.py")
