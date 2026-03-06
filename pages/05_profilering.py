@@ -62,7 +62,7 @@ with st.sidebar:
 # Pages
 # -----------------------------
 if page == "Overzicht":
-    st.header("Profilering")
+    st.header("Strategisch en zichtbaar profileren voor een sterke marktpositie")
     st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
     with st.container(border = True):
         st.subheader("Relevantie en urgentie")
