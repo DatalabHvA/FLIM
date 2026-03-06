@@ -264,7 +264,7 @@ with st.sidebar:
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
-    st.subheader("Prijsontwikkelingen")
+    st.subheader("Prijsontwikkelingen van grondstoffen en materialen")
     st.write("De prijs en prijsschommelingen van deze belangrijke grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
     st.caption("Klik op een balk voor de achterliggende informatie en toelichting.")
     st.caption(" ")
@@ -304,7 +304,7 @@ def tile_prijsstijgingen(target_page):
     st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
 
 def tile_leveringszekerheid(target_page):
-    st.subheader("Leveringszekerheid")
+    st.subheader("Leveringszekerheid van grondstoffen en materialen")
     
     st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
     st.caption("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
@@ -372,7 +372,7 @@ def tile_klantvraag_B(target_page: str):
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
-        st.write("Binnen 5 jaar gelden strengere normen op materiaalkeuze en ontwerp binnen de meubelbranche.")
+        st.write("De wet- en regelgeving verandert voor de meubelbranche. Binnen 5 jaar gelden er strengere normen voor materiaalkeuze en ontwerp.")
         
     # --- Stijl voor de niet-klikbare knop ---
     st.markdown("""
