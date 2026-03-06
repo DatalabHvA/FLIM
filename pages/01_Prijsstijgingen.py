@@ -83,13 +83,12 @@ ci_upper = y_fit + std_dev
 ci_lower = y_fit - std_dev
 
 col1, col2 = st.columns(2)
-
 with col1:
     with st.container(border=True):
         st.metric("Trend (helling)", f"{model.params[1]:.2f} PPI punten per jaar")
         st.write(
             f"De helling toont de gemiddelde stijging van de prijs van {ss.selected_materiaal_value} "
-            "in PPI-punten per jaar (index t.o.v. 2015 = 100)."
+            "in PPI-punten per jaar. Startindexwaarde (2015) = 100."
         )
 
         with st.expander("ℹ️ Uitleg (klik om uit te klappen)"):
@@ -110,13 +109,13 @@ with col2:
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
         st.write(
             f"Dit is de gemiddelde schommeling van de prijs van {ss.selected_materiaal_value} "
-            "rond de trendlijn (in PPI-indexpunten). Startindexwaarde 2015 = 100."
+            "rond de trendlijn (in PPI-indexpunten). Startindexwaarde (2015) = 100."
         )
 
         with st.expander("ℹ️ Uitleg (klik om uit te klappen)"):
             st.markdown(f"""
-                **Wat betekent σ?**  
-                - De spreiding σ is de standaardafwijking ten opzichte van de trendlijn.
+                **Wat betekent de spreiding (σ)?**  
+                - De spreiding (σ) is de standaardafwijking ten opzichte van de trendlijn.
                 - Deze maat geeft aan hoe sterk de prijs schommelt rond de structurele prijsontwikkeling.
 
                 **Hoe lees je dit?**  
@@ -125,23 +124,23 @@ with col2:
                 - Ongeveer 95% ligt binnen ±2σ (bij benadering normaal verdeeld).
 
                 **Uitleg in beleid / risico-context**  
-                - Een Lage spreiding σ betekent een stabiele markt.
-                - Een hoge spreiding σ betekent volatiele markt met hoge prijsonzekerheid.
-                - Vergelijk spreiding σ tussen materialen om prijsonzekerheid zelf te beoordelen.
+                - Een Lage spreiding σ betekent een stabiele markt met een lage prijsonzekerheid.
+                - Een hoge spreiding σ betekent volatiele markt met een hoge prijsonzekerheid.
+                - Vergelijk spreiding σ tussen materialen of grondstoffen om prijsonzekerheid zelf te beoordelen.
                 """)
 
 st.markdown("""
    
     Deze pagina toont de volgende informatie voor de gekozen grondstof:
-    1.	de **trendlijn** (stijging of daling over een periode) en 
-    2.	de **schommeling** van de materiaalprijzen over een periode.
+    1.	de **trendlijn** (stijging of daling van de grondstof- of materiaalprijzen over een periode) en 
+    2.	de **schommeling** van de grondstof- of materiaalprijzen over een periode.
 
-    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een stijgende trendlijn betekent dit: 
-    - Hogere grondstofkosten. Meubelmakers zijn sterk afhankelijk van de gekozen grondstoffen. Een stijgende PPI betekent dat deze materialen duurder worden, wat direct de productiekosten verhoogt.
-    - Druk op marges en prijsstrategie. Als meubelmakers de hogere kosten niet volledig kunnen doorberekenen aan klanten, daalt hun winstgevendheid. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
-    - Invloed op vraag en concurrentie. Hogere verkoopprijzen kunnen de vraag naar meubels verminderen, vooral in prijsgevoelige segmenten. Dit dwingt meubelmakers tot innovatie of kostenbesparing. 
+    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een **stijgende trendlijn** betekent dit: 
+    - **Hogere grondstofkosten**. Meubelproducenten zijn **sterk afhankelijk van de gekozen grondstoffen**. Een **stijgende PPI** betekent dat deze **materialen duurder** worden. Dit verhoogt de productiekosten direct.
+    - Druk op marges en prijsbeleid. Als meubelmakers de **hogere kosten** niet volledig kunnen doorberekenen aan klanten, **daalt hun winstgevendheid**. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
+    - Invloed op vraag en concurrentie. Als hogere kosten leiden tot **hogere verkoopprijzen**, kann de vraag naar meubels verminderen. Dit dwingt meubelmakers tot **innovatie of kostenbesparing**. 
 
-    Een sterke **schommeling** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
+    Een sterke **schommeling** zorgt voor **onzekerheid in kosten**. Dit heeft invloed op het margedruk, prijsbeleid en contractafspraken.
 
             """)
 
@@ -161,7 +160,7 @@ fig.add_trace(go.Scatter(
     x=x_labels,
     y=y,
     mode='lines+markers',
-    name=f"Historisch prijs van {ss.selected_materiaal_value}",
+    name=f"Historische prijs van {ss.selected_materiaal_value}",
     line=dict(color='blue', width=3),
     marker=dict(size=6)
 ))
@@ -171,7 +170,7 @@ fig.add_trace(go.Scatter(
     x=x_labels,
     y=y_fit,
     mode='lines',
-    name='Lineaire trend',
+    name='Trendlijn',
     line=dict(color='red', dash='dash')
 ))
 
