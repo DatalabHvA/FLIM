@@ -55,10 +55,10 @@ st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
 filtered_df = ss.prijzen_df[['Jaar',ss.selected_materiaal_value]].dropna()
 
 st.markdown("""
-    De prijsontwikkelingen zijn uitdrukt met behulp van de **producentenprijsindex (PPI) over de geselecteerde materialen**. 
-    De PPI is een **economische indicator** die de gemiddelde prijsveranderingen meet die **producenten ontvangen voor deze geleverde materialen**. 
-    Het gaat dus om prijzen op het **niveau van de producent**. Dit maakt de PPI een belangrijke maatstaf voor inflatie voor de inkopers van de 
-    materialen (bron: investingnomads.nl).
+    De prijsontwikkelingen zijn berekend met de **producentenprijsindex (PPI)** voor de gekozen materialen.
+    De PPI laat zien hoe de **gemiddelde prijzen veranderen die grondstoffen- of materiaalfabrikanten krijgen** voor hun producten. Het gaat dus om **prijzen bij de meubelproducent**, niet in de winkel.
+    Voor inkopers is de PPI belangrijk, omdat hij laat zien **hoeveel duurder of goedkoper materialen worden**. Dat helpt om de **inflatie** (algemene prijsstijgingen) en **kortdurende prijsschommelingen** voor deze materialen in te schatten.
+    (bron: investingnomads.nl).
             """)
 
 # Ensure datetime
