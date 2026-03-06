@@ -48,7 +48,7 @@ with st.sidebar:
 st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
 
 st.markdown("""
-    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de geselecteerde materialen zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
+    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de gekozen materialen zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
                 """)
 
 
@@ -65,14 +65,14 @@ c1, c2 = st.columns(2)
 with c1:
     with st.container(border = True, horizontal_alignment = 'center'):
         st.metric("Herfindahl–Hirschman index (HHI)", f"{hhi_kpi:.2f}")
-        st.write('De HHI geeft de mate van geconcentreerdheid aan van de oorsprong van een grondstof (0 is zeer verspreid, 1 is volledig monopolie). Als deze indicator hoog is betekent het dat een enkele verstoring grote gevolgen kan hebben voor de leveringszekerheid.')
+        st.write('HHI is een cijfer dat laat zien hoeveel landen een grondstof of materiaal leveren (0 is zeer veel producerende landen, 1 is volledig monopolie van 1 land). Als HHI-waarde hoog is betekent het dat een enkele verstoring grote gevolgen kan hebben voor de leveringszekerheid.')
 with c2:
     with st.container(border = True, horizontal_alignment = 'center'):
         st.metric("Gemiddelde World Governance Indicactor (WGI) voor productielanden van deze grondstof", f"{wgi_kpi:.2f}")
-        st.write('De WGI geeft aan hoe stabiel het bestuur en de instituties van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
+        st.write('De WGI geeft aan hoe stabiel het bestuur en de regels van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
 
 st.markdown("""
-    Onderstaande kaart toont de herkomst en leveringszekerheid van het geselecteerde materiaal wereldwijd.
+    Onderstaande kaart toont de herkomst en leveringszekerheid van het gekozen materiaal wereldwijd.
     De kleuren geven aan hoe stabiel en betrouwbaar de productie per land is: 
     groen = hoge zekerheid, rood = lage zekerheid).
             """)
@@ -93,14 +93,14 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("""
     **Herfindahl–Hirschman Index (HHI)**
             
-    De HHI is een maatstaf voor marktconcentratie en heeft daarmee indirecte gevolgen voor leveringszekerheid. 
-    - Bij een lage HHI  is de markt competitief met veel aanbieders van het geselecteerde materiaal.  Een lage HHI wijst op meer concurrentie en spreiding, wat doorgaans gunstig is voor leveringszekerheid.
-    - Bij een hoge HHI is er sprake van een sterk geconcentreerde markt met weinig aanbieders. De markt is in dat geval kwetsbaar voor storingen of geopolitieke risico’s; één speler kan de markt domineren. (bron: investopedia.com)
+    De HHI geeft weer **hoeveel landen het gekozen materiaal leveren**. De waarde van deze maat heeft indirecte gevolgen voor leveringszekerheid. 
+    - Bij een lage HHI  is de markt competitief met veel aanbieders van het gekozen materiaal.  Een lage HHI wijst op meer concurrentie en spreiding, wat doorgaans gunstig is voor leveringszekerheid.
+    - Bij een hoge HHI is er een markt met weinig aanbieders. De markt is in dat geval kwetsbaar voor storingen of geopolitieke risico’s; één speler kan de markt domineren. (bron: investopedia.com)
 
     **Worldwide Governance Indicators (WGI)**
             
-    Leveringszekerheid van grondstoffen hangt sterk af van governance van een land waar materialen vandaan komen. De WGI wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten (bron: worldbank.org). 
-    In de WGI zijn onder andere de volgende dimensies meegenomen die invloed hebben op leveringszekerheid van de geselecteerde materialen:
+    Leveringszekerheid van grondstoffen hangt ook sterk af van de **stabiliteit van de overheid en regels van een land waar materialen vandaan komen**. De WGI wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen en materialen te meten (bron: worldbank.org). 
+    In de WGI zijn onder andere de volgende zaken meegenomen die invloed hebben op leveringszekerheid van de gekozen materialen:
     - **Betrouwbaarheid** van **overheidsdiensten** en **consistente beleidsuitvoering**: deze  verminderen risico’s op verstoringen in levering. 
     - Een **sterke rechtsstaat** zorgt voor contracthandhaving en eigendomsrechten: dit is cruciaal voor stabiele toeleveringsketens. 
     - **Politieke stabiliteit**: minder kans op conflicten of politieke crises die leveringen kunnen onderbreken.
