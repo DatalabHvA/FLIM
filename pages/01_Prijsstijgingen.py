@@ -57,7 +57,7 @@ filtered_df = ss.prijzen_df[['Jaar',ss.selected_materiaal_value]].dropna()
 st.markdown("""
     De prijsontwikkelingen zijn berekend met de **producentenprijsindex (PPI)** voor de gekozen materialen.
     De PPI laat zien hoe de **gemiddelde prijzen veranderen die grondstoffen- of materiaalfabrikanten krijgen** voor hun producten. Het gaat dus om **prijzen bij de meubelproducent**, niet in de winkel.
-    Voor inkopers is de PPI belangrijk, omdat hij laat zien **hoeveel duurder of goedkoper materialen worden**. Dat helpt om de **inflatie** (algemene prijsstijgingen) en **kortdurende prijsschommelingen** voor deze materialen in te schatten.
+    Voor inkopers is de PPI belangrijk, omdat hij laat zien **hoeveel duurder of goedkoper materialen worden**. Dat helpt om de **inflatie** (algemene prijsstijgingen) en **prijsschommelingen** voor deze materialen in te schatten.
     (bron: investingnomads.nl).
             """)
 
@@ -86,62 +86,62 @@ col1, col2 = st.columns(2)
 
 with col1:
     with st.container(border=True):
-        st.metric("Trend (slope)", f"{model.params[1]:.2f} PPI punten per jaar")
+        st.metric("Trend (helling)", f"{model.params[1]:.2f} PPI punten per jaar")
         st.write(
-            f"Dit is de gemiddelde stijging van de prijs van {ss.selected_materiaal_value} "
+            f"De helling toont de gemiddelde stijging van de prijs van {ss.selected_materiaal_value} "
             "in PPI-punten per jaar (index t.o.v. 2015 = 100)."
         )
 
-        with st.expander("ℹ️ Interpretatie (klik om uit te klappen)"):
+        with st.expander("ℹ️ Uitleg (klik om uit te klappen)"):
             st.markdown(f"""
                 **Wat betekent dit?**  
-                - De *slope* is de gemiddelde jaarlijkse verandering in de PPI-index (punten/jaar).  
-                - Bijvoorbeeld: **+2.5** betekent dat de index gemiddeld **2.5 punten per jaar** stijgt.
+                - De *helling* is de gemiddelde jaarlijkse verandering in de PPI-index (punten/jaar).  
+                - Bijvoorbeeld: **+2.5** betekent dat de prijsindex gemiddeld **2.5 punten per jaar** stijgt.
 
-                **Hoe lees je dit t.o.v. 2015=100?**  
-                - Bij een start rond 100 betekent +2.5 dat je na 4 jaar grofweg rond **110** kunt zitten (ruwe trend, zonder schommelingen).
+                **Hoe lees je dit t.o.v. 2015 met startindex 100?**  
+                - Bij een start rond 100 betekent +2.5 dat je na 4 jaar ongeveer rond **110** kunt zitten (ruwe trend, zonder schommelingen).
 
                 **Let op**  
-                - Dit is een lineaire trend: pieken/dalen (bv. corona, energiecrisis) worden “gemiddeld”.  
+                - Dit is een trend met een rechte lijn: kortdurende pieken/dalen (bv. corona, energiecrisis) worden “gemiddeld”.  
                 - Kijk ook naar het betrouwbaarheidsinterval / p-value als je wil weten hoe zeker de trend is.
                 """)
 with col2:
     with st.container(border=True):
         st.metric("Spreiding (σ)", f"{std_dev:.2f} PPI punten")
         st.write(
-            f"Dit is de gemiddelde fluctuatie van de prijs van {ss.selected_materiaal_value} "
-            "rond de lineaire trend (in PPI-indexpunten, 2015=100)."
+            f"Dit is de gemiddelde schommeling van de prijs van {ss.selected_materiaal_value} "
+            "rond de trendlijn (in PPI-indexpunten). Startindexwaarde 2015 = 100."
         )
 
-        with st.expander("ℹ️ Interpretatie (klik om uit te klappen)"):
+        with st.expander("ℹ️ Uitleg (klik om uit te klappen)"):
             st.markdown(f"""
                 **Wat betekent σ?**  
-                - σ is de standaarddeviatie van de residuen (de afwijkingen t.o.v. de trend).
-                - Het geeft aan hoe sterk de prijs schommelt rond de structurele ontwikkeling.
+                - De spreiding σ is de standaardafwijking ten opzichte van de trendlijn.
+                - Deze maat geeft aan hoe sterk de prijs schommelt rond de structurele prijsontwikkeling.
 
                 **Hoe lees je dit?**  
                 - Bijvoorbeeld: **σ = 4.2** betekent dat de prijs typisch ongeveer ±4.2 indexpunten rond de trend beweegt.
-                - Ongeveer 68% van de observaties ligt binnen ±1σ.
+                - Ongeveer 68% van de meetpunten ligt binnen ±1σ.
                 - Ongeveer 95% ligt binnen ±2σ (bij benadering normaal verdeeld).
 
-                **Interpretatie in beleid / risico-context**  
-                - Lage σ → stabiele markt.
-                - Hoge σ → volatiele markt (meer onzekerheid).
-                - Vergelijk σ tussen materialen om volatiliteit te beoordelen.
+                **Uitleg in beleid / risico-context**  
+                - Een Lage spreiding σ betekent een stabiele markt.
+                - Een hoge spreiding σ betekent volatiele markt met hoge prijsonzekerheid.
+                - Vergelijk spreiding σ tussen materialen om prijsonzekerheid zelf te beoordelen.
                 """)
 
 st.markdown("""
    
     Deze pagina toont de volgende informatie voor de gekozen grondstof:
     1.	de **trendlijn** (stijging of daling over een periode) en 
-    2.	de **fluctuatie** van de materiaalprijzen over een periode.
+    2.	de **schommeling** van de materiaalprijzen over een periode.
 
     Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een stijgende trendlijn betekent dit: 
     - Hogere grondstofkosten. Meubelmakers zijn sterk afhankelijk van de gekozen grondstoffen. Een stijgende PPI betekent dat deze materialen duurder worden, wat direct de productiekosten verhoogt.
     - Druk op marges en prijsstrategie. Als meubelmakers de hogere kosten niet volledig kunnen doorberekenen aan klanten, daalt hun winstgevendheid. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
     - Invloed op vraag en concurrentie. Hogere verkoopprijzen kunnen de vraag naar meubels verminderen, vooral in prijsgevoelige segmenten. Dit dwingt meubelmakers tot innovatie of kostenbesparing. 
 
-    Een sterke **fluctuatie** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
+    Een sterke **schommeling** zorgt voor onzekerheid in kosten, prijsbeleid contractafspraken en margedruk.
 
             """)
 
