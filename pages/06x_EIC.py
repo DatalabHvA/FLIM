@@ -1,4 +1,9 @@
 import streamlit as st
+import sys
+sys.path.append("..")
+
+from widgets import *
+
 
 st.set_page_config(page_title="ECI", layout="wide")
 hide_sidebar = """
