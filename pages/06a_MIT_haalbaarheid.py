@@ -65,29 +65,13 @@ De regeling helpt bedrijven bij het onderzoeken of een circulair product- of pro
 
 Zo vormt de MIT Haalbaarheid vaak de eerste stap richting concrete circulaire productontwikkeling.
 
-****3. Samenwerkingspojecten****
+****3. Samenwerkingsprojecten****
             
 Hoewel de MIT Haalbaarheid bedoeld is voor individuele mkb-bedrijven, kan samenwerking met kennisinstellingen of ketenpartners (zoals toeleveranciers of ontwerpers) de aanvraag versterken.
 
 Let op: voor grotere gezamenlijke innovatieprojecten is er de MIT R&D-Samenwerkingsprojectenregeling.
 
-****4. Details van de subsidie****
-            
-|**Fase** | **Subsidie** | **Bedrag per aanvraag** | **Potgrootte** | **Looptijd regeling** | **Deadline (huidige ronde) aanvraag** | **Partij** |
-| -------- | ------ | -------- | ------ | -------- | ------ | -------- |
-| Verkenning  | MIT Haalbaarheid | Max €20.000 (tot 40% van de kosten) | €5 miljoen | Jaarlijks geopend | Per regio verschillende deadlines | Regionale ontwikkelings-maatschappijen |
-
-****5. De aanvraag****
-            
-Over het algemeen volgt de aanvraagprocedure voor de MIT-subsidie de volgende stappen:
-
-1. Voorbereiding: Breng de technische, economische en organisatorische haalbaarheid van het project in kaart.
-2. Aanvraag indienen: Via het loket van de regionale uitvoeringsorganisatie (ROM's).
-3. Beoordeling: De aanvragen worden beoordeeld op innovatiegehalte, haalbaarheid en verwachte economische impact
-4. Toekenning en uitvoering: Na goedkeuring heeft de aanvrager maximaal één jaar om het haalbaarheidsonderzoek uit te voeren en te rapporteren.
-           
-****6. Externe links****
+****4. Externe links****
             
 [MIT Haalbaarheidsprojecten – Provincie Zuid-Holland](https://www.zuid-holland.nl/online-regelen/subsidies/subsidies/mit-haalbaarheidsprojecten/)
-[MIT R&D – Samenwerkingsprojecten – RVO.nl](https://www.rvo.nl/subsidies-financiering/mit-rd-samenwerkingsprojecten)
 ''')

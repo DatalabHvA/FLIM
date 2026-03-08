@@ -38,7 +38,8 @@ st.subheader('(European Regional Development Fund for Circular Economy)')
 
 st.page_link("pages/06_subsidies.py", label="⬅ Terug naar Subsidies")
 
-st.image('assets/ERDF.jpg', width = 1000)
+html = generate_table("Implementatie", "€500K-€10M",  "Samenwerkingsverband")
+st.markdown(html, unsafe_allow_html=True)
 
 st.markdown('''
 ****1. Beschrijving subsidie****
@@ -55,7 +56,7 @@ Subsidies zoals de ERDF zijn relevant voor Nederlandse mkb-meubelmakers omdat he
 - **Procesoptimalisatie**: Investeren in technologieën die de productieprocessen verduurzamen en afval verminderen, zoals het verbeteren van het recyclingproces of het sluiten van de materialenkringloop.
 - **Lokaal hergebruik van materialen**: Het opzetten van terugname en refurbish systemen voor meubels, of het stimuleren van regionale samenwerking voor het hergebruik van materialen in de meubelindustrie.            
 
-****3. Samenwerkingspojecten****
+****3. Samenwerkingsprojecten****
             
 Voor veel ERDF-projecten is samenwerking een belangrijke vereiste. In veel gevallen is het noodzakelijk om samen te werken met andere bedrijven, kennisinstellingen, gemeenten, of onderzoeksorganisaties die expertise in de circulaire economie en duurzame productie kunnen leveren.
 

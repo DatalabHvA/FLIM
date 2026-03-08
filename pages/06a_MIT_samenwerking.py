@@ -76,7 +76,7 @@ Voorbeelden die passen bij de meubelindustrie zijn:
 -	**Digitale innovaties**: samenwerking rond sensortechnologie, digital twins of datagedreven onderhoud om productgebruik en levensduur te verbeteren;
 -	**Hogere inzet van reststromen**: R&D naar technieken om houtreststromen, textielsnijafval of retourmaterialen hoogwaardig te verwerken.
 
-****3. Samenwerkingspojecten****
+****3. Samenwerkingsprojecten****
             
 Het project moet worden uitgevoerd door minimaal twee onafhankelijke mkb-ondernemingen die gezamenlijk een innovatie ontwikkelen. In het samenwerkingsverband brengt iedere partij eigen, aanvullende kennis of technologie in, waardoor het project alleen tot stand kan komen door samenwerking. Andere organisaties, zoals kennisinstellingen of grotere bedrijven, mogen aansluiten als partner, maar de kern van het project ligt altijd bij de samenwerkende mkb-bedrijven.
 
