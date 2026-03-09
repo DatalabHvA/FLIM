@@ -129,6 +129,29 @@ with col2:
                 - Vergelijk spreiding σ tussen materialen of grondstoffen om prijsonzekerheid zelf te beoordelen.
                 """)
 
+# Toelichtende tekst onder grafiek
+st.markdown("""
+   
+    Deze pagina toont de volgende informatie voor de gekozen grondstof:
+    1.	de **trendlijn** (stijging of daling van de grondstof- of materiaalprijzen over een periode) en 
+    2.	de **schommeling** van de grondstof- of materiaalprijzen over een periode.
+
+    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een **stijgende trendlijn** betekent dit: 
+    - **Hogere grondstofkosten**. Meubelproducenten zijn **sterk afhankelijk van de gekozen grondstoffen**. Een **stijgende PPI** betekent dat deze **materialen duurder** worden. Dit verhoogt de productiekosten direct.
+    - Druk op marges en prijsbeleid. Als meubelmakers de **hogere kosten** niet volledig kunnen doorberekenen aan klanten, **daalt hun winstgevendheid**. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
+    - Invloed op vraag en concurrentie. Als hogere kosten leiden tot **hogere verkoopprijzen**, kann de vraag naar meubels verminderen. Dit dwingt meubelmakers tot **innovatie of kostenbesparing**. 
+
+    Een sterke **schommeling** zorgt voor **onzekerheid in kosten**. Dit heeft invloed op het margedruk, prijsbeleid en contractafspraken.
+
+            """)
+
+events = [
+    {"date": "2020-03-11", "label": "COVID-19", "color": "gray", "dash": "dot", "width": 3},
+    {"date": "2022-02-24", "label": "Invasie Oekraïne", "color": "green", "dash": "dash", "width": 4,},
+    #{"date": "2023-12-06", "label": "Pieter Jarig", "color": "purple", "dash": "solid", "width": 10,}
+]
+
+#Mogelijke dash opties: "solid", "dot", "dash", "longdash", "dashdot", "longdashdot"
 
 # Plot
 fig = go.Figure()
@@ -197,29 +220,6 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 
-# Toelichtende tekst onder grafiek
-st.markdown("""
-   
-    Deze pagina toont de volgende informatie voor de gekozen grondstof:
-    1.	de **trendlijn** (stijging of daling van de grondstof- of materiaalprijzen over een periode) en 
-    2.	de **schommeling** van de grondstof- of materiaalprijzen over een periode.
-
-    Voor meubelproductenten heeft de **trendlijn** betrekking op de prijsstrategiën, investeringsbeslissingen en het risicobeheer bij de productie van meubels. Bij een **stijgende trendlijn** betekent dit: 
-    - **Hogere grondstofkosten**. Meubelproducenten zijn **sterk afhankelijk van de gekozen grondstoffen**. Een **stijgende PPI** betekent dat deze **materialen duurder** worden. Dit verhoogt de productiekosten direct.
-    - Druk op marges en prijsbeleid. Als meubelmakers de **hogere kosten** niet volledig kunnen doorberekenen aan klanten, **daalt hun winstgevendheid**. Dit kan leiden tot prijsindexatie in contracten of het zoeken naar goedkopere materialen: 
-    - Invloed op vraag en concurrentie. Als hogere kosten leiden tot **hogere verkoopprijzen**, kann de vraag naar meubels verminderen. Dit dwingt meubelmakers tot **innovatie of kostenbesparing**. 
-
-    Een sterke **schommeling** zorgt voor **onzekerheid in kosten**. Dit heeft invloed op het margedruk, prijsbeleid en contractafspraken.
-
-            """)
-
-events = [
-    {"date": "2020-03-11", "label": "COVID-19", "color": "gray", "dash": "dot", "width": 3},
-    {"date": "2022-02-24", "label": "Invasie Oekraïne", "color": "green", "dash": "dash", "width": 4,},
-    #{"date": "2023-12-06", "label": "Pieter Jarig", "color": "purple", "dash": "solid", "width": 10,}
-]
-
-#Mogelijke dash opties: "solid", "dot", "dash", "longdash", "dashdot", "longdashdot"
 
 
 
