@@ -72,8 +72,8 @@ Je onderzoekt:
                 
 **Subsidievoorbeelden**:
                 """)
-    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT Haalbaarheidsstudie – RVO [13.2]")
-    st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO [13.3]")
+    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT Haalbaarheidsstudie – RVO [13.2]", icon="➡")
+    st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO [13.3]", icon="➡")
     st.markdown("""                
 **Voorbeeldproject**:
 Een producent onderzoekt verduurzaming van zijn industriële productieprocessen. 
@@ -89,8 +89,8 @@ Je werkt aan:
                 
 **Subsidievoorbeelden**:
                 """)
-    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO [13.4]")
-    st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO [13.6]")
+    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO [13.4]", icon="➡")
+    st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO [13.6]", icon="➡")
     st.markdown("""               
     **Voorbeeldproject**:
     Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. [Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)
@@ -107,8 +107,8 @@ Je gaat:
 **Subsidievoorbeelden**:
             """)
             
-    st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO [13.5]")
-    st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees [13.1]")
+    st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO [13.5]", icon="➡")
+    st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees [13.1]", icon="➡")
 
     st.markdown("""         
 **Voorbeeldproject**:
@@ -126,8 +126,8 @@ Je focust op:
                 
 **Typische subsidievoorbeelden**:
                 """)
-    st.page_link("pages/06x_EFRO.py", label = "EFRO")
-    st.page_link("pages/06x_EIC.py", label = "EIC Accelerator program")
+    st.page_link("pages/06x_EFRO.py", label = "EFRO", icon="➡")
+    st.page_link("pages/06x_EIC.py", label = "EIC Accelerator program", icon="➡")
     st.markdown("""                
 **Voorbeeldproject**:
 Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
