@@ -264,8 +264,8 @@ with st.sidebar:
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
-    st.subheader("Prijsontwikkelingen van grondstoffen en materialen")
-    st.write("De prijs en prijsschommelingen van deze belangrijke grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
+    st.subheader("Prijsontwikkelingen")
+    st.write("De **prijs en prijsschommelingen van grondstoffen en materialen** zijn de afgelopen 10 jaar **toegenomen**.")
     st.caption("Klik op een balk voor de achterliggende informatie en toelichting.")
     st.caption(" ")
     # --- build the bar chart (any way you like) ---
@@ -304,9 +304,9 @@ def tile_prijsstijgingen(target_page):
     st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
 
 def tile_leveringszekerheid(target_page):
-    st.subheader("Leveringszekerheid van grondstoffen en materialen")
+    st.subheader("Leveringszekerheid")
     
-    st.write("De leveringszekerheid van belangrijkste grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
+    st.write("De **leveringszekerheid van grondstoffen in de meubelindustrie afgenomen** door geopolitieke spanningen en schaarste in aanbod op de markt.")
     st.caption("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
     st.caption(" ")
 
