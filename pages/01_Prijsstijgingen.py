@@ -207,7 +207,7 @@ st.plotly_chart(fig, use_container_width=True)
 # Toelichtende tekst onder grafiek
 st.markdown("""
    
-    Deze pagina toont de volgende informatie voor de gekozen grondstof:
+    Deze grafiek toont de volgende informatie voor de gekozen grondstof:
     1.	de **trendlijn** (stijging of daling van de grondstof- of materiaalprijzen over een periode) en 
     2.	de **schommeling** van de grondstof- of materiaalprijzen over een periode.
 
