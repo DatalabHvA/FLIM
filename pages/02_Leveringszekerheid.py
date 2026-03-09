@@ -48,7 +48,7 @@ with st.sidebar:
 st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
 
 st.markdown("""
-    Leveringszekerheid laat de betrouwbaarheid van beschikbaarheid van de gekozen materialen zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
+    Leveringszekerheid laat de **betrouwbaarheid van beschikbaarheid van de gekozen materialen** zien. Dit wordt getoond aan de hand van de volgende twee indicatoren:
                 """)
 
 
@@ -64,11 +64,11 @@ c1, c2 = st.columns(2)
 
 with c1:
     with st.container(border = True, horizontal_alignment = 'center'):
-        st.metric("Herfindahl–Hirschman index (HHI)", f"{hhi_kpi:.2f}")
+        st.metric("**Herfindahl–Hirschman index (HHI) van dit materiaal**", f"{hhi_kpi:.2f}")
         st.write('HHI is een cijfer dat laat zien hoeveel landen een grondstof of materiaal leveren (0 is zeer veel producerende landen, 1 is volledig monopolie van 1 land). Als HHI-waarde hoog is betekent het dat een enkele verstoring grote gevolgen kan hebben voor de leveringszekerheid.')
 with c2:
     with st.container(border = True, horizontal_alignment = 'center'):
-        st.metric("Gemiddelde World Governance Indicactor (WGI) voor productielanden van deze grondstof", f"{wgi_kpi:.2f}")
+        st.metric("**Gemiddelde World Governance Indicactor (WGI) voor productielanden van dit materiaal**", f"{wgi_kpi:.2f}")
         st.write('De WGI geeft aan hoe stabiel het bestuur en de regels van een land zijn. Deze maat wordt door de Europese Unie gebruikt om het risico op problemen bij de productie en levering van grondstoffen te meten.')
 
 st.markdown("""
