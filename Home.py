@@ -409,7 +409,7 @@ def tile_profilering(target_page):
     with st.container(border=False):
         st.subheader("Bedrijfsprofilering en certificering")
         st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
-        with st.container(border = True:)
+        with st.container(border = True):
             st.image('assets/Tegel - profilering.png')
         if st.button("Bekijk informatie over bedrijfsprofilering", width = 'stretch'):
             st.switch_page(target_page)
@@ -418,7 +418,7 @@ def tile_subsidies(target_page):
     with st.container(border=False):
         st.subheader("Subsidies")
         st.write('Er wordt financiële ondersteuning geboden vanuit de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
-        with st.container(border = True:)
+        with st.container(border = True):
             st.image('assets/Tegel - subsidies.png')
         if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
