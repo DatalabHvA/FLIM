@@ -333,7 +333,7 @@ def tile_klantvraag_overheid(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
         st.write("Publieke markt verschuift: van lineair naar circulair")
-        st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
+        #st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         fig = make_klantvraag_overheid_plot()
 
         clicks = plotly_events(
@@ -343,6 +343,8 @@ def tile_klantvraag_overheid(target_page: str):
             key=f"evt_klantvraag_onderwijs_{ss.events_epoch}"
         )
         if clicks:
+            st.switch_page(target_page)
+        if st.button("Bekijk informatie over klantvraag", width = 'stretch'):
             st.switch_page(target_page)
         #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
