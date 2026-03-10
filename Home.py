@@ -265,7 +265,7 @@ with st.sidebar:
 
 def tile_prijsstijgingen(target_page):
     st.subheader("Prijsontwikkelingen")
-    st.write("De **prijs en prijsschommelingen van grondstoffen en materialen** zijn de afgelopen 10 jaar **toegenomen**.")
+    st.write("De prijzen en prijsschommelingen van grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
     st.caption("Klik op een balk voor de achterliggende informatie en toelichting.")
     st.caption(" ")
     # --- build the bar chart (any way you like) ---
@@ -306,7 +306,7 @@ def tile_prijsstijgingen(target_page):
 def tile_leveringszekerheid(target_page):
     st.subheader("Leveringszekerheid")
     
-    st.write("De **leveringszekerheid van grondstoffen in de meubelindustrie afgenomen** door geopolitieke spanningen en schaarste in aanbod op de markt.")
+    st.write("De leveringszekerheid van grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
     st.caption("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
     st.caption(" ")
 
@@ -372,7 +372,7 @@ def tile_klantvraag_B(target_page: str):
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
-        st.write("De wet- en regelgeving verandert voor de meubelbranche. Binnen 5 jaar gelden er strengere normen voor materiaalkeuze en ontwerp.")
+        st.write("De wet- en regelgeving verandert voor de meubelbranche. De komende jaren gaan er strengere normen en eisen gesteld worden aan materiaal- en ontwerpkeuzes.")
         
     # --- Stijl voor de niet-klikbare knop ---
     st.markdown("""
@@ -414,7 +414,7 @@ def tile_profilering(target_page):
 def tile_subsidies(target_page):
     with st.container(border=False):
         st.subheader("Subsidies")
-        st.write('De overheid biedt financiële ondersteuning voor innovaties in materiaal, ontwerp en proces.')
+        st.write('Er wordt financiële ondersteuning geboden van de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
         st.image('assets/Tegel - subsidies.png')
         if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
