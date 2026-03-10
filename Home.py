@@ -373,6 +373,7 @@ def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
         st.write("De wet- en regelgeving verandert voor de meubelbranche. De komende jaren gaan er strengere normen en eisen gesteld worden aan materiaal- en ontwerpkeuzes.")
+        st.caption("Klik op de button onder de visual om meer te weten te komen over de ontwikkelingen in de Nederlandse en Europese wet- en regelgeving.")
         
     # --- Stijl voor de niet-klikbare knop ---
     st.markdown("""
