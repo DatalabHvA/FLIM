@@ -415,7 +415,7 @@ def tile_profilering(target_page):
 def tile_subsidies(target_page):
     with st.container(border=False):
         st.subheader("Subsidies")
-        st.write('Er wordt financiële ondersteuning geboden van de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
+        st.write('Er wordt financiële ondersteuning geboden vanuit de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
         st.image('assets/Tegel - subsidies.png')
         if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
