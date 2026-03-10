@@ -422,7 +422,7 @@ def tile_subsidies(target_page):
 
 # ---------- Layout: 3 tiles in one row ----------
 st.title("FLIM-tool")
-st.write("**''Welke invloed hebben jouw materiaalkeuzes op kosten, risico’s en toekomstige regelgeving?''**")
+st.write("**''Welke invloed hebben jouw huidige materiaalkeuzes op de kosten, risico’s en impact van toekomstige regelgeving op jouw bedrijf?''**")
 st.write("De Financial Linear Impact Tool (FLIM) maakt zichtbaar welke financiële risico’s én kansen samenhangen met het gebruik van grondstoffen en materialen in je bedrijf. Op basis van zes factoren laat de tool zien waar risico’s ontstaan én waar kansen liggen om slimmer met grondstoffen om te gaan. Stem met de filters links de analyse af op jouw bedrijf en belangrijkste materialen, en ontdek waar andere keuzes financieel voordeel kunnen opleveren.")
 st.caption("Klik op de grafieken/visualisaties om verder te navigeren of details te openen.")
 
