@@ -41,7 +41,7 @@ with st.sidebar:
     #widget_klantsegment()
     #widget_klanttype()
 
-st.title("Klantvraag Overheid — Analyse")
+st.title("Klantvraag — Overheid")
 
 st.markdown("""
 ### Intro
