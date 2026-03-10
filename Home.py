@@ -350,7 +350,7 @@ def tile_klantvraag_B(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
         st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
-        st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
+        #st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         if ss.klanttype_value == 'B2C':
             fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
         elif ss.klanttype_value == 'B2B':
@@ -367,7 +367,9 @@ def tile_klantvraag_B(target_page: str):
         )
         if clicks:
             st.switch_page(target_page)
-        st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
+        if st.button("Bekijk informatie over klantvraag", width = 'stretch'):
+            st.switch_page(target_page)
+        #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
@@ -407,8 +409,8 @@ def tile_profilering(target_page):
     with st.container(border=False):
         st.subheader("Bedrijfsprofilering en certificering")
         st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
-
-        st.image('assets/Tegel - profilering.png')
+        with st.container(border = True:)
+            st.image('assets/Tegel - profilering.png')
         if st.button("Bekijk informatie over bedrijfsprofilering", width = 'stretch'):
             st.switch_page(target_page)
 
@@ -416,7 +418,8 @@ def tile_subsidies(target_page):
     with st.container(border=False):
         st.subheader("Subsidies")
         st.write('Er wordt financiële ondersteuning geboden vanuit de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
-        st.image('assets/Tegel - subsidies.png')
+        with st.container(border = True:)
+            st.image('assets/Tegel - subsidies.png')
         if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
 
