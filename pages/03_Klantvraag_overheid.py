@@ -10,7 +10,7 @@ from widgets import *
 
 ss = st.session_state
 
-st.set_page_config(page_title="Klantvraag Overheid • Analyse", layout="wide")
+st.set_page_config(page_title="Klantvraag • Overheid", layout="wide")
 st.markdown(
     """
     <style>
