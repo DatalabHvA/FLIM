@@ -510,7 +510,7 @@ else:
             st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
             
     with st.container(border = True):
-        with st.expander('**4 Prijsperceptie en -acceptatie**'):
+        with st.expander('**4. Prijsperceptie en -acceptatie**'):
             st.write('Toont bereidheid van klanten om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.(uit enquête Duitse markt)')
 
             # Data
