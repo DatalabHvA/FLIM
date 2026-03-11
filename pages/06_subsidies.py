@@ -117,10 +117,10 @@ Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim 
 with st.expander("Fase 4: Opschaling – “Het werkt, nu gaan we vergroten.”"):
     st.markdown("""
 Je focust op:
-•	Productiecapaciteit vergroten
-•	Nieuwe markten betreden
-•	Internationale samenwerking
-•	Verdere professionalisering
+-	Productiecapaciteit vergroten
+-	Nieuwe markten betreden
+-	Internationale samenwerking
+-	Verdere professionalisering
 
 **Voorbeeldproject**:
 Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
