@@ -391,6 +391,8 @@ else:
         st.plotly_chart(fig)
 
         st.subheader('3.2 Klantwens vs afzet')
+        st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Conclusie: ruim 40-50% van de duurzame vraag naar meubels blijft onvervuld.')
+        
         # Gegevens
         # Data
         categorieën = [
@@ -446,7 +448,6 @@ else:
         )
         st.plotly_chart(fig)
 
-        st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Conclusie: ruim 40-50% van de duurzame vraag naar meubels blijft onvervuld.')
         st.markdown('bron: [Milieu Centraal, D&B (iov Rijkswaterstaat)](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf)')
 
         st.subheader('3.3 Voorkeur voor lokale productie')
