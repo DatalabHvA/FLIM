@@ -48,23 +48,9 @@ Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wo
 _**De belangrijkste voor jouw organisatie zijn:**_ 
 
 De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De **Uitgebreide Producentenverantwoordelijkheid (UPV)** vormt daarbij de basis: producenten worden financieel verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn.
-    """)
-    st.page_link("pages/04x_UPV.py", label = "**Uitgebreide Producentenverantwoordelijkheid (UPV)**", icon="➡") 
-    st.markdown("""
 De **Ecodesign for Sustainable Products Regulation (ESPR)** stelt daarnaast eisen aan hoe producten worden ontworpen, zoals een langere levensduur, betere repareerbaarheid en het gebruik van hernieuwbare of gerecyclede materialen. Om deze eigenschappen inzichtelijk te maken komt daarbovenop het **Digitaal Productpaspoort (DPP)**. Hierin leggen producenten informatie vast over materialen, onderhoud en recyclingmogelijkheden. Zo kan de volledige levenscyclus van een meubel inzichtelijk worden gemaakt voor reparateurs, consumenten en verwerkers.
-    """)
-    st.page_link("pages/04x_ESPR.py", label = "**Ecodesign for Sustainable Products Regulation (ESPR)**", icon="➡") 
-    st.page_link("pages/04x_DPP.py", label = "**Digitaal Productpaspoort (DPP)**", icon="➡") 
-    st.markdown("""
 Andere regels richten zich op de grondstoffen en ketens achter het product. De **EU-verordening ontbossingsvrije producten (EUDR)** verplicht bedrijven om aan te tonen dat grondstoffen zoals hout niet afkomstig zijn van recent ontboste gebieden. Dit vraagt om meer inzicht in de herkomst van materialen en transparantie in de toeleveringsketen.
-    """)
-    st.page_link("pages/04x_EUDR.py", label = "**EU-verordening ontbossingsvrije producten (EUDR)**", icon="➡") 
-    st.markdown("""
 Deze inzichten worden vervolgens steeds belangrijker in duurzaamheidsrapportages. Via de **Corporate Sustainability Reporting Directive (CSRD)** moeten grote bedrijven rapporteren over hun CO₂-uitstoot, grondstoffengebruik en ketenimpact. Veel MKB-bedrijven krijgen hier indirect mee te maken doordat klanten of financiers deze informatie opvragen. De **VSME-standaard** helpt kleinere bedrijven om deze gegevens gestructureerd te verzamelen en te delen.
-    """)
-    st.page_link("pages/04x_CSRD.py", label = "**Corporate Sustainability Reporting Directive (CSRD)**", icon="➡") 
-    st.page_link("pages/04x_VSME.py", label = "**VSME-standaard**", icon="➡") 
-    st.markdown("""
 Samen vormen deze wetten een systeem dat bedrijven gaat **verplichten om bewust om te gaan met- en grip te krijgen op hun materiaalstromen** en hun producten zo te ontwikkelen dat ze in de toekomst kunnen worden teruggenomen, hersteld of als grondstof opnieuw ingezet.
 
                 """, unsafe_allow_html = True)
