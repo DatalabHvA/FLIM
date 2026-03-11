@@ -309,6 +309,7 @@ else:
     with c1: 
         with st.container(border = True):
             st.subheader("1. Risico's (in de markt)")
+            st.write('Een groeiend deel van de markt verwacht duurzame alternatieven. Gebrek aan actie op dit gebied vormt een risico tot verlies van marktaandeel en afname van klanttevredenheid.')
 
             if ss.klanttype_value == 'B2C':
                 pie = go.Pie(labels=['Duurzame meubels', 'Traditionele meubels'], 
@@ -326,11 +327,13 @@ else:
                 margin=dict(t=40, b=40, l=40, r=40),
             )
             st.plotly_chart(fig)
-            st.write('Toont risico’s van het niet inspelen op duurzaamheid. Een significant deel van de markt verwacht duurzame alternatieven. Gebrek aan actie leidt tot afname van klanttevredenheid en marktaandeel.')
+
 
     with c2:
         with st.container(border = True):
             st.subheader('2. Kansen (in de markt)')
+            st.write('De groei van de duurzame meubelmarkt is meer dan dubbel zo groot als de traditionele productcategorieën. Dit biedt kansen om nieuw marktaandeel te claimen.')
+            
             if ss.klanttype_value == 'B2C':
                 fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
             elif ss.klanttype_value == 'B2B':
@@ -341,7 +344,6 @@ else:
                 margin=dict(t=40, b=60, l=40, r=40),
             )
             st.plotly_chart(fig)
-            st.write('Laat de sterke stijging zien van de vraag naar duurzame producten. Groeitempo is meer dan 2x sneller dan traditionele productcategorieën. Duidelijke marktkans om te benutten/nu in te stappen.')
 
     with st.container(border = True):
 
