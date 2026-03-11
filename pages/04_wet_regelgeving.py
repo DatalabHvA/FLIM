@@ -40,7 +40,7 @@ with st.sidebar:
 st.title('Wet- en regelgeving')
 
 if not ((ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte")):
-    st.subheader("Waar wordt de meubelbranche de komende jaren mee geconfronteerd?")
+    st.subheader("Waar krijgt de branche de komende jaren mee te maken?")
     st.markdown("""
 De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. 
 Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een wettelijke verplichting.
