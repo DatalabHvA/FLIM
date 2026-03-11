@@ -59,7 +59,7 @@ c1, c2 = st.columns([6,2])
 with c1: 
     st.subheader("Hoe zit subsidiestructuur meestal in elkaar?")
     st.write("Subsidies sluiten vaak aan op een specifieke fase van jouw project. Onderstaand overzicht helpt je bepalen waar jij zit en waar je moet zoeken.")
-with c2: 
+
     st.image('assets/subsidies1.png')
 
 with st.expander("Fase 1: Verkenning – “Is mijn idee technisch en economisch haalbaar?”"):
