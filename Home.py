@@ -61,12 +61,12 @@ if 'wgi_df' not in ss:
     ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
 if 'klantvraag_df_b2c' not in ss:
     ss.klantvraag_df_b2c = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Traditionele meubels (CAGR 4,95%)' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
-                              'Duurzame meubels (CAGR 10,3%)' : [100,110.3,121.7,134.2,148.0,163.3,180.1,198.6]})
+                              'Traditionele meubels' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
+                              'Duurzame meubels' : [100,110.3,121.7,134.2,148.0,163.3,180.1,198.6]})
 if 'klantvraag_df_b2b' not in ss:
     ss.klantvraag_df_b2b = pd.DataFrame({'Jaar' : [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                              'Traditionele meubels (CAGR 4,95%)' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
-                              'Duurzame meubels (CAGR 10,1%)' : [100,110.1,121.2,133.5,146.9,161.8,178.1,196.]})
+                              'Traditionele meubels' : [100,105.0,110.1,115.6,121.3,127.3,133.6,140.2],
+                              'Duurzame meubels' : [100,110.1,121.2,133.5,146.9,161.8,178.1,196.]})
 if 'klantvraag_overheid_df' not in ss:
     ss.klantvraag_overheid_df = pd.DataFrame({'years' : [2020, 2030, 2050],
                               'normale' : [90, 50, 0],
@@ -132,7 +132,7 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
     # add each line
     fig.add_trace(go.Scatter(
         x=[str(x) for x in sel_hist_df['Jaar']],
-        y=[float(x) for x in sel_hist_df['Traditionele meubels (CAGR 2,8%)']],
+        y=[float(x) for x in sel_hist_df['Traditionele meubels']],
         mode='lines+markers',
         name='Traditionele meubels (CAGR 2,8%)',
         line=dict(color='black', width=3),
@@ -141,9 +141,9 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
 
     fig.add_trace(go.Scatter(
         x=[str(x) for x in sel_hist_df['Jaar']],
-        y=[float(x) for x in sel_hist_df['Duurzame meubels (CAGR 7,3%)']],
+        y=[float(x) for x in sel_hist_df['Duurzame meubels']],
         mode='lines+markers',
-        name='Duurzame meubels (CAGR 7,3%)',
+        name='Duurzame meubels',
         line=dict(color='green', width=3),
         marker=dict(size=6)
     ))
