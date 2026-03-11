@@ -38,8 +38,7 @@ with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
     st.header("Filters")
-    widget_omzet()
-    widget_klantsegment()
+
 
 # -----------------------------
 # Layout / Navigation
