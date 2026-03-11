@@ -346,7 +346,7 @@ else:
     with st.container(border = True):
 
         st.subheader('3.1 Klantkeuze voor duurzaam')
-        st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk dan wel heel erg belangrijk gevonden wordt. Daarbij komt ook dat slechts 15% van de consumenten dit als ‘ (helemaal) niet belangrijk’ ervaart.')
+        st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
         # Data
         categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
         values = [8, 42, 34, 16]
