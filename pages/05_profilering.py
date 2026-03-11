@@ -43,23 +43,10 @@ with st.sidebar:
 
     st.page_link("Home.py", label="➡ Terug naar Home")
 
-    st.header("Navigatie")
-    page = st.radio(
-        "Ga naar",
-        [
-            "Overzicht",
-            "Bewijslaag",
-            "Transparantie",
-            "Ketenprofilering",
-            "Employer branding",
-        ],
-        index=0
-    )
-
 # -----------------------------
 # Pages
 # -----------------------------
-if page == "Overzicht":
+with st.expander("Overzicht", expanded = True):
     st.header("Strategisch en zichtbaar profileren voor een toekomstbestendige marktpositie")
     st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
 
@@ -71,9 +58,9 @@ if page == "Overzicht":
         st.write("Daarom bekijken we profilering vanuit verschillende perspectieven: als werkgever (employer branding), richting andere marktpartijen (ketenprofilering en transparantie). Daarna kijken we richting consument en opdrachtgevers, waar certificeringen en labels een steeds grotere rol spelen in onderscheidend vermogen. Tenslotte richting overheid en wet- en regelgeving, waar aantoonbaarheid en verantwoording steeds belangrijker worden.")
         st.write("Samen vormen deze perspectieven jouw strategische positionering in een veranderende markt.")
 
-    st.image('assets/Landing - profilering.png')
+    #st.image('assets/Landing - profilering.png')
 
-elif page == "Bewijslaag":
+with st.expander("Bewijslaag"):
     st.header("Bewijslaag")
     st.write("Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.")
     
@@ -329,7 +316,7 @@ elif page == "Bewijslaag":
                     - 	(Voorbeelden)
                     """)
 
-elif page == "Transparantie":
+with st.expander("Transparantie"):
     st.header("Transparantie")
     st.write("Naast het opbouwen van een bewijslaag is transparantie vanuit het eigen bedrijf essentieel voor een betrouwbare bedrijfsprofilering op je duurzame keuzes. Waar de bewijslaag draait om externe erkenning, gaat transparantie over de mate waarin een bedrijf openheid geeft over het totale duurzaamheidsprofiel richting klanten, opdrachtgevers, ketenpartners en financiers. Transparantie betekent dat doelen, risico’s en prestaties systematisch inzichtelijk worden gemaakt via rapportages en meetbare prestatie indicatoren. Dit raakt aan nieuwe wet- en regelgeving zoals de CSRD/VSME waarbij niet alleen successen, maar ook risico’s en verbeterpunten zichtbaar worden gemaakt. Transparantie versterkt zo het duurzame profiel, vergroot marktvertrouwen en draagt bij aan concurrentiekracht.")
     
@@ -360,7 +347,7 @@ elif page == "Transparantie":
         st.page_link("pages/04_wet_regelgeving.py", label="-> Ga naar Wet- en Regelgeving")
 
 
-elif page == "Ketenprofilering":
+with st.expander("Ketenprofilering"):
     st.header("Ketenprofilering")
     st.markdown("""
     Naast bewijs en transparantie speelt ook de manier waarop een bedrijf zich positioneert binnen de keten een belangrijke rol in duurzame bedrijfsprofilering. Ketenprofilering gaat over het zichtbaar maken van strategische samenwerkingen, partnerschappen en collectieve initiatieven waarin duurzaamheid gezamenlijk wordt opgepakt.
@@ -376,7 +363,7 @@ elif page == "Ketenprofilering":
 
                 """)
 
-elif page == "Employer branding":
+with st.expander("Employer branding"):
     st.header("Employer branding")
     st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
     st.markdown("""
