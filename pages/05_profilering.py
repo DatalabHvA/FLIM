@@ -73,7 +73,6 @@ if page == "Overzicht":
 c1, c2 = st.columns([6,2])
 with c1: 
     st.image('assets/subsidies1.png')
-with c2: st.write("")
 
 elif page == "Bewijslaag":
     st.header("Bewijslaag")
