@@ -398,7 +398,7 @@ def tile_klantvraag_B(target_page: str):
         elif ss.klanttype_value == 'B2B':
             fig = make_klantvraag_scatter_b2b(ss.klantvraag_df_b2b)
         fig.update_layout(**COMMON_LAYOUT,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
             )
 
         clicks = plotly_events(
