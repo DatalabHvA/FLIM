@@ -70,7 +70,7 @@ if page == "Overzicht":
         st.write("Daarom bekijken we profilering vanuit verschillende perspectieven: als werkgever (employer branding), richting andere marktpartijen (ketenprofilering en transparantie). Daarna kijken we richting consument en opdrachtgevers, waar certificeringen en labels een steeds grotere rol spelen in onderscheidend vermogen. Tenslotte richting overheid en wet- en regelgeving, waar aantoonbaarheid en verantwoording steeds belangrijker worden.")
         st.write("Samen vormen deze perspectieven jouw strategische positionering in een veranderende markt.")
 
-    st.image('assets/subsidies1.png')
+    st.image('assets/Landing - profilering.png')
 
 elif page == "Bewijslaag":
     st.header("Bewijslaag")
