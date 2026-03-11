@@ -13,7 +13,7 @@ ss = st.session_state
 
 st.markdown(
     """
-    <style>
+    <style>git o
       /* pull content up */
       .block-container { padding-top: 0.9rem !important; }
       /* compact header */
