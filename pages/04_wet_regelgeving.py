@@ -7,7 +7,7 @@ from widgets import *
 ss = st.session_state
 
 
-st.set_page_config(page_title="Klantvraag", layout="wide")
+st.set_page_config(page_title="Wet- en regelgeving - Landingspagina", layout="wide")
 st.markdown(
     """
     <style>
@@ -40,11 +40,12 @@ with st.sidebar:
 st.title('Wet- en regelgeving')
 
 if not ((ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte")):
-    st.subheader("wat verandert er voor de meubelbranche?")
+    st.subheader("Waar wordt de meubelbranche de komende jaren mee geconfronteerd?")
     st.markdown("""
-**De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een wettelijke verplichting.**
+De Europese Unie zet met nieuwe wetgeving stevig in op een zuiniger en slimmer gebruik van grondstoffen. 
+Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wordt het een wettelijke verplichting.
 
-Hier volgt een overzicht van de belangrijkste veranderingen die voor jouw organisatie van belang zijn: 
+_**De belangrijkste voor jouw organisatie zijn:**_ 
 
 De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De **Uitgebreide Producentenverantwoordelijkheid (UPV)** vormt daarbij de basis: producenten worden financieel verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn.
     """)
