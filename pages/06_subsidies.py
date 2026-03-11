@@ -137,6 +137,7 @@ Opschaling van een circulaire productlijn naar industrieel formaat om hout-compo
 
 
 st.subheader("Hulp nodig?")
-st.write("Het subsidielandschap kan complex zijn en verandert regelmatig. 
+st.write("""Het subsidielandschap kan complex zijn en verandert regelmatig. 
 Kun je wel hulp gebruiken bij het vinden van passende regelingen of bij het opstellen van een aanvraag? Neem dan contact op met CBM. Zij kunnen meedenken over jouw projectidee, relevante subsidies signaleren en indien nodig doorverwijzen naar een subsidieadviseur. 
-Vanuit de branche wordt momenteel ook de mogelijkheid verkend om toegang te krijgen tot digitale subsidie- en AI-tools die helpen om snel te bepalen welke regelingen bij jouw plannen kunnen passen.")
+Vanuit de branche wordt momenteel ook de mogelijkheid verkend om toegang te krijgen tot digitale subsidie- en AI-tools die helpen om snel te bepalen welke regelingen bij jouw plannen kunnen passen.
+""")
