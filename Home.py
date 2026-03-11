@@ -250,7 +250,7 @@ def make_klantvraag_overheid_plot():
 
 # ---------- Sidebar Filters ----------
 with st.sidebar:
-    st.header("Filters")
+    st.header("Bedrijfsprofiel")
     widget_branche()
     widget_medewerkers()
     widget_omzet()
