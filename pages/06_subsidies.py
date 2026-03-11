@@ -70,15 +70,14 @@ Je onderzoekt:
 -	Beschikbaarheid van materialen
 -	Marktpotentie
 -	Kosten-batenanalyse
-                
-**Subsidievoorbeelden**:
-                """)
-    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT Haalbaarheidsstudie – RVO [13.2]", icon="➡")
-    st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO [13.3]", icon="➡")
-    st.markdown("""                
+
 **Voorbeeldproject**:
 Een producent onderzoekt verduurzaming van zijn industriële productieprocessen. 
-    """)
+**Subsidievoorbeelden**:
+                """)
+    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT Haalbaarheidsstudie – RVO", icon="➡")
+    st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO", icon="➡")
+
 
 with st.expander("Fase 2: Ontwikkeling – “We gaan bouwen en testen.”"):
     st.markdown("""
@@ -87,15 +86,13 @@ Je werkt aan:
 -	Proof-of-concept
 -	Samenwerking met ketenpartners
 -	Testen van materiaalprestaties
-                
+
+ **Voorbeeldproject**:
+    Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. [Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)                
 **Subsidievoorbeelden**:
                 """)
-    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO [13.4]", icon="➡")
-    st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO [13.6]", icon="➡")
-    st.markdown("""               
-    **Voorbeeldproject**:
-    Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. [Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)
-        """)
+    st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO", icon="➡")
+    st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO", icon="➡")
 
 with st.expander("Fase 3: Implementatie – “We gaan het echt doen.”"):
     st.markdown("""
@@ -111,8 +108,8 @@ Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim 
 **Subsidievoorbeelden**:
             """)
             
-    st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO [13.5]", icon="➡")
-    st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees [13.1]", icon="➡")
+    st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO", icon="➡")
+    st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees", icon="➡")
 
 with st.expander("Fase 4: Opschaling – “Het werkt, nu gaan we vergroten.”"):
     st.markdown("""
