@@ -1,4 +1,5 @@
 import streamlit as st
+import textwrap
 
 ss = st.session_state
 
@@ -199,3 +200,141 @@ def generate_table(fase, budget, vorm):
         """ 
 
     return markdown
+
+def generate_badge(badge_number):
+
+    html = textwrap.dedent(f"""
+    <div style="
+    position: relative;
+    width: 230px;
+    height: 170px;
+    border: 1.5px solid #bfbfbf;
+    border-radius: 24px;
+    background-color: #efefef;
+    box-sizing: border-box;
+    padding: 20px 16px 24px 16px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    ">
+
+        <div style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+        ">
+            <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/coins.svg"
+                style="width:64px;">
+            <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/hammer.svg"
+                style="width:64px;">
+        </div>
+
+        <div style="
+        text-align:center;
+        font-size:15px;
+        font-weight:700;
+        line-height:1.2;
+        ">
+            Boetes en sancties
+        </div>
+
+        <div style="
+        position:absolute;
+        top:8px;
+        right:10px;
+        width:36px;
+        height:36px;
+        border-radius:50%;
+        background:#e00000;
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:18px;
+        font-weight:700;
+        box-shadow:0 2px 6px rgba(0,0,0,0.25);
+        ">
+            {badge_number}
+        </div>
+
+    </div>
+    """)
+
+    return html
+
+def generate_badge2(badge_number):
+
+    html = textwrap.dedent(f"""
+    <div style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
+    padding-bottom: 18px;
+    box-sizing: border-box;
+    ">
+        <div style="
+        position: relative;
+        width: 230px;
+        height: 170px;
+        border: 1.5px solid #bfbfbf;
+        border-radius: 24px;
+        background-color: #efefef;
+        box-sizing: border-box;
+        padding: 20px 16px 28px 16px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        ">
+
+            <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            ">
+                <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/821c9d21b308180cc61e372fd6399e053f43dd9e/assets/cubes.svg"
+                    style="width:72px; height:auto;">
+            </div>
+
+            <div style="
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 180px;
+            ">
+                Keten en Markt
+            </div>
+
+            <div style="
+            position:absolute;
+            top:8px;
+            right:10px;
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            background:#e00000;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            font-weight:700;
+            box-shadow:0 2px 6px rgba(0,0,0,0.25);
+            ">
+                {badge_number}
+            </div>
+
+        </div>
+    </div>
+    """)
+
+    return html
