@@ -56,14 +56,13 @@ with st.sidebar:
         index=0
     )
 
-    widget_klanttype()
-
 # -----------------------------
 # Pages
 # -----------------------------
 if page == "Overzicht":
     st.header("Strategisch en zichtbaar profileren voor een toekomstbestendige marktpositie")
     st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
+
     st.image('assets/profilering_schema.png')
     with st.container(border = True):
         st.subheader("Relevantie en urgentie")
@@ -72,6 +71,7 @@ if page == "Overzicht":
         st.write("Daarom bekijken we profilering vanuit verschillende perspectieven: als werkgever (employer branding), richting andere marktpartijen (ketenprofilering en transparantie). Daarna kijken we richting consument en opdrachtgevers, waar certificeringen en labels een steeds grotere rol spelen in onderscheidend vermogen. Tenslotte richting overheid en wet- en regelgeving, waar aantoonbaarheid en verantwoording steeds belangrijker worden.")
         st.write("Samen vormen deze perspectieven jouw strategische positionering in een veranderende markt.")
 
+    st.image('assets/Landing - profilering.png')
 
 elif page == "Bewijslaag":
     st.header("Bewijslaag")
