@@ -348,7 +348,7 @@ else:
 
     with st.container(border = True):
 
-        with st.expander('3.1 Klantkeuze voor duurzaam'):
+        with st.expander('**3.1 Klantkeuze voor duurzaam**'):
             st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
             # Data
             categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
@@ -394,7 +394,7 @@ else:
             st.plotly_chart(fig)
             st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
             
-        with st.expander('3.2 Klantwens vs afzet'):
+        with st.expander('**3.2 Klantwens vs afzet**'):
             st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Wat met zekerheid gezegd kan worden: Tussen de 40-50% van de duurzame vraag naar meubels blijft momenteel onvervuld.')
             
             # Gegevens
@@ -454,7 +454,7 @@ else:
 
             st.markdown('*(Bron: [Milieu Centraal, D&B (iov Rijkswaterstaat), 2023](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf))*')
 
-        with st.expander('3.3 Voorkeur voor lokale productie'):
+        with st.expander('**3.3 Voorkeur voor lokale productie**'):
 
             st.write('1 op de 3 Nederlandse consumenten vindt het (heel erg) belangrijk dat meubels geproduceerd worden in het land waar zij zelf wonen. Hierin lopen de hoge inkomens voorop.')
 
@@ -510,7 +510,7 @@ else:
             st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
             
     with st.container(border = True):
-        with st.expander('4 Prijsperceptie en -acceptatie'):
+        with st.expander('**4 Prijsperceptie en -acceptatie**'):
             st.write('Toont bereidheid van klanten om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.(uit enquête Duitse markt)')
 
             # Data
