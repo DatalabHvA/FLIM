@@ -508,6 +508,7 @@ else:
         
     with st.container(border = True):
         st.subheader('4. Prijsperceptie en -acceptatie')
+        st.write('Toont bereidheid van klanten om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.(uit enquête Duitse markt)')
 
         # Data
         categories = ["Niet bereid", "5% toeslag", "10% toeslag", ">10% toeslag"]
@@ -550,8 +551,8 @@ else:
 
         st.plotly_chart(fig)
 
-        st.write('Toont bereidheid van klanten (in dit geval Duitse consumenten) om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.')
-
+        st.markdown('*(Bron: [PwC, 2025](https://www.pwc.com/gx/en/issues/c-suite-insights/voice-of-the-consumer-survey/2024.html))*')
+        
     with st.container(border = True):
         st.subheader('5. Voorbeelden uit de praktijk')
 
