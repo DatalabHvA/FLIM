@@ -439,8 +439,12 @@ def tile_wetgeving(target_page: str):
     """, unsafe_allow_html=True)
 
     # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
-    components.html(generate_badge(8), height=170)
-    components.html(generate_badge2(11), height=160)
+    if (ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte"):
+        components.html(generate_badge(9), height=170)
+        components.html(generate_badge2(12), height=160)
+    else: 
+        components.html(generate_badge(8), height=170)
+        components.html(generate_badge2(11), height=160)
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
