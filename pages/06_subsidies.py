@@ -104,6 +104,7 @@ Je gaat:
 -	Processen anders inrichten
 -	Producten naar markt brengen
 -	Een eerste commerciële uitrol doen
+
 **Voorbeeldproject**:
 Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim tot nieuwe grondstof voor matrassen, waarmee een gesloten materiaalcyclus in de matrasketen mogelijk wordt. [Auping & Foamplant, Nederland](https://www.agro-chemie.nl/artikelen/het-circulaire-matras-is-geen-droom-meer-de-circulaire-polyestertextielketen-wordt-werkelijkheid) (DEI+ subsidie)
                 
@@ -120,6 +121,7 @@ Je focust op:
 •	Nieuwe markten betreden
 •	Internationale samenwerking
 •	Verdere professionalisering
+
 **Voorbeeldproject**:
 Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
 
