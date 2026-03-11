@@ -91,8 +91,8 @@ Je werkt aan:
 
 **Voorbeeldproject**:
  
-    Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. 
-    [Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)                
+Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. 
+[Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)                
 
 **Subsidievoorbeelden**:
                 """)
