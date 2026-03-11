@@ -127,7 +127,7 @@ Wie niet tijdig inspeelt op deze regels, loopt risico’s:
         n3.markdown("Contractuele verplichtingen bedrijven aan leveranciers (data quality, emissie-info). Niet leveren = contractbreuk. ")
         n3.page_link("pages/04x_VSME.py", label = "CSRD, bij MKB via VSME", icon="➡") 
 
-    st.page_link("pages/04x_tabel.py", label = "_**Klik hier voor een volledig overzicht van relevante wet- en regelgeving**_")
+    st.page_link("pages/04x_tabel.py", label = "_**>> Klik hier voor een volledig overzicht van relevante wet- en regelgeving**_")
 
 else: 
     st.title('Andere titel')
