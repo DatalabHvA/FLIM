@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import sys
 sys.path.append("..")
 
-from Home import make_klantvraag_scatter
+from Home import make_klantvraag_scatter_b2b, make_klantvraag_scatter_b2c
 from widgets import *
 
 ss = st.session_state
@@ -313,9 +313,9 @@ else:
             st.write('De groei van de duurzame meubelmarkt is meer dan dubbel zo groot als de traditionele productcategorieën. Dit biedt kansen om nieuw marktaandeel te claimen.')
             
             if ss.klanttype_value == 'B2C':
-                fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
+                fig = make_klantvraag_scatter_b2c(ss.klantvraag_df_b2c)
             elif ss.klanttype_value == 'B2B':
-                fig = make_klantvraag_scatter(ss.klantvraag_df_b2b)        
+                fig = make_klantvraag_scatter_b2b(ss.klantvraag_df_b2b)        
             fig.update_layout(
                 title='Verglijking marktgroei: normale vs duurzame markt',
                 legend=dict(orientation="h", x=0.5, xanchor="center", y=-0.35),

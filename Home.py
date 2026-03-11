@@ -125,7 +125,7 @@ def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
     return fig
 
 @st.cache_data(show_spinner=False)
-def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
+def make_klantvraag_scatter_b2b(sel_hist_df: pd.DataFrame):
     
     fig = go.Figure()
 
@@ -134,7 +134,7 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
         x=[str(x) for x in sel_hist_df['Jaar']],
         y=[float(x) for x in sel_hist_df['Traditionele meubels']],
         mode='lines+markers',
-        name='Traditionele meubels (CAGR 2,8%)',
+        name='Traditionele meubels (CAGR 4,95%)',
         line=dict(color='black', width=3),
         marker=dict(size=6)
     ))
@@ -143,7 +143,47 @@ def make_klantvraag_scatter(sel_hist_df: pd.DataFrame):
         x=[str(x) for x in sel_hist_df['Jaar']],
         y=[float(x) for x in sel_hist_df['Duurzame meubels']],
         mode='lines+markers',
-        name='Duurzame meubels',
+        name='Duurzame meubels (CAGR 10,1%)',
+        line=dict(color='green', width=3),
+        marker=dict(size=6)
+    ))
+
+    # layout tweaks
+    fig.update_layout(
+        xaxis_title="Jaar",
+        yaxis_title="Index (2023 = 100)",
+        template="plotly_white",
+        margin=dict(l=40, r=15, t=20, b=70),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="center",
+            x=0.5
+        )
+    )
+    return fig
+
+@st.cache_data(show_spinner=False)
+def make_klantvraag_scatter_b2c(sel_hist_df: pd.DataFrame):
+    
+    fig = go.Figure()
+
+    # add each line
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Traditionele meubels']],
+        mode='lines+markers',
+        name='Traditionele meubels (CAGR 4,95%)',
+        line=dict(color='black', width=3),
+        marker=dict(size=6)
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Duurzame meubels']],
+        mode='lines+markers',
+        name='Duurzame meubels (CAGR 10,3%)',
         line=dict(color='green', width=3),
         marker=dict(size=6)
     ))
@@ -354,9 +394,9 @@ def tile_klantvraag_B(target_page: str):
         st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
         #st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         if ss.klanttype_value == 'B2C':
-            fig = make_klantvraag_scatter(ss.klantvraag_df_b2c)
+            fig = make_klantvraag_scatter_b2c(ss.klantvraag_df_b2c)
         elif ss.klanttype_value == 'B2B':
-            fig = make_klantvraag_scatter(ss.klantvraag_df_b2b)
+            fig = make_klantvraag_scatter_b2b(ss.klantvraag_df_b2b)
         fig.update_layout(**COMMON_LAYOUT,
             legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
             )
