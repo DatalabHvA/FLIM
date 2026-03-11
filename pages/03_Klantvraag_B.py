@@ -389,7 +389,7 @@ else:
         fig.update_traces(textfont_size=14, cliponaxis=False)
 
         st.plotly_chart(fig)
-        st.markdown('bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie)')
+        st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
         
         st.subheader('3.2 Klantwens vs afzet')
         st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Conclusie: ruim 40-50% van de duurzame vraag naar meubels blijft onvervuld.')
@@ -449,7 +449,7 @@ else:
         )
         st.plotly_chart(fig)
 
-        st.markdown('bron: [Milieu Centraal, D&B (iov Rijkswaterstaat)](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf)')
+        st.markdown('*(Bron: [Milieu Centraal, D&B (iov Rijkswaterstaat), 2023](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf))*')
 
         st.subheader('3.3 Voorkeur voor lokale productie')
 
