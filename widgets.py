@@ -205,62 +205,72 @@ def generate_badge(badge_number):
 
     html = textwrap.dedent(f"""
     <div style="
-    position: relative;
-    width: 230px;
-    height: 170px;
-    border: 1.5px solid #bfbfbf;
-    border-radius: 24px;
-    background-color: #efefef;
-    box-sizing: border-box;
-    padding: 20px 16px 24px 16px;
-    font-family: Arial, sans-serif;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
+    padding-top: 0px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
     ">
-
         <div style="
+        position: relative;
+        width: 230px;
+        height: 160px;
+        border: 1.5px solid #bfbfbf;
+        border-radius: 24px;
+        background-color: #efefef;
+        box-sizing: border-box;
+        padding: 20px 16px 28px 16px;
+        font-family: Arial, sans-serif;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 10px;
+        justify-content: center;
         ">
-            <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/coins.svg"
+
+            <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            ">
+                <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/coins.svg"
                 style="width:64px;">
-            <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/hammer.svg"
+                <img src="https://raw.githubusercontent.com/DatalabHvA/FLIM/3a681e8c94d252c537ac0b57c8426e8cb0ead105/assets/hammer.svg"
                 style="width:64px;">
-        </div>
+            </div>
 
-        <div style="
-        text-align:center;
-        font-size:15px;
-        font-weight:700;
-        line-height:1.2;
-        ">
-            Boetes en sancties
-        </div>
+            <div style="
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 150px;
+            ">
+                Boetes en Sancties
+            </div>
 
-        <div style="
-        position:absolute;
-        top:8px;
-        right:10px;
-        width:36px;
-        height:36px;
-        border-radius:50%;
-        background:#e00000;
-        color:white;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:18px;
-        font-weight:700;
-        box-shadow:0 2px 6px rgba(0,0,0,0.25);
-        ">
-            {badge_number}
-        </div>
+            <div style="
+            position:absolute;
+            top:8px;
+            right:10px;
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            background:#e00000;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            font-weight:700;
+            box-shadow:0 2px 6px rgba(0,0,0,0.25);
+            ">
+                {badge_number}
+            </div>
 
+        </div>
     </div>
     """)
 
@@ -274,14 +284,14 @@ def generate_badge2(badge_number):
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 6px;
+    padding-top: 0px;
     padding-bottom: 18px;
     box-sizing: border-box;
     ">
         <div style="
         position: relative;
         width: 230px;
-        height: 170px;
+        height: 140px;
         border: 1.5px solid #bfbfbf;
         border-radius: 24px;
         background-color: #efefef;

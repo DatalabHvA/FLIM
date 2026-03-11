@@ -3,6 +3,7 @@ import numpy as np
 import json
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
@@ -438,12 +439,8 @@ def tile_wetgeving(target_page: str):
     """, unsafe_allow_html=True)
 
     # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
-    st.markdown("""
-    <div class="custom-tile">
-        Er zijn:<br><b>        <span style="font-size: 48px; font-weight: bold;">5</span></b><br>wet- en regelgevingen<br>die voor jouw bedrijf<br>van toepassing zijn
-    </div>
-    """, unsafe_allow_html=True)
-
+    components.html(generate_badge(8), height=170)
+    components.html(generate_badge2(11), height=160)
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 
