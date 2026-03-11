@@ -64,11 +64,6 @@ with st.sidebar:
 if page == "Overzicht":
     st.header("Strategisch en zichtbaar profileren voor een toekomstbestendige marktpositie")
     st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
-
-c1, c2 = st.columns([6,2])
-with c1: 
-    st.image('assets/subsidies1.png')
-with c2: st.write("")
     
     with st.container(border = True):
         st.subheader("Relevantie en urgentie")
