@@ -72,6 +72,13 @@ if page == "Overzicht":
 
     st.image('assets/Landing - profilering.png')
 
+c1, c2 = st.columns([6,2])
+with c1: 
+    st.subheader("Hoe is het subsidielandschap opgebouwd?")
+    st.write("Subsidies sluiten vaak aan op een specifieke fase van jouw project. Onderstaand overzicht helpt je bepalen waar jij zit en waar je moet zoeken.")
+
+    st.image('assets/subsidies1.png')
+
 elif page == "Bewijslaag":
     st.header("Bewijslaag")
     st.write("Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.")
