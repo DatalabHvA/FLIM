@@ -375,7 +375,7 @@ else:
         # Layout
         fig.update_layout(
             barmode='stack',
-            title='Bereidheid Duitse consumenten om meer te betalen voor duurzame producten',
+            title='Belang van duurzaamheid bij het kiezen van meubels',
             xaxis_title='Percentage respondenten',
             yaxis_title='',
             xaxis=dict(range=[0, 100]),
