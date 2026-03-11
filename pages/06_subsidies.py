@@ -104,18 +104,14 @@ Je gaat:
 -	Processen anders inrichten
 -	Producten naar markt brengen
 -	Een eerste commerciële uitrol doen
+**Voorbeeldproject**:
+Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim tot nieuwe grondstof voor matrassen, waarmee een gesloten materiaalcyclus in de matrasketen mogelijk wordt. [Auping & Foamplant, Nederland](https://www.agro-chemie.nl/artikelen/het-circulaire-matras-is-geen-droom-meer-de-circulaire-polyestertextielketen-wordt-werkelijkheid) (DEI+ subsidie)
                 
 **Subsidievoorbeelden**:
             """)
             
     st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO [13.5]", icon="➡")
     st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees [13.1]", icon="➡")
-
-    st.markdown("""         
-**Voorbeeldproject**:
-Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim tot nieuwe grondstof voor matrassen, waarmee een gesloten materiaalcyclus in de matrasketen mogelijk wordt. [Auping & Foamplant, Nederland](https://www.agro-chemie.nl/artikelen/het-circulaire-matras-is-geen-droom-meer-de-circulaire-polyestertextielketen-wordt-werkelijkheid) (DEI+ subsidie)
-
-    """)
 
 with st.expander("Fase 4: Opschaling – “Het werkt, nu gaan we vergroten.”"):
     st.markdown("""
@@ -124,16 +120,14 @@ Je focust op:
 •	Nieuwe markten betreden
 •	Internationale samenwerking
 •	Verdere professionalisering
-                
+**Voorbeeldproject**:
+Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
+
 **Typische subsidievoorbeelden**:
                 """)
     st.page_link("pages/06x_EFRO.py", label = "EFRO", icon="➡")
     st.page_link("pages/06x_EIC.py", label = "EIC Accelerator program", icon="➡")
-    st.markdown("""                
-**Voorbeeldproject**:
-Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
 
-    """)
 
 
 st.subheader("Hulp nodig?")
