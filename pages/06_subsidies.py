@@ -48,9 +48,9 @@ st.title("Subsidies")
 st.caption("Versnel je circulaire plannen met publieke financiering")
 
 st.markdown("""
-Subsidies zijn bedoeld om ondernemers te helpen risico’s te verkleinen bij innovaties, in dit geval rond grondstoffen, ontwerp en materiaalgebruik. Denk aan hergebruik, recycling, biobased alternatieven of efficiënter en toekomstbestendiger ontwerpen.
+Subsidies kunnen je helpen om eerder over te gaan op het verkennen, ontwikkelen, testen of opschalen van een idee nog vóórdat het financieel rendement oplevert. Ze zijn daarmee geen vervanging voor een gezond businessmodel, maar een instrument van de overheid om richting en versnelling te geven aan gewenste innovatie in Nederlands en de Europese Unie.
+Subsidies zijn bedoeld om ondernemers te helpen risico’s te verkleinen bij innovaties, in het geval van deze subsidies op gebied van grondstoffen, ontwerp, processen en productketens. Van hergebruik tot recycling en van biobased alternatieven tot efficiënter produceren en andere vormen van toekomstbestendig worden.
 
-Subsidies helpen je om een idee sneller te testen, te ontwikkelen of op te schalen nog vóórdat het financieel rendement oplevert. Ze zijn dus geen vervanging voor een gezond businessmodel, maar een versnellingsinstrument voor innovatie. Subsidies maken stimuleren de ontwikkeling en versterking van goed plan.
 
 *Let op: het subsidielandschap verandert continu. De voorbeelden binnen deze factor zijn illustratief. Check altijd actuele voorwaarden bij je branchevereniging, een subsidieadviseur of een actuele subsidie-tool.*      
 """)
