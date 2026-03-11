@@ -47,7 +47,7 @@ Hierdoor is het bewust omgaan met grondstoffen niet langer vrijblijvend, maar wo
 
 _**De belangrijkste voor jouw organisatie zijn:**_ 
 
-De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De **[Uitgebreide Producentenverantwoordelijkheid (UPV)](page_link("pages/04x_UPV.py")** vormt daarbij de basis: producenten worden financieel verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn.
+De Europese regelgeving verandert stap voor stap de manier waarop meubelmakers met hun producten en materialen om moeten gaan. De **Uitgebreide Producentenverantwoordelijkheid (UPV)** vormt daarbij de basis: producenten worden financieel verantwoordelijk voor de inzameling, verwerking en recycling van hun meubels aan het einde van de levensduur. Dat vraagt om producten die makkelijker te demonteren, te hergebruiken of te recyclen zijn.
     """)
     st.page_link("pages/04x_UPV.py", label = "**Uitgebreide Producentenverantwoordelijkheid (UPV)**", icon="➡") 
     st.markdown("""
