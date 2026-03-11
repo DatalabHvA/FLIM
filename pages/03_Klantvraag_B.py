@@ -454,7 +454,6 @@ else:
         st.subheader('3.3 Voorkeur voor lokale productie')
 
         st.write('1 op de 3 Nederlandse consumenten vindt het (heel erg) belangrijk dat meubels geproduceerd worden in het land waar zij zelf wonen. Hierin lopen de hoge inkomens voorop.')
-        st.markdown('bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie)')
 
         data = [
             ("Tot 80.000 euro", 25, "#4285F4"),        # blauw
