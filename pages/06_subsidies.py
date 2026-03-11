@@ -137,7 +137,7 @@ Opschaling van een circulaire productlijn naar industrieel formaat om hout-compo
 
 
 st.subheader("Hulp nodig?")
-st.write("""Het subsidielandschap kan complex zijn en verandert regelmatig. Kun je wel hulp gebruiken bij het vinden van passende regelingen of bij het opstellen van een aanvraag? 
+st.write("""Het subsidielandschap kan complex aanvoelen en verandert regelmatig, dus kun je wel hulp gebruiken bij het vinden van passende regeling of bij het opstellen van de aanvraag? 
 
 Neem dan contact op met jouw branchevereniging. Zij kunnen vaak meedenken over jouw projectidee, relevante subsidies signaleren en indien nodig doorverwijzen naar een subsidieadviseur. 
 
