@@ -63,7 +63,7 @@ with c1:
     st.image('assets/subsidies1.png')
 with c2: st.write("")
 
-with st.expander("Fase 1: Verkenning – Van idee naar technische en economische haalbaarheid"):
+with st.expander("Fase 1: Verkenning – *Van idee naar technische en economische haalbaarheid*"):
     st.markdown("""
 Je onderzoekt:
 -	Technische haalbaarheid
@@ -72,14 +72,16 @@ Je onderzoekt:
 -	Kosten-batenanalyse
 
 **Voorbeeldproject**:
+
 Een producent onderzoekt verduurzaming van zijn industriële productieprocessen. 
+
 **Subsidievoorbeelden**:
                 """)
     st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT Haalbaarheidsstudie – RVO", icon="➡")
     st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO", icon="➡")
 
 
-with st.expander("Fase 2: Ontwikkeling – Van concept naar een prototype bouwen en testen"):
+with st.expander("Fase 2: Ontwikkeling – *Van concept naar een prototype bouwen en testen*"):
     st.markdown("""
 Je werkt aan:
 -	Prototype of pilot
@@ -88,7 +90,9 @@ Je werkt aan:
 -	Testen van materiaalprestaties
 
  **Voorbeeldproject**:
+ 
     Uit een Rijkswaterstaat evaluatie is gebleken dat 8 meubelpartijen al gebruik hebben gemaakt van de Circulaire Ketenprojecten-subsidie om samen met hun keten te werken naar een meer circulair proces. Verdere details zijn niet bekend. [Rijksoverheid, 2025](https://www.rijksoverheid.nl/documenten/regelingen/2025/09/03/bijlage-4-subsidieregeling-circulaire-ketenprojecten-kwink-groep)                
+
 **Subsidievoorbeelden**:
                 """)
     st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO", icon="➡")
@@ -103,6 +107,7 @@ Je gaat:
 -	Een eerste commerciële uitrol doen
 
 **Voorbeeldproject**:
+
 Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim tot nieuwe grondstof voor matrassen, waarmee een gesloten materiaalcyclus in de matrasketen mogelijk wordt. [Auping & Foamplant, Nederland](https://www.agro-chemie.nl/artikelen/het-circulaire-matras-is-geen-droom-meer-de-circulaire-polyestertextielketen-wordt-werkelijkheid) (DEI+ subsidie)
                 
 **Subsidievoorbeelden**:
@@ -111,7 +116,7 @@ Ontwikkeling van een pilot-lijn voor het recyclen van biopolyester meubelschuim 
     st.page_link("pages/06x_DEIplus.py", label = "DEI+ Circulaire Economie – RVO", icon="➡")
     st.page_link("pages/06b_ERDF.py", label = "ERDF: Circular Economy – Europees", icon="➡")
 
-with st.expander("Fase 4: Opschaling – “Het werkt, nu gaan we vergroten.”"):
+with st.expander("Fase 4: Opschaling – *Van werkende oplossing naar uitbreiden van de toepassing*"):
     st.markdown("""
 Je focust op:
 -	Productiecapaciteit vergroten
@@ -120,6 +125,7 @@ Je focust op:
 -	Verdere professionalisering
 
 **Voorbeeldproject**:
+
 Opschaling van een circulaire productlijn naar industrieel formaat om hout-composiet producten voor badkamers internationaal aan te kunnen bieden. [Woodio, Finland](https://eic.ec.europa.eu/success-stories/eic-supported-woodio-build-full-scale-manufacturing-plant-lahti_en) (EIC subsidie)
 
 **Typische subsidievoorbeelden**:
