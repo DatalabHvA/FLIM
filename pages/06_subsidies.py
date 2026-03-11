@@ -61,7 +61,7 @@ with c1:
     st.write("Subsidies sluiten vaak aan op een specifieke fase van jouw project. Onderstaand overzicht helpt je bepalen waar jij zit en waar je moet zoeken.")
 
     st.image('assets/subsidies1.png')
-with c2: 
+with c2: st.write("")
 
 with st.expander("Fase 1: Verkenning – “Is mijn idee technisch en economisch haalbaar?”"):
     st.markdown("""
