@@ -42,8 +42,6 @@ with st.sidebar:
     widget_klanttype()
     
 
-st.title("Klantvraag — Analyse")
-
 if ss.klanttype_value == 'Overheid':
     st.title("Klantvraag — Overheid")
 
@@ -304,7 +302,7 @@ if ss.klanttype_value == 'Overheid':
         ''')
 
 else:
-
+    st.title("Klantvraag — B2C & B2B")
     c1, c2 = st.columns(2)
 
     with c1:
