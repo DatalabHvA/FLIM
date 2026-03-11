@@ -348,214 +348,214 @@ else:
 
     with st.container(border = True):
 
-        st.subheader('3.1 Klantkeuze voor duurzaam')
-        st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
-        # Data
-        categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
-        values = [8, 42, 34, 16]
-        colors = ["#05853A", "#2BC417", '#F1C40F', '#E74C3C']  # red, orange, yellow, green
+        with st.expander('3.1 Klantkeuze voor duurzaam'):
+            st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
+            # Data
+            categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
+            values = [8, 42, 34, 16]
+            colors = ["#05853A", "#2BC417", '#F1C40F', '#E74C3C']  # red, orange, yellow, green
 
-        # Cumulative values for text positioning
-        cumulative = [sum(values[:i+1]) for i in range(len(values))]
+            # Cumulative values for text positioning
+            cumulative = [sum(values[:i+1]) for i in range(len(values))]
 
-        # Build the figure
-        fig = go.Figure()
+            # Build the figure
+            fig = go.Figure()
 
-        for i, (category, value, color) in enumerate(zip(categories, values, colors)):
+            for i, (category, value, color) in enumerate(zip(categories, values, colors)):
+                fig.add_trace(go.Bar(
+                    y=["Consumenten"],
+                    x=[value],
+                    name=category,
+                    orientation='h',
+                    marker=dict(color=color),
+                    text=f"{value}%",
+                    textposition='inside',
+                    insidetextanchor='middle',
+                    textfont=dict(color="black", size=14),
+                    hovertemplate=f"{category}<br>{value}% van respondenten<extra></extra>"
+                ))
+
+            # Layout
+            fig.update_layout(
+                barmode='stack',
+                title='Belang van duurzaamheid bij het kiezen van meubels',
+                xaxis_title='Percentage respondenten',
+                yaxis_title='',
+                xaxis=dict(range=[0, 100]),
+                template='plotly_white',
+                height=400,
+                legend_title="Verdeling",
+                legend=dict(traceorder="reversed")
+            )
+
+            # Optional: to center label text better
+            fig.update_traces(textfont_size=14, cliponaxis=False)
+
+            st.plotly_chart(fig)
+            st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
+            
+        with st.expander('3.2 Klantwens vs afzet'):
+            st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Wat met zekerheid gezegd kan worden: Tussen de 40-50% van de duurzame vraag naar meubels blijft momenteel onvervuld.')
+            
+            # Gegevens
+            # Data
+            categorieën = [
+                "Staat open voor gerecycled",
+                "Koopt gerecycled",
+                "Staat open voor refurbished",
+                "Koopt refurbished",
+                "Staat open voor tweedehands",
+                "Koopt tweedehands"
+            ]
+            waarden = [77, 16, 68, 5, 53, 13]
+            types = ["Intentie", "Actie"] * 3
+
+            # DataFrame met naam data3
+            data3 = pd.DataFrame({
+                "Categorie": categorieën,
+                "Waarde": waarden,
+                "Type": types
+            })
+
+            # Kleurinstellingen
+            kleuren = {"Intentie": "steelblue", "Actie": "sandybrown"}
+
+            # Figuur maken
+            fig = go.Figure()
+
             fig.add_trace(go.Bar(
-                y=["Consumenten"],
-                x=[value],
-                name=category,
+                y=data3["Categorie"],
+                x=data3["Waarde"],
                 orientation='h',
-                marker=dict(color=color),
-                text=f"{value}%",
-                textposition='inside',
-                insidetextanchor='middle',
-                textfont=dict(color="black", size=14),
-                hovertemplate=f"{category}<br>{value}% van respondenten<extra></extra>"
+                marker_color=[kleuren[t] for t in data3["Type"]],
+                text=[f"{v}%" for v in data3["Waarde"]],
+                textposition="outside",
+                hovertext=data3["Type"],
+                showlegend=False
             ))
 
-        # Layout
-        fig.update_layout(
-            barmode='stack',
-            title='Belang van duurzaamheid bij het kiezen van meubels',
-            xaxis_title='Percentage respondenten',
-            yaxis_title='',
-            xaxis=dict(range=[0, 100]),
-            template='plotly_white',
-            height=400,
-            legend_title="Verdeling",
-            legend=dict(traceorder="reversed")
-        )
-
-        # Optional: to center label text better
-        fig.update_traces(textfont_size=14, cliponaxis=False)
-
-        st.plotly_chart(fig)
-        st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
-        
-        st.subheader('3.2 Klantwens vs afzet')
-        st.write('Deze vergelijking tussen wat klanten willen (hoge voorkeur voor duurzame producten) en wat daadwerkelijk wordt verkocht toont een mismatch. Klanten willen duurzamer, maar het vertaalt zich niet in verkoopcijfers. Komt dit omdat het huidige aanbod hier nog niet voldoende aansluit of gemakkelijk genoeg beschikbaar is? Wat met zekerheid gezegd kan worden: Tussen de 40-50% van de duurzame vraag naar meubels blijft momenteel onvervuld.')
-        
-        # Gegevens
-        # Data
-        categorieën = [
-            "Staat open voor gerecycled",
-            "Koopt gerecycled",
-            "Staat open voor refurbished",
-            "Koopt refurbished",
-            "Staat open voor tweedehands",
-            "Koopt tweedehands"
-        ]
-        waarden = [77, 16, 68, 5, 53, 13]
-        types = ["Intentie", "Actie"] * 3
-
-        # DataFrame met naam data3
-        data3 = pd.DataFrame({
-            "Categorie": categorieën,
-            "Waarde": waarden,
-            "Type": types
-        })
-
-        # Kleurinstellingen
-        kleuren = {"Intentie": "steelblue", "Actie": "sandybrown"}
-
-        # Figuur maken
-        fig = go.Figure()
-
-        fig.add_trace(go.Bar(
-            y=data3["Categorie"],
-            x=data3["Waarde"],
-            orientation='h',
-            marker_color=[kleuren[t] for t in data3["Type"]],
-            text=[f"{v}%" for v in data3["Waarde"]],
-            textposition="outside",
-            hovertext=data3["Type"],
-            showlegend=False
-        ))
-
-        # Layout
-        fig.update_layout(
-            title="Trechter: van intentie naar realiteit bij duurzame meubelaankopen",
-            xaxis_title="Percentage (%)",
-            yaxis_title="",
-            barmode="overlay",
-            template="plotly_white",
-            height=500,
-            margin=dict(l=220, r=40, t=80, b=40),
-        )
-
-        fig.update_yaxes(
-            autorange="reversed",
-            categoryorder="array",
-            categoryarray=categorieën
-        )
-        st.plotly_chart(fig)
-
-        st.markdown('*(Bron: [Milieu Centraal, D&B (iov Rijkswaterstaat), 2023](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf))*')
-
-        st.subheader('3.3 Voorkeur voor lokale productie')
-
-        st.write('1 op de 3 Nederlandse consumenten vindt het (heel erg) belangrijk dat meubels geproduceerd worden in het land waar zij zelf wonen. Hierin lopen de hoge inkomens voorop.')
-
-        data = [
-            ("Tot 80.000 euro", 25, "#4285F4"),        # blauw
-            ("80.000 tot 120.000 euro", 27, "#EA4335"),# rood
-            ("Meer dan 120.000 euro", 46, "#FBBC05"),  # geel
-            ("Nederland totaal", 31, "#34A853"),       # groen
-        ]
-
-        # Plotly toont horizontale bar-categorieën standaard van onder naar boven.
-        # Daarom draaien we de lijst om zodat "Nederland totaal" bovenaan komt.
-        labels = [d[0] for d in data]
-        values = [d[1] for d in data]
-        colors = [d[2] for d in data]
-
-        fig = go.Figure(
-            go.Bar(
-                x=values,
-                y=labels,
-                orientation="h",
-                marker=dict(color=colors),
-                text=[f"{v}%" for v in values],
-                textposition="outside",
-                cliponaxis=False,  # laat tekst buiten de as zien
-                hovertemplate="%{y}: %{x}%<extra></extra>",
+            # Layout
+            fig.update_layout(
+                title="Trechter: van intentie naar realiteit bij duurzame meubelaankopen",
+                xaxis_title="Percentage (%)",
+                yaxis_title="",
+                barmode="overlay",
+                template="plotly_white",
+                height=500,
+                margin=dict(l=220, r=40, t=80, b=40),
             )
-        )
 
-        fig.update_layout(
-            title=dict(
-                text="Het is van groot belang dat mijn meubels in<br>eigen land geproduceerd zijn",
-                x=0.5,
-                xanchor="center",
-            ),
-            height=360,
-            margin=dict(l=170, r=60, t=80, b=30),
-            plot_bgcolor="white",
-            xaxis=dict(
-                range=[0, 50],          # zodat 46% nog net past + ruimte voor label
-                showgrid=False,
-                ticks="",
-                title=None,
-            ),
-            yaxis=dict(
-                title=None,
-                ticks="",
-            ),
-            showlegend=False,
-        )
+            fig.update_yaxes(
+                autorange="reversed",
+                categoryorder="array",
+                categoryarray=categorieën
+            )
+            st.plotly_chart(fig)
 
-        st.plotly_chart(fig)
-        st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
-        
+            st.markdown('*(Bron: [Milieu Centraal, D&B (iov Rijkswaterstaat), 2023](https://www.milieucentraal.nl/media/b01enjyy/factsheet-consumenteninzichten-zitmeubilair.pdf))*')
+
+        with st.expander('3.3 Voorkeur voor lokale productie'):
+
+            st.write('1 op de 3 Nederlandse consumenten vindt het (heel erg) belangrijk dat meubels geproduceerd worden in het land waar zij zelf wonen. Hierin lopen de hoge inkomens voorop.')
+
+            data = [
+                ("Tot 80.000 euro", 25, "#4285F4"),        # blauw
+                ("80.000 tot 120.000 euro", 27, "#EA4335"),# rood
+                ("Meer dan 120.000 euro", 46, "#FBBC05"),  # geel
+                ("Nederland totaal", 31, "#34A853"),       # groen
+            ]
+
+            # Plotly toont horizontale bar-categorieën standaard van onder naar boven.
+            # Daarom draaien we de lijst om zodat "Nederland totaal" bovenaan komt.
+            labels = [d[0] for d in data]
+            values = [d[1] for d in data]
+            colors = [d[2] for d in data]
+
+            fig = go.Figure(
+                go.Bar(
+                    x=values,
+                    y=labels,
+                    orientation="h",
+                    marker=dict(color=colors),
+                    text=[f"{v}%" for v in values],
+                    textposition="outside",
+                    cliponaxis=False,  # laat tekst buiten de as zien
+                    hovertemplate="%{y}: %{x}%<extra></extra>",
+                )
+            )
+
+            fig.update_layout(
+                title=dict(
+                    text="Het is van groot belang dat mijn meubels in<br>eigen land geproduceerd zijn",
+                    x=0.5,
+                    xanchor="center",
+                ),
+                height=360,
+                margin=dict(l=170, r=60, t=80, b=30),
+                plot_bgcolor="white",
+                xaxis=dict(
+                    range=[0, 50],          # zodat 46% nog net past + ruimte voor label
+                    showgrid=False,
+                    ticks="",
+                    title=None,
+                ),
+                yaxis=dict(
+                    title=None,
+                    ticks="",
+                ),
+                showlegend=False,
+            )
+
+            st.plotly_chart(fig)
+            st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
+            
     with st.container(border = True):
-        st.subheader('4. Prijsperceptie en -acceptatie')
-        st.write('Toont bereidheid van klanten om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.(uit enquête Duitse markt)')
+        with st.expander('4 Prijsperceptie en -acceptatie'):
+            st.write('Toont bereidheid van klanten om een meerprijs te betalen voor duurzaamheid. Meer dan de helft is bereid 10-20% extra te betalen. Dit opent mogelijkheden voor premium positionering.(uit enquête Duitse markt)')
 
-        # Data
-        categories = ["Niet bereid", "5% toeslag", "10% toeslag", ">10% toeslag"]
-        values = [19.0, 25.0, 24.0, 32.0]
-        colors = ["#E38178", "#FBBC05", "#0FAD4E", "#2E7D3E"]
+            # Data
+            categories = ["Niet bereid", "5% toeslag", "10% toeslag", ">10% toeslag"]
+            values = [19.0, 25.0, 24.0, 32.0]
+            colors = ["#E38178", "#FBBC05", "#0FAD4E", "#2E7D3E"]
 
-        fig = go.Figure()
+            fig = go.Figure()
 
-        fig.add_trace(
-            go.Bar(
-                x=categories,
-                y=values,
-                marker=dict(color=colors),
-                text=[f"{v:.1f}%" for v in values],
-                textposition="inside",
-                textfont=dict(color="black", size=14),
-                hovertemplate="%{x}: %{y:.1f}%<extra></extra>",
+            fig.add_trace(
+                go.Bar(
+                    x=categories,
+                    y=values,
+                    marker=dict(color=colors),
+                    text=[f"{v:.1f}%" for v in values],
+                    textposition="inside",
+                    textfont=dict(color="black", size=14),
+                    hovertemplate="%{x}: %{y:.1f}%<extra></extra>",
+                )
             )
-        )
 
-        fig.update_layout(
-            title=dict(
-                text="Bereidheid consument om meer te betalen<br>voor duurzaamheid",
-                x=0.5,
-                xanchor="center",
-                font=dict(size=22)
-            ),
-            height=420,
-            margin=dict(l=60, r=40, t=100, b=60),
-            showlegend=False,
-            yaxis=dict(
-                range=[0, 35],
-                showgrid=False,
-                ticks=""
-            ),
-            xaxis=dict(
-                ticks="",
-            ),
-        )
+            fig.update_layout(
+                title=dict(
+                    text="Bereidheid consument om meer te betalen<br>voor duurzaamheid",
+                    x=0.5,
+                    xanchor="center",
+                    font=dict(size=22)
+                ),
+                height=420,
+                margin=dict(l=60, r=40, t=100, b=60),
+                showlegend=False,
+                yaxis=dict(
+                    range=[0, 35],
+                    showgrid=False,
+                    ticks=""
+                ),
+                xaxis=dict(
+                    ticks="",
+                ),
+            )
 
-        st.plotly_chart(fig)
+            st.plotly_chart(fig)
 
-        st.markdown('*(Bron: [PwC, 2024](https://www.pwc.com/gx/en/issues/c-suite-insights/voice-of-the-consumer-survey/2024.html))*')
-        
+            st.markdown('*(Bron: [PwC, 2024](https://www.pwc.com/gx/en/issues/c-suite-insights/voice-of-the-consumer-survey/2024.html))*')
+            
     with st.container(border = True):
         st.subheader('5. Voorbeelden uit de praktijk')
 

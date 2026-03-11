@@ -56,7 +56,9 @@ with st.expander("Overzicht", expanded = True):
     st.header("Strategisch en zichtbaar profileren voor een toekomstbestendige marktpositie")
     st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
 
-    st.image('assets/profilering_schema.png')
+    c1, c2, c3 = st.columns([1,3,1])
+    c2.image('assets/profilering_schema.png', )
+    
     with st.container(border = True):
         st.subheader("Relevantie en urgentie")
         st.write("Door je duurzame prestaties objectief te onderbouwen, hier open over te rapporteren en dit actief te benutten in je ketensamenwerking, bouw je aan een herkenbaar en onderscheidend duurzaam profiel. Dat profiel werkt door in je aantrekkelijkheid voor klanten, opdrachtgevers én talent. Profilering is daarmee geen communicatie achteraf, maar een strategische hefboom: het verbindt inhoudelijke verduurzaming met vertrouwen, markttoegang en concurrentievoordeel.")
