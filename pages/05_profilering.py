@@ -12,36 +12,42 @@ ss = st.session_state
 
 st.set_page_config(page_title="Profilering & Certificering", layout="wide")
 
-st.markdown(
-    """
+hide_sidebar = """
     <style>
-      /* pull content up */
-      .block-container { padding-top: 0.9rem !important; }
-      /* compact header */
-      header[data-testid="stHeader"] { height: 1.2rem; }
-      [data-testid="stSidebarNav"] {display: none;}
-      [data-testid="stSidebar"] .block-container {
-          padding-top: 0 !important;
-      }
+        /* Hide sidebar completely */
+        [data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="stSidebarNav"] {
+            display: none !important;
+        }
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
 
-    section[data-testid="stSidebar"] .block-container > div:first-child,
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div:first-child {
-    margin-top: -60px !important;   /* <- adjust this number */
-    }
+        /* Reduce top padding/margin of main container */
+        .main > div {
+            padding-top: 0rem !important;
+        }
 
+        /* Reduce top padding on container blocks */
+        .block-container {
+            padding-top: 1.0rem !important;
+        }
+
+        /* Optional: reduce title block spacing if used */
+        h1, h2, h3 {
+            margin-top: 0.2rem;
+        }
     </style>
-    """,
-    unsafe_allow_html=True,
-)
+"""
+st.markdown(hide_sidebar, unsafe_allow_html=True)
 
 # -----------------------------
 # Layout / Navigation
 # -----------------------------
 st.title("Profilering & certificering")
-
-with st.sidebar:
-
-    st.page_link("Home.py", label="➡ Terug naar Home")
+st.page_link("Home.py", label="➡ Terug naar Home")
 
 # -----------------------------
 # Pages
