@@ -94,7 +94,7 @@ Je werkt aan:
     st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO", icon="➡")
     st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO", icon="➡")
 
-with st.expander("Fase 3: Implementatie – Van prototype naar praktijk"):
+with st.expander("Fase 3: Implementatie – *Van prototype naar toepassing in de praktijk*"):
     st.markdown("""
 Je gaat:
 -	Innovatie toepassen in productie
