@@ -73,10 +73,10 @@ Samen vormen deze wetten een systeem dat bedrijven gaat **verplichten om bewust 
         st.subheader("KANSEN")
         st.markdown("""
 Voor bedrijven die nu al voorsorteren, liggen grote voordelen:
--	**Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantrelaties op.
+-	**Nieuwe verdienmodellen**: reparatie, leasing en retourstromen leveren langdurige klantbinding en -relaties op.
 -	**Kostenbesparing**: slimmer ontwerp en hergebruik verlagen materiaalkosten.
 -	**Concurrentievoordeel**: aantoonbare circulariteit wordt een sterk verkoopargument in de toekomstige markt.
--	**Toegang tot aanbestedingen en subsidies**: overheden vragen om circulaire producten.
+-	**Toegang tot aanbestedingen en subsidies**: overheden vragen steeds meer om circulaire producten, circulair aanbod biedt toegang tot een grote klantgroep. 
                     """)
     with c2: 
         st.subheader("RISICO’S")
