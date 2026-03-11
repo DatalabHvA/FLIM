@@ -37,8 +37,6 @@ st.markdown(
 with st.sidebar:
     st.page_link("Home.py", label="⬅ Terug naar Home")
 
-    st.header("Filters")
-
 
 # -----------------------------
 # Layout / Navigation
