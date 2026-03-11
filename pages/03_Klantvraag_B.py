@@ -557,7 +557,7 @@ else:
             st.markdown('*(Bron: [PwC, 2024](https://www.pwc.com/gx/en/issues/c-suite-insights/voice-of-the-consumer-survey/2024.html))*')
             
     with st.container(border = True):
-        st.subheader('5. Voorbeelden uit de praktijk')
+        with st.expander('5. Voorbeelden uit de praktijk')
 
         data = [
             ["Gispen",
