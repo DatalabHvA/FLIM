@@ -63,7 +63,7 @@ with c1:
     st.image('assets/subsidies1.png')
 with c2: st.write("")
 
-with st.expander("Fase 1: Verkenning – “Is mijn idee technisch en economisch haalbaar?”"):
+with st.expander("Fase 1: Verkenning – Van idee naar technische en economische haalbaarheid"):
     st.markdown("""
 Je onderzoekt:
 -	Technische haalbaarheid
@@ -79,7 +79,7 @@ Een producent onderzoekt verduurzaming van zijn industriële productieprocessen.
     st.page_link("pages/06x_TSE.py", label = "TSE Industrie - Studies – RVO", icon="➡")
 
 
-with st.expander("Fase 2: Ontwikkeling – “We gaan bouwen en testen.”"):
+with st.expander("Fase 2: Ontwikkeling – Van concept naar een prototype bouwen en testen"):
     st.markdown("""
 Je werkt aan:
 -	Prototype of pilot
@@ -94,7 +94,7 @@ Je werkt aan:
     st.page_link("pages/06a_MIT_haalbaarheid.py", label = "MIT: R&D-Samenwerkingsprojecten – RVO", icon="➡")
     st.page_link("pages/06x_CKP.py", label = "CKP – Circulaire ketenprojecten – RVO", icon="➡")
 
-with st.expander("Fase 3: Implementatie – “We gaan het echt doen.”"):
+with st.expander("Fase 3: Implementatie – Van prototype naar praktijk"):
     st.markdown("""
 Je gaat:
 -	Innovatie toepassen in productie
