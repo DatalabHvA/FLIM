@@ -57,7 +57,7 @@ Subsidies helpen je om een idee sneller te testen, te ontwikkelen of op te schal
 
 c1, c2 = st.columns([6,2])
 with c1: 
-    st.subheader("Hoe zit subsidiestructuur meestal in elkaar?")
+    st.subheader("Hoe zit de subsidiestructuur in elkaar?")
     st.write("Subsidies sluiten vaak aan op een specifieke fase van jouw project. Onderstaand overzicht helpt je bepalen waar jij zit en waar je moet zoeken.")
 
     st.image('assets/subsidies1.png')
