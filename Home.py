@@ -438,7 +438,10 @@ with col3: tile_wetgeving(target_page = "pages/04_wet_regelgeving.py")
     
 h1, h2, h3 = st.columns(3, gap="small", border = True)
 with h1:
-    tile_klantvraag_B(target_page = "pages/03_Klantvraag_B.py")
+    if ss.klanttype_value == 'Overheid':
+        tile_klantvraag_overheid(target_page="pages/03_Klantvraag_B.py")
+    else: 
+        tile_klantvraag_B(target_page = "pages/03_Klantvraag_B.py")
 with h2:
     tile_profilering(target_page = "pages/05_profilering.py") 
 with h3:
