@@ -47,7 +47,7 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 # Layout / Navigation
 # -----------------------------
 st.title("Profilering & certificering")
-st.page_link("Home.py", label="➡ Terug naar Home")
+st.page_link("Home.py", label="⬅ Terug naar Home")
 
 # -----------------------------
 # Pages
