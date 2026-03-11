@@ -50,13 +50,13 @@ Producten zijn verboden als ze van grond komen die na 30 december 2020 is ontbos
 -	Papier en karton
 En alle producten die van deze grondstoffen zijn gemaakt.
 
-Belangrijke details over de EUDR:
-•	Doel: Ontbossing en bosdegradatie wereldwijd verminderen.
-•	Verplichting: Alle bedrijven, ongeacht hun omvang, moeten relevante documentatie bewaren en op verzoek van de overheid reageren op vragen.
-o	Grote bedrijven moeten een due diligence-verklaring (DDS) indienen, waarin ze aantonen dat het product niet bijdraagt aan ontbossing na 31 december 2020.
-o	MKB-bedrijven zijn niet verplicht om een volledige due diligence uit te voeren, zij moeten wel controleren of hun leveranciers (meestal grotere exploitanten) dit hebben gedaan.
-•	Traceerbaarheid: De locatie van productie (geolocatie/coördinaten) moet worden vastgelegd
-•	Handhaving: In Nederland controleert de NVWA.
+**Belangrijke details over de EUDR**
+*	**Doel**: Ontbossing en bosdegradatie wereldwijd verminderen.
+*	**Verplichting**: Alle bedrijven, ongeacht hun omvang, moeten relevante documentatie bewaren en op verzoek van de overheid reageren op vragen.
+    -	<u>Grote bedrijven</u> moeten een due diligence-verklaring (DDS) indienen, waarin ze aantonen dat het product niet bijdraagt aan ontbossing na 31 december 2020.
+    -	<u>MKB-bedrijven</u> zijn niet verplicht om een volledige due diligence uit te voeren, zij moeten wel controleren of hun leveranciers (meestal grotere exploitanten) dit hebben gedaan.
+*	**Traceerbaarheid**: De locatie van productie (geolocatie/coördinaten) moet worden vastgelegd
+*	**Handhaving**: In Nederland controleert de NVWA.
 
 
 [Klik hier voor meer informatie](https://www.nvwa.nl/onderwerpen/plant/eudr-ontbossingsverordening)
