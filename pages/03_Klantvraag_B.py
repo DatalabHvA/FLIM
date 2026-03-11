@@ -504,7 +504,7 @@ else:
         )
 
         st.plotly_chart(fig)
-        st.markdown('bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie)')
+        st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
         
     with st.container(border = True):
         st.subheader('4. Prijsperceptie en -acceptatie')
