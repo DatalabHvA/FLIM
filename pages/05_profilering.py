@@ -10,7 +10,7 @@ from widgets import *
 
 ss = st.session_state
 
-st.set_page_config(page_title="Profilering & Certificering", layout="wide")
+st.set_page_config(page_title="Bedrijfsprofilering", layout="wide")
 
 hide_sidebar = """
     <style>
@@ -46,15 +46,15 @@ st.markdown(hide_sidebar, unsafe_allow_html=True)
 # -----------------------------
 # Layout / Navigation
 # -----------------------------
-st.title("Profilering & certificering")
+st.title("Bedrijfsprofilering")
 st.page_link("Home.py", label="⬅ Terug naar Home")
 
 # -----------------------------
 # Pages
 # -----------------------------
 with st.expander("Overzicht", expanded = True):
-    st.header("Strategisch en zichtbaar profileren voor een toekomstbestendige marktpositie")
-    st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch inzet om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
+    st.header("Strategisch onderscheiden voor een toekomstbestendige marktpositie")
+    st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch in kunt zetten om je marktpositie te versterken. Het draait om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
 
     c1, c2, c3 = st.columns([1,3,1])
     c2.image('assets/profilering_schema.png', )
@@ -64,7 +64,7 @@ with st.expander("Overzicht", expanded = True):
         st.write("Door je duurzame prestaties objectief te onderbouwen, hier open over te rapporteren en dit actief te benutten in je ketensamenwerking, bouw je aan een herkenbaar en onderscheidend duurzaam profiel. Dat profiel werkt door in je aantrekkelijkheid voor klanten, opdrachtgevers én talent. Profilering is daarmee geen communicatie achteraf, maar een strategische hefboom: het verbindt inhoudelijke verduurzaming met vertrouwen, markttoegang en concurrentievoordeel.")
         st.write("In een markt waarin transparantie en aantoonbare impact steeds vaker randvoorwaarde zijn, bepaalt de manier waarop je je profileert of je wordt gekozen/gepasseerd. Wie dit niet zichtbaar en geloofwaardig positioneert, laat waarde liggen.")
         st.write("Daarom bekijken we profilering vanuit verschillende perspectieven: als werkgever (employer branding), richting andere marktpartijen (ketenprofilering en transparantie). Daarna kijken we richting consument en opdrachtgevers, waar certificeringen en labels een steeds grotere rol spelen in onderscheidend vermogen. Tenslotte richting overheid en wet- en regelgeving, waar aantoonbaarheid en verantwoording steeds belangrijker worden.")
-        st.write("Samen vormen deze perspectieven jouw strategische positionering in een veranderende markt.")
+        st.write("Samen vormen deze perspectieven jouw mogelijkheden voor strategische positionering in een veranderende markt.")
 
     #st.image('assets/Landing - profilering.png')
 
