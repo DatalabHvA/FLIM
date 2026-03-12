@@ -74,7 +74,7 @@ if ss.klanttype_value == 'Overheid':
 
     *(Bron: [RIVM, 2025](https://www.rivm.nl/maatschappelijk-verantwoord-opdrachtgeven-en-inkopen/wat-is-mvoi))*
 
-    ### Inzet per MVOI-thema (B/C)            
+    ### Inzet per MVOI-thema            
     """)
 
     df_mvoi = pd.DataFrame({'jaar' : ['2015-2016', '2017-2018', '2019-2020', '2021-2022'],
