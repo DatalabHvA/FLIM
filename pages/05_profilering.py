@@ -68,7 +68,7 @@ with st.expander("Overzicht", expanded = True):
 
     #st.image('assets/Landing - profilering.png')
 
-with st.expander("*Bewijslaag*"):
+with st.expander("**Bewijslaag**"):
     st.header("Bewijslaag")
     st.write("Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.")
     
@@ -324,7 +324,7 @@ with st.expander("*Bewijslaag*"):
                     - 	(Voorbeelden)
                     """)
 
-with st.expander("Transparantie"):
+with st.expander("**2. Transparantie**"):
     st.header("Transparantie")
     st.write("Naast het opbouwen van een bewijslaag is transparantie vanuit het eigen bedrijf essentieel voor een betrouwbare bedrijfsprofilering op je duurzame keuzes. Waar de bewijslaag draait om externe erkenning, gaat transparantie over de mate waarin een bedrijf openheid geeft over het totale duurzaamheidsprofiel richting klanten, opdrachtgevers, ketenpartners en financiers. Transparantie betekent dat doelen, risico’s en prestaties systematisch inzichtelijk worden gemaakt via rapportages en meetbare prestatie indicatoren. Dit raakt aan nieuwe wet- en regelgeving zoals de CSRD/VSME waarbij niet alleen successen, maar ook risico’s en verbeterpunten zichtbaar worden gemaakt. Transparantie versterkt zo het duurzame profiel, vergroot marktvertrouwen en draagt bij aan concurrentiekracht.")
     
