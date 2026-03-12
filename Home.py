@@ -450,7 +450,7 @@ def tile_wetgeving(target_page: str):
 
 def tile_profilering(target_page):
     with st.container(border=False):
-        st.subheader("Bedrijfsprofilering en certificering")
+        st.subheader("Bedrijfsprofilering")
         st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
         with st.container(border = True):
             st.image('assets/Tegel - profilering.png')
