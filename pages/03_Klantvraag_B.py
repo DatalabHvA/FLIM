@@ -118,7 +118,7 @@ if ss.klanttype_value == 'Overheid':
             mode='lines+markers',
             line=dict(color="#0d394c", width=3),
             marker=dict(size=8),
-            name='Totaal MVOI'
+            name='Circulair'
         )
     )
     fig2.add_trace(
