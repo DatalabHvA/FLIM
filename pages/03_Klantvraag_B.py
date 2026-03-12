@@ -46,8 +46,7 @@ if ss.klanttype_value == 'Overheid':
     st.title("Klantvraag — Overheid")
 
     st.markdown("""
-    ### Intro
-
+  
     In 2021 spendeerde de Rijksoverheid ruim **85 miljard euro** aan ingekochte diensten, producten en werken.  
     Het gestelde doel is dat hier per **2030** al voor **50% minder primaire grondstoffen** voor gebruikt worden, en om dit te laten toenemen tot **100% circulair in 2050**.
 
