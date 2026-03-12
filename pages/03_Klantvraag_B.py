@@ -48,10 +48,10 @@ if ss.klanttype_value == 'Overheid':
     st.markdown("""
   
     In 2021 spendeerde de Rijksoverheid ruim **85 miljard euro** aan ingekochte diensten, producten en werken.  
-    Het gestelde doel is dat hier per **2030** al voor **50% minder primaire grondstoffen** voor gebruikt worden, en om dit te laten toenemen tot **100% circulair in 2050**.
-
     In 2023 was de inkoop van *Werkplekomgeving (Rijksoverheid)* jaarlijks goed voor zo'n **60 miljoen euro**.  
-    Toen is ook de ambitie uitgesproken om vanaf **2030 enkel nog gebruik te maken van circulair meubilair**.  
+    
+    Het gestelde doel is dat per 2030 al voor **50% minder primaire grondstoffen** ingekocht worden, en om dit te laten toenemen tot **100% circulair in 2050**.
+    Tevens is ook de ambitie uitgesproken om vanaf **2030 enkel nog gebruik te maken van circulair meubilair**.  
 
     *(Bron: [Rijksoverheid](https://www.denkdoeduurzaam.nl/actueel/nieuws/2023/11/13/duurzame-revolutie-op-de-werkplek-focus-op-circulair-meubilair-en-consuminderen))*
 
