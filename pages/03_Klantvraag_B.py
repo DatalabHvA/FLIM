@@ -128,7 +128,7 @@ if ss.klanttype_value == 'Overheid':
             mode='lines+markers',
             line=dict(color="#d2a905", width=3),
             marker=dict(size=8),
-            name='Totaal MVOI'
+            name='Ketenverantwoordelijkheid'
         )
     )
     fig2.update_layout(
