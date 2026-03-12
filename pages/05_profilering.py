@@ -68,7 +68,7 @@ with st.expander("Overzicht", expanded = True):
 
     #st.image('assets/Landing - profilering.png')
 
-with st.expander("**Bewijslaag**"):
+with st.expander("**1. Bewijslaag**"):
     st.header("Bewijslaag")
     st.write("Er zijn verschillende manieren om je als bedrijf voordeel te halen uit de stappen die je onderneemt op het gebied van ontwerp, grondstoffen en keuzes in jouw toeleveringsketen. Een van de stappen om hier betrouwbaar over te kunnen publiceren, is het creëren van een bewijslaag. Dit bewijs kan de vorm aannemen van certificeringen, labels, duurzaamheidsindices (alleen B2B) en onderbouwde impactmetingen van producten en materialen (EPD) met transparante doorrekeningen van de hele levenscyclus van producten (LCA’s). Daarmee maak je zichtbaar dat verduurzaming niet alleen een ambitie is, maar gebaseerd is op meetbare en verifieerbare resultaten. Dit vormt de basis voor betrouwbare en geloofwaardige communicatie richting klanten, opdrachtgevers, ketenpartners, financiers en medewerkers.")
     
@@ -355,7 +355,7 @@ with st.expander("**2. Transparantie**"):
         st.page_link("pages/04_wet_regelgeving.py", label="-> Ga naar Wet- en Regelgeving")
 
 
-with st.expander("Ketenprofilering"):
+with st.expander("**3. Ketenprofilering**"):
     st.header("Ketenprofilering")
     st.markdown("""
     Naast bewijs en transparantie speelt ook de manier waarop een bedrijf zich positioneert binnen de keten een belangrijke rol in duurzame bedrijfsprofilering. Ketenprofilering gaat over het zichtbaar maken van strategische samenwerkingen, partnerschappen en collectieve initiatieven waarin duurzaamheid gezamenlijk wordt opgepakt.
@@ -371,7 +371,7 @@ with st.expander("Ketenprofilering"):
 
                 """)
 
-with st.expander("Employer branding"):
+with st.expander("**4. Employer branding**"):
     st.header("Employer branding")
     st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
     st.markdown("""
