@@ -54,7 +54,7 @@ st.page_link("Home.py", label="⬅ Terug naar Home")
 # -----------------------------
 with st.expander("Overzicht", expanded = True):
     st.header("Strategisch onderscheiden voor een toekomstbestendige marktpositie")
-    st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Profilering gaat over hoe je jouw betere keuzes op dit gebied strategisch in kunt zetten om je marktpositie te versterken. Het draait hierbij om de samenhang tussen (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
+    st.write("Hoe zichtbaar en geloofwaardig ben jij met je toekomstbestendige keuzes? Sterke profilering betekent dat je deze keuzes niet alleen maakt, maar ze ook strategisch inzet om je marktpositie te versterken. Maximaal effect bereik je door het samenspel van vier elementen: (1) bewijs, (2) transparantie, (3) ketenprofilering en (4) employer branding.")
 
     c1, c2, c3 = st.columns([1,3,1])
     c2.image('assets/Landing - profilering.png', )
