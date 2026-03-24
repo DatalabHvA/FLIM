@@ -347,7 +347,7 @@ else:
         with st.expander('**3.1 Klantkeuze voor duurzaam**'):
             # Data
             if ss.klanttype_value == 'B2B':
-                st.write('Op de vraag naar relevantie van duurzame inkoop en verantwoorde ketens antwoordt 64% van de gevraagde afnemers dat dit belangrijk gevonden wordt. Daarbij vindt slechts 8% dit onbelangrijk')
+                st.write('Op de vraag naar relevantie van duurzame inkoop en verantwoorde ketens antwoordt 64% van de gevraagde bedrijven dat dit belangrijk gevonden wordt. Daarbij vindt slechts 8% dit onbelangrijk')
                 categories = ['Erg relevant','Enigzins relevant','Niet erg relevant','Geenzins relevant']
                 values = [65, 27, 6, 2]
                 colors = ["#05853A", "#2BC417", '#F1C40F', '#E74C3C']  # red, orange, yellow, green
@@ -400,8 +400,6 @@ else:
                 st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
             else:
                 st.markdown("""
-Op de vraag aan bedrijven binnen een grootschalig Duits onderzoek naar hoe relevant duurzame inkoop en verantwoorde toeleveringsketens voor hen zijn, gaf het overgrote deel aan dat dit (zeer) belangrijk is.
-
 [Bron](https://unite.eu/nl-nl/media/pers/studie-duurzame-b2b-inkoop)                            
                             """)
                             
