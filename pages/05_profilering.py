@@ -289,12 +289,12 @@ with st.expander("**1. Bewijslaag**"):
             st.image('assets/blauwer_engel.jpg')
 
         cols3 = st.columns([1,6])
-        with cols3[0]:
+        with cols4[0]:
             st.markdown("""
             **WELLS certificering** - WELL-certificering – WELL is een internationaal erkende standaard die de gezondheid en het welzijn van mensen in gebouwde omgevingen centraal stelt. Deze certificering waarborgt dat meubels en interieurs voldoen aan strenge eisen op het gebied van luchtkwaliteit, comfort, ergonomie en het gebruik van gezonde materialen. Het richt zich op de hele levenscyclus van producten, van productie tot gebruik, en zorgt ervoor dat meubels bijdragen aan een gezonde en duurzame leef- en werkomgeving. WELL is wetenschappelijk onderbouwd en wordt wereldwijd toegepast als herkenbaar keurmerk voor gebouwen en interieurs die het welzijn van gebruikers bevorderen. Meer lezen: [wellcertified.com](https://www.wellcertified.com/)
                         """)
-        with cols3[1]:
-            st.image('assets/well.jpg')
+        with cols4[1]:
+            st.image('assets/blauwer_engel.jpg')
             
             if ss.klanttype_value == 'B2B':
         with st.container(border = True):
