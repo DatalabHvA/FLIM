@@ -288,7 +288,15 @@ with st.expander("**1. Bewijslaag**"):
         with cols3[1]:
             st.image('assets/blauwer_engel.jpg')
 
-    if ss.klanttype_value == 'B2B':
+        cols3 = st.columns([1,6])
+        with cols3[0]:
+            st.markdown("""
+            **WELLS certificering** - WELL-certificering – WELL is een internationaal erkende standaard die de gezondheid en het welzijn van mensen in gebouwde omgevingen centraal stelt. Deze certificering waarborgt dat meubels en interieurs voldoen aan strenge eisen op het gebied van luchtkwaliteit, comfort, ergonomie en het gebruik van gezonde materialen. Het richt zich op de hele levenscyclus van producten, van productie tot gebruik, en zorgt ervoor dat meubels bijdragen aan een gezonde en duurzame leef- en werkomgeving. WELL is wetenschappelijk onderbouwd en wordt wereldwijd toegepast als herkenbaar keurmerk voor gebouwen en interieurs die het welzijn van gebruikers bevorderen. Meer lezen: [wellcertified.com](https://www.wellcertified.com/)
+                        """)
+        with cols3[1]:
+            st.image('assets/well.jpg')
+            
+            if ss.klanttype_value == 'B2B':
         with st.container(border = True):
             st.subheader('Duurzaamheidsindices')
             st.write("Duurzaamheidsindices plaatsen de prestaties van een organisatie in een bredere context en maken vergelijking met andere bedrijven (benchmarking) mogelijk. Ze geven inzicht in hoe duurzaamheidsbeleid en -resultaten zich verhouden tot markt en sector. Door goed te scoren op relevante indices wordt herkenbaarheid en daarmee zichtbaarheid gecreëerd, wat bijdraagt aan duurzame positionering en profilering van de organisatie richting keten en financiers.")
