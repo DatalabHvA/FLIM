@@ -345,14 +345,15 @@ else:
     with st.container(border = True):
 
         with st.expander('**3.1 Klantkeuze voor duurzaam**'):
-            st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
             # Data
             if ss.klanttype_value == 'B2B':
+                st.write('Op de vraag naar relevantie van duurzame inkoop en verantwoorde ketens antwoordt 64% van de gevraagde bedrijven dat dit belangrijk gevonden wordt. Daarbij vindt slechts 8% dit onbelangrijk')
                 categories = ['Erg relevant','Enigzins relevant','Niet erg relevant','Geenzins relevant']
                 values = [65, 27, 6, 2]
                 colors = ["#05853A", "#2BC417", '#F1C40F', '#E74C3C']  # red, orange, yellow, green
                 title_text = "Relevantie van duurzame inkoop en verantwoorde ketens"
             else:
+                st.write('Op de vraag “Hoe belangrijk is duurzaamheid voor jou bij het kiezen van meubels?” antwoordt 50% van de gevraagde consumenten dat dit belangrijk gevonden wordt. Daarbij vindt slechts 16% van de consumenten duurzaamheid onbelangrijk')
                 categories = ['Heel erg belangrijk', 'Belangrijk', 'Neutraal', 'Niet belangrijk']
                 values = [8, 42, 34, 16]
                 colors = ["#05853A", "#2BC417", '#F1C40F', '#E74C3C']  # red, orange, yellow, green
@@ -365,7 +366,7 @@ else:
 
             for i, (category, value, color) in enumerate(zip(categories, values, colors)):
                 fig.add_trace(go.Bar(
-                    y=["Consumenten"],
+                    y=["Respondenten"],
                     x=[value],
                     name=category,
                     orientation='h',
@@ -399,8 +400,6 @@ else:
                 st.markdown('*(Bron: [CBM en Q&A Retail, 2025](https://cbm.nl/publicatie/129-level-playingfield-nodig-voor-toekomst-meubelindustrie))*')
             else:
                 st.markdown("""
-Op de vraag aan bedrijven binnen een grootschalig Duits onderzoek naar hoe relevant duurzame inkoop en verantwoorde toeleveringsketens voor hen zijn, gaf het overgrote deel aan dat dit (zeer) belangrijk is.
-
 [Bron](https://unite.eu/nl-nl/media/pers/studie-duurzame-b2b-inkoop)                            
                             """)
                             
