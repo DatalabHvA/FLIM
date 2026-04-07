@@ -288,22 +288,14 @@ with st.expander("**1. Bewijslaag**"):
         with cols3[1]:
             st.image('assets/blauwer_engel.jpg')
 
-        cols4 = st.columns([1,6])
-        with cols4[0]:
-            st.markdown("""
-            **WELLS certificering** - WELL-certificering – WELL is een internationaal erkende standaard die de gezondheid en het welzijn van mensen in gebouwde omgevingen centraal stelt. Deze certificering waarborgt dat meubels en interieurs voldoen aan strenge eisen op het gebied van luchtkwaliteit, comfort, ergonomie en het gebruik van gezonde materialen. Het richt zich op de hele levenscyclus van producten, van productie tot gebruik, en zorgt ervoor dat meubels bijdragen aan een gezonde en duurzame leef- en werkomgeving. WELL is wetenschappelijk onderbouwd en wordt wereldwijd toegepast als herkenbaar keurmerk voor gebouwen en interieurs die het welzijn van gebruikers bevorderen. Meer lezen: [wellcertified.com](https://www.wellcertified.com/)
-                        """)
-        with cols4[1]:
-            st.image('assets/blauwer_engel.jpg')
-            
-            if ss.klanttype_value == 'B2B':
+    if ss.klanttype_value == 'B2B':
         with st.container(border = True):
             st.subheader('Duurzaamheidsindices')
             st.write("Duurzaamheidsindices plaatsen de prestaties van een organisatie in een bredere context en maken vergelijking met andere bedrijven (benchmarking) mogelijk. Ze geven inzicht in hoe duurzaamheidsbeleid en -resultaten zich verhouden tot markt en sector. Door goed te scoren op relevante indices wordt herkenbaarheid en daarmee zichtbaarheid gecreëerd, wat bijdraagt aan duurzame positionering en profilering van de organisatie richting keten en financiers.")
-            cols5 = st.columns([1,6])
-            with cols5[0]:
+            cols4 = st.columns([1,6])
+            with cols4[0]:
                 st.image('assets/ecovadis.png')
-            with cols5[1]:
+            with cols4[1]:
                 
                 st.markdown("""
             - **EcoVadis** – Veel gebruikt in B2B-ketens voor bedrijven om hun leveranciers te screenen op duurzaamheid. EcoVadis is een duurzaamheidsindex-platforms, bekend om zijn beoordeling van de acties van bedrijven op het gebied van duurzaamheid (ESG-rating). Het wordt gebruikt door duizenden organisaties, waaronder grote internationale bedrijven om zich te benchmarken. Slechts 1% van de beoordeelde bedrijven krijgt de hoogste onderscheiding (platina), wat een bewijs is van zeer hoge normen op het gebied van bedrijfsverantwoordelijkheid en ethiek. Lees meer: [website](https://ecovadis.com/nl/)
