@@ -42,6 +42,13 @@ st.markdown(
 # ---------- Session state ----------
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
+
+# Navigation guard — must run before any component renders
+if ss.get("_navigate_to"):
+    target = ss["_navigate_to"]
+    del ss["_navigate_to"]
+    st.switch_page(target)
+
 if 'prijzen_df' not in ss:
     df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='Data per factor (incl kwal)')
     df1['Factor'] = df1['Factor'].ffill()
@@ -341,7 +348,8 @@ def tile_prijsstijgingen(target_page):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_materiaal_value = mat
-            st.switch_page(target_page)
+            ss["_navigate_to"] = target_page
+            st.rerun()
     st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
 
 def tile_leveringszekerheid(target_page):
@@ -367,7 +375,8 @@ def tile_leveringszekerheid(target_page):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_materiaal_value = mat
-            st.switch_page(target_page)
+            ss["_navigate_to"] = target_page
+            st.rerun()
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien.')
 
 def tile_klantvraag_overheid(target_page: str):
