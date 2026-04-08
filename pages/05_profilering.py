@@ -288,6 +288,35 @@ with st.expander("**1. Bewijslaag**"):
         with cols3[1]:
             st.image('assets/blauwer_engel.jpg')
 
+    
+
+        # RIJ 4 — WELL
+        cols4 = st.columns([1,6])
+        with cols4[0]:
+            st.image('assets/blauwer_engel.jpg')
+        with cols4[1]:
+            st.markdown("""
+            **WELL Building Standard** - Certificering die zich richt op gezondheid en welzijn van gebruikers van gebouwen. 
+            Binnen de meubel- en interieurbranche is WELL relevant door eisen aan binnenluchtkwaliteit, materiaalemissies, 
+            comfort en ergonomie. Producten met lage emissies en gezonde materialen dragen bij aan WELL-punten. 
+            Meer lezen: [website](https://www.wellcertified.com/)
+            """)
+        
+        
+        # RIJ 5 — BREEAM
+        cols5 = st.columns([6,1])
+        with cols5[0]:
+            st.markdown("""
+            **BREEAM** - Internationaal keurmerk voor duurzame gebouwen dat ook eisen stelt aan materialen, 
+            binnenmilieu en circulariteit. Meubilair en interieur kunnen bijdragen via lage emissies, 
+            hergebruikte materialen, losmaakbaarheid en levensduur. Dit maakt BREEAM relevant voor 
+            circulair ontwerp en duurzame inkoop. 
+            Meer lezen: [website](https://www.breeam.com/)
+            """)
+        with cols5[1]:
+            st.image('assets/blauwer_engel.jpg')
+            
+        
     if ss.klanttype_value == 'B2B':
         with st.container(border = True):
             st.subheader('Duurzaamheidsindices')
@@ -311,7 +340,6 @@ with st.expander("**1. Bewijslaag**"):
         st.subheader('Environmental Product Declaration (EPD)')
         st.markdown("""
                     EPD’s bieden onderbouwde impactmetingen van producten en materialen op basis van gestandaardiseerde en onafhankelijke methodieken. Ze maken de milieuprestaties van producten transparant en onderling vergelijkbaar, wat essentieel is voor onderbouwde keuzes in ontwerp, inkoop en aanbestedingen. Daarmee vormen EPD’s een betrouwbaar fundament voor zowel technische besluitvorming als externe communicatie.
-                    -	<Triboo EPD>
                     -	Meubelmaker Casala heeft meerdere EPD’s voor hun producten gepubliceerd, zoals hun Lynx-model stoelen: [pdf](https://meinema.nl/ECOPaspoort/casala-lynx-epd.pdf) 
                     -	Het Spaanse Steelcase S.A., is een ontwerper, producent en leverancier van interieurs en meubels die een EPD-verklaring op laten stellen voor de Lares bank (1800x1600mm): [pdf](https://www.environdec.com/library/epd7395)
                     -	Leverancier van onderwijsmaterialen, meubels en creatieve leermiddelen Lekolar AB uit Zweden heeft een EPD op laten stellen van hun 12:38 tafel: [pdf](https://www.environdec.com/library/epd8173)
