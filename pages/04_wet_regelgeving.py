@@ -5,7 +5,7 @@ sys.path.append("..")
 from widgets import *
 
 ss = st.session_state
-
+log_event("Wet_regelgeving", "page_load")
 
 st.set_page_config(page_title="Wet- en regelgeving - Landingspagina", layout="wide")
 st.markdown(

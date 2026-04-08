@@ -12,7 +12,14 @@ from PIL import Image
 import base64
 from pathlib import Path
 
+import streamlit.components.v1 as components
 from widgets import *
+
+def _iframe(html, height):
+    if hasattr(st, "iframe"):
+        st.iframe(html, height=height)
+    else:
+        components.html(html, height=height)
 
 # --- Layout ---
 st.set_page_config(page_title="Dashboard • Home", layout="wide")
@@ -41,6 +48,7 @@ st.markdown(
 # ---------- Session state ----------
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
+log_event("Home", "page_load")
 
 # Navigation guard — must run before any component renders
 if ss.get("_navigate_to"):
@@ -352,6 +360,7 @@ def tile_prijsstijgingen(target_page):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_materiaal_value = mat
+            log_event("Home", "bar_click_prijsstijgingen", mat)
             ss["_navigate_to"] = target_page
             st.rerun()
     st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
@@ -379,6 +388,7 @@ def tile_leveringszekerheid(target_page):
         mat = clicks[0].get("x")
         if mat:
             ss.selected_materiaal_value = mat
+            log_event("Home", "bar_click_leveringszekerheid", mat)
             ss["_navigate_to"] = target_page
             st.rerun()
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien.')
@@ -453,11 +463,11 @@ def tile_wetgeving(target_page: str):
 
     # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
     if (ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte"):
-        st.iframe(generate_badge(9), height=170)
-        st.iframe(generate_badge2(12), height=160)
+        _iframe(generate_badge(9), height=170)
+        _iframe(generate_badge2(12), height=160)
     else:
-        st.iframe(generate_badge(8), height=170)
-        st.iframe(generate_badge2(11), height=160)
+        _iframe(generate_badge(8), height=170)
+        _iframe(generate_badge2(11), height=160)
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 

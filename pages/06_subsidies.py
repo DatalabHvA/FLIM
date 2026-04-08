@@ -9,6 +9,7 @@ sys.path.append("..")
 from widgets import *
 
 ss = st.session_state
+log_event("Subsidies", "page_load")
 
 st.set_page_config(page_title="Subsidies", layout="wide")
 

@@ -10,6 +10,7 @@ from Home import make_klantvraag_scatter_b2b, make_klantvraag_scatter_b2c
 from widgets import *
 
 ss = st.session_state
+log_event("Klantvraag", "page_load")
 
 st.set_page_config(page_title="Klantvraag B2B/B2C • Analyse", layout="wide")
 st.markdown(

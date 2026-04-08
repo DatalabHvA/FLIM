@@ -1,8 +1,34 @@
+import uuid
+from datetime import datetime
 import pandas as pd
 import streamlit as st
 import textwrap
+import gspread
+from google.oauth2.service_account import Credentials
 
 ss = st.session_state
+
+# --- Session ID ---
+if "session_id" not in ss:
+    ss.session_id = str(uuid.uuid4())
+
+# --- Google Sheets logging ---
+_SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+_SHEET_NAME = "FLIM log"
+_TAB_NAME = "Blad1"
+
+@st.cache_resource(show_spinner=False)
+def _get_sheet():
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=_SCOPES)
+    client = gspread.authorize(creds)
+    return client.open(_SHEET_NAME).worksheet(_TAB_NAME)
+
+def log_event(page: str, event_type: str, value: str = ""):
+    try:
+        sheet = _get_sheet()
+        sheet.append_row([datetime.utcnow().isoformat(), ss.session_id, page, event_type, value])
+    except Exception:
+        pass  # never crash the app due to logging
 
 @st.cache_data(show_spinner=False)
 def get_prijs_kpi(materials_list):
@@ -31,6 +57,7 @@ def widget_branche():
 
     def _sync():
         ss.branche_value = ss.branche_widget
+        log_event("sidebar", "widget_branche", ss.branche_value)
 
     st.selectbox(
         "Branche",
@@ -48,6 +75,7 @@ def widget_medewerkers():
 
     def _sync():
         ss.medewerkers_value = ss.medewerkers_widget
+        log_event("sidebar", "widget_medewerkers", ss.medewerkers_value)
 
     st.selectbox(
         "Aantal medewerkers",
@@ -65,6 +93,7 @@ def widget_omzet():
 
     def _sync():
         ss.omzet_value = ss.omzet_widget
+        log_event("sidebar", "widget_omzet", ss.omzet_value)
 
     st.selectbox(
         "Omzet",
@@ -82,6 +111,7 @@ def widget_klantsegment():
 
     def _sync():
         ss.klantsegment_value = ss.klantsegment_widget
+        log_event("sidebar", "widget_klantsegment", ss.klantsegment_value)
 
     st.selectbox(
         "Klantsegment",
@@ -101,6 +131,7 @@ def widget_klanttype():
     # 2) keep widget key separate; copy -> value on change
     def _sync():
         st.session_state["klanttype_value"] = st.session_state["klanttype_widget"]
+        log_event("sidebar", "widget_klanttype", st.session_state["klanttype_value"])
 
     st.selectbox(
         "Klanttype",
@@ -126,6 +157,7 @@ def widget_materialen():
         ss.selected_materials_value = ss.selected_materials_widget
         ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
         ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+        log_event("sidebar", "widget_materialen", ", ".join(ss.selected_materials_value))
 
     st.multiselect(
         "Grondstoffen en materialen",
@@ -144,6 +176,7 @@ def widget_materiaal_prijs():
 
     def _sync():
         ss.selected_materiaal_value = ss.selected_materiaal_widget
+        log_event("Prijsstijgingen", "widget_materiaal", ss.selected_materiaal_value)
 
     st.selectbox(
         "Materiaal",
@@ -162,6 +195,7 @@ def widget_materiaal_lev():
 
     def _sync():
         ss.selected_materiaal_value = ss.selected_materiaal_widget
+        log_event("Leveringszekerheid", "widget_materiaal", ss.selected_materiaal_value)
 
     st.selectbox(
         "Materiaal",
