@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st
 import textwrap
 import gspread
+import plotly.graph_objects as go
 from google.oauth2.service_account import Credentials
 
 ss = st.session_state
@@ -48,6 +49,58 @@ def get_levzeker(materials_list):
         result = pd.concat([result, pd.DataFrame({'material': list(missing), 'supply_risk': float('nan')})], ignore_index=True)
     return result
 
+
+@st.cache_data(show_spinner=False)
+def make_klantvraag_scatter_b2b(sel_hist_df: pd.DataFrame):
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Traditionele meubels']],
+        mode='lines+markers',
+        name='Traditionele meubels (CAGR 4,95%)',
+        line=dict(color='black', width=3),
+        marker=dict(size=6)
+    ))
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Duurzame meubels']],
+        mode='lines+markers',
+        name='Duurzame meubels (CAGR 10,1%)',
+        line=dict(color='green', width=3),
+        marker=dict(size=6)
+    ))
+    fig.update_layout(
+        xaxis_title="Jaar", yaxis_title="Index (2023 = 100)", template="plotly_white",
+        margin=dict(l=40, r=15, t=20, b=70),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5)
+    )
+    return fig
+
+@st.cache_data(show_spinner=False)
+def make_klantvraag_scatter_b2c(sel_hist_df: pd.DataFrame):
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Traditionele meubels']],
+        mode='lines+markers',
+        name='Traditionele meubels (CAGR 4,95%)',
+        line=dict(color='black', width=3),
+        marker=dict(size=6)
+    ))
+    fig.add_trace(go.Scatter(
+        x=[str(x) for x in sel_hist_df['Jaar']],
+        y=[float(x) for x in sel_hist_df['Duurzame meubels']],
+        mode='lines+markers',
+        name='Duurzame meubels (CAGR 10,3%)',
+        line=dict(color='green', width=3),
+        marker=dict(size=6)
+    ))
+    fig.update_layout(
+        xaxis_title="Jaar", yaxis_title="Index (2023 = 100)", template="plotly_white",
+        margin=dict(l=40, r=15, t=20, b=70),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5)
+    )
+    return fig
 
 def widget_branche():
     OPTIONS = ["Meubelmakers", "Interieurbouw"]

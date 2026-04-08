@@ -6,7 +6,6 @@ import plotly.graph_objects as go
 import sys
 sys.path.append("..")
 
-from Home import make_klantvraag_scatter_b2b, make_klantvraag_scatter_b2c
 from widgets import *
 
 ss = st.session_state

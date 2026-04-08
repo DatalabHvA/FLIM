@@ -5,7 +5,6 @@ import plotly.express as px
 import sys
 sys.path.append("..")
 
-from Home import get_levzeker
 from widgets import *
 
 st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
