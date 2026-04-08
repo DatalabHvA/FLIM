@@ -398,7 +398,7 @@ with st.expander("**4. Employer branding**"):
     st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
     st.markdown("""
                 <div style="
-                    font-size: 20px;
+                    font-size: 26px;
                     font-style: italic;
                     text-align: center;
                     margin: 3rem 1rem;
@@ -410,7 +410,7 @@ with st.expander("**4. Employer branding**"):
                 Juist in een sector waar de concurrentie op personeel groot is, wordt onderscheidend vermogen op de arbeidsmarkt een strategische noodzaak. Duurzaamheid en maatschappelijke verantwoordelijkheid worden vooral voor de jongere generaties steeds vaker een harde eis in hun loopbaankeuze. Uit onder meer de [Deloitte Global Millennial Survey (2024)](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html) blijkt dat Millennials en Generatie Z verwachten dat bedrijven actief bijdragen aan maatschappelijke en ecologische vraagstukken. Zingeving en impact wegen daarbij voor veel werkzoekenden zwaarder dan salaris of functietitel. Ook recent onderzoek van [Gallup (2023)](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf) en [PwC (2024)](https://www.pwc.com.tr/global-workforce-sustainability-study-2024)  laat zien dat betekenisvol werk en authentieke duurzaamheidsambities bijdragen aan hogere betrokkenheid en langer behoud van jong talent.
                 
                 <div style="
-                    font-size: 20px;
+                    font-size: 26px;
                     font-style: italic;
                     text-align: center;
                     margin: 3rem 1rem;
