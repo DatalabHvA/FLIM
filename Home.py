@@ -48,13 +48,14 @@ st.markdown(
 # ---------- Session state ----------
 ss = st.session_state
 ss.setdefault("events_epoch", 0)       # to invalidate plotly_events widget state
-log_event("Home", "page_load")
 
 # Navigation guard — must run before any component renders
 if ss.get("_navigate_to"):
     target = ss["_navigate_to"]
     del ss["_navigate_to"]
     st.switch_page(target)
+
+log_event("Home", "page_load")
 
 if 'prijzen_df' not in ss:
     df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='Data per factor (incl kwal)')
