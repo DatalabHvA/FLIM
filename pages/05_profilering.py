@@ -110,7 +110,7 @@ with st.expander("**1. Bewijslaag**"):
         </a>
 
         <a href="https://greenguard.nl/" target="_blank">
-        <img src="https://www.buildingenclosureonline.com/ext/resources/ARWWCA/Breaking-News-2017/10-4-17-Kingspan.jpg?1507124114"
+        <img src="https://climatecoating.nl/cc-content/uploads/2023/01/ul-greenguard-gold-vector-logo.svg"
         style="max-width:160px; max-height:110px; object-fit:contain;">
         </a>
 
