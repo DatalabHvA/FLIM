@@ -10,6 +10,7 @@ from widgets import *
 st.set_page_config(page_title="Leveringszekerheid • Wereldkaart", layout="wide")
 
 ss = st.session_state
+init_session_state()
 log_event("Leveringszekerheid", "page_load")
 
 st.markdown(

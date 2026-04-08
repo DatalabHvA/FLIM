@@ -19,6 +19,7 @@ COMMON_LAYOUT = dict(
 CHART_HEIGHT = 320
 
 ss = st.session_state
+init_session_state()
 st.set_page_config(page_title="Prijsontwikkelingen", layout="wide")
 log_event("Prijsstijgingen", "page_load")
 

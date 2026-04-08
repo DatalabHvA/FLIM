@@ -12,6 +12,48 @@ ss = st.session_state
 if "session_id" not in ss:
     ss.session_id = str(uuid.uuid4())
 
+def init_session_state():
+    """Initialize all session state data. Call at the top of every page."""
+    if 'prijzen_df' not in ss:
+        df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='Data per factor (incl kwal)')
+        df1['Factor'] = df1['Factor'].ffill()
+        df1 = df1.loc[lambda d: d.Factor == 'Prijsstijgingen']
+        targets = set(df1.loc[df1['Data gebruikt'] == 'Ja']['ID'].dropna().unique().astype(int).astype(str))
+        targets.add('ID')
+        prijzen_indices = pd.read_excel('data/prijzen.xlsx').columns
+        prijzen_indices = pd.Series(prijzen_indices).apply(lambda x: str(x).split('.')[0])
+        indices = [i for i, x in enumerate(prijzen_indices) if str(x) in targets]
+        ss.prijzen_df = pd.read_excel('data/prijzen.xlsx', skiprows=1).iloc[:, indices]
+        ss.prijzen_df.columns = pd.Series(ss.prijzen_df.columns).apply(lambda x: x.split('.')[0])
+    if 'geo_df' not in ss:
+        ss.geo_df = pd.read_excel('data/material_market_share.xlsx').loc[lambda d: d.market_share > 0.03]
+    if 'wgi_df' not in ss:
+        ss.wgi_df = pd.read_excel('data/wgi_governance_scores_2023_with_iso3.xlsx')
+    if 'klantvraag_df_b2c' not in ss:
+        ss.klantvraag_df_b2c = pd.DataFrame({'Jaar': [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                                             'Traditionele meubels': [100, 105.0, 110.1, 115.6, 121.3, 127.3, 133.6, 140.2],
+                                             'Duurzame meubels': [100, 110.3, 121.7, 134.2, 148.0, 163.3, 180.1, 198.6]})
+    if 'klantvraag_df_b2b' not in ss:
+        ss.klantvraag_df_b2b = pd.DataFrame({'Jaar': [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                                             'Traditionele meubels': [100, 105.0, 110.1, 115.6, 121.3, 127.3, 133.6, 140.2],
+                                             'Duurzame meubels': [100, 110.1, 121.2, 133.5, 146.9, 161.8, 178.1, 196.]})
+    if 'klantvraag_overheid_df' not in ss:
+        ss.klantvraag_overheid_df = pd.DataFrame({'years': [2020, 2030, 2050],
+                                                  'normale': [90, 50, 0],
+                                                  'circulair': [10, 50, 100]})
+    if 'personeel_df' not in ss:
+        ss.personeel_df = pd.DataFrame({'Categorie': ['Global Gen Z', 'Global millennials', 'Nederlandse Gen Z', 'Nederlands millennials'],
+                                        'Opdracht_project': [0.5, 0.43, 0.41, 0.31],
+                                        'Werkgever': [0.44, 0.4, 0.36, 0.29]})
+    if 'selected_materiaal_value' not in ss:
+        ss.selected_materiaal_value = 'Katoen'
+    if 'selected_materials_value' not in ss:
+        ss.selected_materials_value = ['Hout - Multiplex', 'Polyurethaan', 'Wol', 'RVS 305']
+    if 'df_now_prijs' not in ss:
+        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
+    if 'df_now_lev' not in ss:
+        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+
 # --- Google Sheets logging ---
 _SHEET_NAME = "FLIM log"
 _TAB_NAME = "Blad1"

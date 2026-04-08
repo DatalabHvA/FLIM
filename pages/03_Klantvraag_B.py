@@ -9,6 +9,7 @@ sys.path.append("..")
 from widgets import *
 
 ss = st.session_state
+init_session_state()
 log_event("Klantvraag", "page_load")
 
 st.set_page_config(page_title="Klantvraag B2B/B2C • Analyse", layout="wide")
