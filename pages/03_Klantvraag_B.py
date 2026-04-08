@@ -279,7 +279,7 @@ if ss.klanttype_value == 'Overheid':
 
     # optioneel: iets netter tonen
     st.caption(f"Huidige MVOI eisen meubilair: {len(df_show)} criteria")
-    st.dataframe(df_show, use_container_width=True, hide_index=True)
+    st.dataframe(df_show, width='stretch', hide_index=True)
 
     st.markdown("""
     Bezoek voor verdere details de [MVI-criteriatool website](https://www.mvicriteria.nl/nl/webtool#//23/2//nl)

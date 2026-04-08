@@ -3,7 +3,6 @@ import numpy as np
 import json
 import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
 import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
@@ -449,11 +448,11 @@ def tile_wetgeving(target_page: str):
 
     # --- Niet-klikbare "knop" (eigenlijk gewoon een <div>) ---
     if (ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte"):
-        components.html(generate_badge(9), height=170)
-        components.html(generate_badge2(12), height=160)
-    else: 
-        components.html(generate_badge(8), height=170)
-        components.html(generate_badge2(11), height=160)
+        st.iframe(generate_badge(9), height=170)
+        st.iframe(generate_badge2(12), height=160)
+    else:
+        st.iframe(generate_badge(8), height=170)
+        st.iframe(generate_badge2(11), height=160)
     if st.button("Bekijk relevante wet- en regelgeving", width = 'stretch'):
         st.switch_page(target_page)
 

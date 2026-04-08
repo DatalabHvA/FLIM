@@ -119,6 +119,6 @@ fig.update_layout(
     height=600, margin=dict(l=10, r=10, t=30, b=10),
     coloraxis_colorbar=dict(title="Zekerheid"),
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 st.caption("Bron exportdata: UN Comtrade. Marktaandelen zijn berekend op basis van exportwaarde naar Nederland.")
