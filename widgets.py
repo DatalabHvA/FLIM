@@ -16,14 +16,10 @@ if "session_id" not in ss:
 _SHEET_NAME = "FLIM log"
 _TAB_NAME = "Blad1"
 
-@st.cache_resource(show_spinner=False)
-def _get_sheet():
-    client = gspread.service_account_from_dict(dict(st.secrets["gcp_service_account"]))
-    return client.open(_SHEET_NAME).worksheet(_TAB_NAME)
-
 def log_event(page: str, event_type: str, value: str = ""):
     try:
-        sheet = _get_sheet()
+        client = gspread.service_account_from_dict(dict(st.secrets["gcp_service_account"]))
+        sheet = client.open(_SHEET_NAME).worksheet(_TAB_NAME)
         sheet.append_row([datetime.utcnow().isoformat(), ss.session_id, page, event_type, value])
     except Exception:
         pass  # never crash the app due to logging
