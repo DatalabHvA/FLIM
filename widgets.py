@@ -8,12 +8,10 @@ import plotly.graph_objects as go
 
 ss = st.session_state
 
-# --- Session ID ---
-if "session_id" not in ss:
-    ss.session_id = str(uuid.uuid4())
-
 def init_session_state():
     """Initialize all session state data. Call at the top of every page."""
+    if "session_id" not in ss:
+        ss.session_id = str(uuid.uuid4())
     if 'prijzen_df' not in ss:
         df1 = pd.read_excel('data/Analyse factoren.xlsx', sheet_name='Data per factor (incl kwal)')
         df1['Factor'] = df1['Factor'].ffill()
