@@ -110,11 +110,14 @@ def bar_colors(values):
 
 @st.cache_data(show_spinner=False)
 def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
-    colors = colors = ["#2ca02c" if v >= 0.6 else "#ffbf00" if v >= 0.45 else "#d62728" for v in y]
+    colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v >= 0.6 else "#ffbf00" if v >= 0.45 else "#d62728" for v in y]
+    y_plot = tuple(0.05 if pd.isna(v) else v for v in y)
+    hover = ["Geen data beschikbaar" if pd.isna(v) else f"Zekerheid: {v:.2f}" for v in y]
 
     fig = go.Figure(
-        data=[go.Bar(x=list(x_labels), y=list(y), marker_color=colors,
-                     hovertemplate="<b>%{x}</b><br>Zekerheid: %{y:.1f}<extra></extra>")]
+        data=[go.Bar(x=list(x_labels), y=list(y_plot), marker_color=colors,
+                     customdata=hover,
+                     hovertemplate="<b>%{x}</b><br>%{customdata}<extra></extra>")]
     )
     fig.update_layout(
         xaxis_title=None, yaxis_title="Index", showlegend=False,
@@ -317,14 +320,16 @@ def tile_prijsstijgingen(target_page):
     st.caption(" ")
     # --- build the bar chart (any way you like) ---
     x = tuple(ss.df_now_prijs["materiaal"].tolist())
-    y = tuple((ss.df_now_prijs["risk2"]*100).tolist())
-    
-    colors = ["#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y]
+    y_raw = (ss.df_now_prijs["risk2"] * 100).tolist()
+    colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y_raw]
+    y = tuple(5 if pd.isna(v) else v for v in y_raw)
+    hover = ["Geen data beschikbaar" if pd.isna(v) else f"Stijging: {v:.1f}%" for v in y_raw]
 
     fig = go.Figure(
         go.Bar(
             x=x, y=y, marker_color=colors,
-            hovertemplate="<b>%{x}</b><br>Stijging: %{y:.1f}%<extra></extra>"
+            customdata=hover,
+            hovertemplate="<b>%{x}</b><br>%{customdata}<extra></extra>"
         )
     )
     fig.update_layout(height=CHART_HEIGHT, 

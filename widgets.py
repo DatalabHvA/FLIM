@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 import textwrap
 
@@ -5,13 +6,21 @@ ss = st.session_state
 
 @st.cache_data(show_spinner=False)
 def get_prijs_kpi(materials_list):
-    variance = ss.prijzen_df.drop('Jaar', axis = 1).std().rename('risk2').reset_index().rename(columns = {'index' : 'materiaal'})
-    return variance.loc[lambda d: d['materiaal'].isin(materials_list)]
+    variance = ss.prijzen_df.drop('Jaar', axis=1).std().rename('risk2').reset_index().rename(columns={'index': 'materiaal'})
+    result = variance.loc[lambda d: d['materiaal'].isin(materials_list)]
+    missing = set(materials_list) - set(result['materiaal'])
+    if missing:
+        result = pd.concat([result, pd.DataFrame({'materiaal': list(missing), 'risk2': float('nan')})], ignore_index=True)
+    return result
 
 @st.cache_data(show_spinner=False)
 def get_levzeker(materials_list):
-        wgi = ss.geo_df.merge(ss.wgi_df, on = 'ISO').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
-        return wgi.reset_index().loc[lambda d: d['material'].isin(materials_list)][['material','wgi_score']].rename(columns = {'wgi_score' : 'supply_risk'})
+    wgi = ss.geo_df.merge(ss.wgi_df, on='ISO').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
+    result = wgi.reset_index().loc[lambda d: d['material'].isin(materials_list)][['material', 'wgi_score']].rename(columns={'wgi_score': 'supply_risk'})
+    missing = set(materials_list) - set(result['material'])
+    if missing:
+        result = pd.concat([result, pd.DataFrame({'material': list(missing), 'supply_risk': float('nan')})], ignore_index=True)
+    return result
 
 
 def widget_branche():
@@ -102,7 +111,7 @@ def widget_klanttype():
     )
 
 def widget_materialen():
-    OPTIONS = list(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()) | set(ss.geo_df['material'].unique()))
+    OPTIONS = sorted(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()) | set(ss.geo_df['material'].unique()))
 
     if "selected_materials_value" not in ss:
         ss.selected_materials_value = ['Hout - Multiplex', 'Polyurethaan', 'Wol', 'RVS 305']
@@ -128,7 +137,7 @@ def widget_materialen():
 
 def widget_materiaal_prijs():
 
-    OPTIONS_MATERIAAL = list(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()))
+    OPTIONS_MATERIAAL = sorted(set(ss.prijzen_df.drop("Jaar", axis=1).columns.tolist()))
 
     if 'selected_materiaal_value' not in ss:
         ss.selected_materiaal_value = 'Katoen'
@@ -146,7 +155,7 @@ def widget_materiaal_prijs():
 
 def widget_materiaal_lev():
 
-    OPTIONS_MATERIAAL = list(set(ss.geo_df['material'].unique()))
+    OPTIONS_MATERIAAL = sorted(set(ss.geo_df['material'].unique()))
 
     if 'selected_materiaal_value' not in ss:
         ss.selected_materiaal_value = 'Katoen'
