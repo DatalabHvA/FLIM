@@ -85,7 +85,7 @@ ci_lower = y_fit - std_dev
 col1, col2 = st.columns(2)
 with col1:
     with st.container(border=True):
-        st.metric("Trend (helling)", f"{model.params[1]:.2f} PPI punten per jaar")
+        st.metric("Trend (helling)", f"{model.params.iloc[1]:.2f} PPI punten per jaar")
         st.write(
             f"De helling toont de gemiddelde stijging van de prijs van {ss.selected_materiaal_value} "
             "in PPI-punten per jaar. Startindexwaarde (2015) = 100."
