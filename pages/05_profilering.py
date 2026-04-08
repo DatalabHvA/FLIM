@@ -266,7 +266,7 @@ with st.expander("**1. Bewijslaag**"):
         cols1 = st.columns([6,1])
         with cols1[0]:
             st.markdown("""
-            **EU Ecolabel** - Een transnationaal toegepast Europees milieukeurmerk en tevens strenge norm voor milieuvriendelijke producten waaronder meubilair. Dit keurmerk geeft aan dat een product of dienst een verminderde milieu-impact heeft over diens gehele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade gedurende deze levenscyclus te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [website](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
+            **EU Ecolabel** - Een transnationaal toegepast Europees milieukeurmerk en tevens strenge norm voor milieuvriendelijke producten waaronder meubilair. Dit keurmerk geeft aan dat een product of dienst een verminderde milieu-impact heeft over diens gehele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade gedurende deze levenscyclus te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [EU Ecolabel](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
                         """)
         with cols1[1]:
             st.image('assets/ecolabel.png')
@@ -277,13 +277,13 @@ with st.expander("**1. Bewijslaag**"):
 
         with cols2[1]:
                     st.markdown("""
-            **OEKO‑TEX** - Label voor stoffen, schuimen en bekledingsmaterialen als bio-katoen en leder dat garandeert dat geen schadelijke grondstoffen worden gebruikt, zoals zware metalen, pesticiden, formaldehyde of kankerverwekkende kleurstoffen. Het richt zich vooral op gezondheid en veiligheid voor de gebruiker, met name bij direct huidcontact. Meer lezen: [website](https://www.oeko-tex.com/)
+            **OEKO‑TEX** - Label voor stoffen, schuimen en bekledingsmaterialen als bio-katoen en leder dat garandeert dat geen schadelijke grondstoffen worden gebruikt, zoals zware metalen, pesticiden, formaldehyde of kankerverwekkende kleurstoffen. Het richt zich vooral op gezondheid en veiligheid voor de gebruiker, met name bij direct huidcontact. Meer lezen: [OEKO-TEX](https://www.oeko-tex.com/)
                         """)
 
         cols3 = st.columns([6,1])
         with cols3[0]:
             st.markdown("""
-            **Blauer Engel** - Milieukeurmerk voor producten en diensten die uit Duitsland komen of daar verkocht worden met lage emissies en een lage milieubelasting. “Binnen de interieursector vind je het keurmerk vooral op meubels, vloerbedekking en verf. Het richt zich sterk op binnenluchtkwaliteit en stelt strenge eisen aan emissies van schadelijke stoffen zoals VOS en formaldehyde. Producten met dit label dragen aantoonbaar bij aan een gezondere  leefomgeving. Meer lezen: [website](https://www.blauer-engel.de/) of [Sustanea.com](https://www.sustanea.com/blogs/blog-1-duurzaamheidscertificaten-uitgelegd-welke-certificaten-zijn-er-in-de-interieurbranche-en)
+            **Blauer Engel** - Milieukeurmerk voor producten en diensten die uit Duitsland komen of daar verkocht worden met lage emissies en een lage milieubelasting. “Binnen de interieursector vind je het keurmerk vooral op meubels, vloerbedekking en verf. Het richt zich sterk op binnenluchtkwaliteit en stelt strenge eisen aan emissies van schadelijke stoffen zoals VOS en formaldehyde. Producten met dit label dragen aantoonbaar bij aan een gezondere leefomgeving. Meer lezen: [Blauer Engel](https://www.blauer-engel.de/) of [Sustanea.com](https://www.sustanea.com/blogs/blog-1-duurzaamheidscertificaten-uitgelegd-welke-certificaten-zijn-er-in-de-interieurbranche-en)
                         """)
         with cols3[1]:
             st.image('assets/blauwer_engel.jpg')
@@ -297,7 +297,7 @@ with st.expander("**1. Bewijslaag**"):
         with cols4[1]:
             st.markdown("""
             **WELL Building Standard** - Internationaal certificeringssysteem voor gezonde gebouwen dat zich richt op het welzijn van gebruikers, met aandacht voor onder andere luchtkwaliteit, materialen, licht, comfort en ergonomie. Binnen de meubel- en interieurbranche is WELL relevant omdat meubels, stoffering en afwerkingsmaterialen direct invloed hebben op binnenluchtkwaliteit en gebruikersgezondheid. Producten met lage emissies, veilige materialen en ergonomisch ontwerp dragen bij aan WELL-credits binnen gebouwcertificering. Dit maakt het label toepasbaar bij projectinrichting, kantoorconcepten en zorg- en onderwijsomgevingen waar gezondheid centraal staat. 
-            Meer lezen: [website](https://www.wellcertified.com/)
+            Meer lezen: [WELL](https://www.wellcertified.com/)
             """)
         
         
@@ -309,7 +309,7 @@ with st.expander("**1. Bewijslaag**"):
             binnenmilieu en circulariteit. Meubilair en interieur kunnen bijdragen via lage emissies, 
             hergebruikte materialen, losmaakbaarheid en levensduur. Dit maakt BREEAM relevant voor 
             circulair ontwerp en duurzame inkoop. 
-            Meer lezen: [website](https://www.breeam.com/)
+            Meer lezen: [BREEAM](https://www.breeam.com/)
             """)
         with cols5[1]:
             st.image('assets/blauwer_engel.jpg')
