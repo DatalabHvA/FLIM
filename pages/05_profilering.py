@@ -266,7 +266,7 @@ with st.expander("**1. Bewijslaag**"):
         cols1 = st.columns([6,1])
         with cols1[0]:
             st.markdown("""
-            **EU Ecolabel** - Een transnationaal toegepast Europees milieukeurmerk en tevens strenge norm voor milieuvriendelijke producten waaronder meubilair. Dit keurmerk geeft aan dat een product of dienst een verminderde milieu-impact heeft over diens gehele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade gedurende deze levenscyclus te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [website](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
+            **EU Ecolabel** - Een transnationaal toegepast Europees milieukeurmerk en tevens strenge norm voor milieuvriendelijke producten waaronder meubilair. Dit keurmerk geeft aan dat een product of dienst een verminderde milieu-impact heeft over diens gehele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade gedurende deze levenscyclus te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [EU Ecolabel](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
                         """)
         with cols1[1]:
             st.image('assets/ecolabel.png')
@@ -277,17 +277,40 @@ with st.expander("**1. Bewijslaag**"):
 
         with cols2[1]:
                     st.markdown("""
-            **OEKO‑TEX** - Label voor stoffen, schuimen en bekledingsmaterialen als bio-katoen en leder dat garandeert dat geen schadelijke grondstoffen worden gebruikt, zoals zware metalen, pesticiden, formaldehyde of kankerverwekkende kleurstoffen. Het richt zich vooral op gezondheid en veiligheid voor de gebruiker, met name bij direct huidcontact. Meer lezen: [website](https://www.oeko-tex.com/)
+            **OEKO‑TEX** - Label voor stoffen, schuimen en bekledingsmaterialen als bio-katoen en leder dat garandeert dat geen schadelijke grondstoffen worden gebruikt, zoals zware metalen, pesticiden, formaldehyde of kankerverwekkende kleurstoffen. Het richt zich vooral op gezondheid en veiligheid voor de gebruiker, met name bij direct huidcontact. Meer lezen: [OEKO-TEX](https://www.oeko-tex.com/)
                         """)
 
         cols3 = st.columns([6,1])
         with cols3[0]:
             st.markdown("""
-            **Blauer Engel** - Milieukeurmerk voor producten en diensten die uit Duitsland komen of daar verkocht worden met lage emissies en een lage milieubelasting. “Binnen de interieursector vind je het keurmerk vooral op meubels, vloerbedekking en verf. Het richt zich sterk op binnenluchtkwaliteit en stelt strenge eisen aan emissies van schadelijke stoffen zoals VOS en formaldehyde. Producten met dit label dragen aantoonbaar bij aan een gezondere  leefomgeving. Meer lezen: [website](https://www.blauer-engel.de/) of [Sustanea.com](https://www.sustanea.com/blogs/blog-1-duurzaamheidscertificaten-uitgelegd-welke-certificaten-zijn-er-in-de-interieurbranche-en)
+            **Blauer Engel** - Milieukeurmerk voor producten en diensten die uit Duitsland komen of daar verkocht worden met lage emissies en een lage milieubelasting. “Binnen de interieursector vind je het keurmerk vooral op meubels, vloerbedekking en verf. Het richt zich sterk op binnenluchtkwaliteit en stelt strenge eisen aan emissies van schadelijke stoffen zoals VOS en formaldehyde. Producten met dit label dragen aantoonbaar bij aan een gezondere leefomgeving. Meer lezen: [Blauer Engel](https://www.blauer-engel.de/) of [Sustanea.com](https://www.sustanea.com/blogs/blog-1-duurzaamheidscertificaten-uitgelegd-welke-certificaten-zijn-er-in-de-interieurbranche-en)
                         """)
         with cols3[1]:
             st.image('assets/blauwer_engel.jpg')
 
+    
+
+        # RIJ 4 — WELL
+        cols4 = st.columns([1,6])
+        with cols4[0]:
+            st.image("https://buildingrevolution.nl/wp-content/uploads/2021/11/well-building-institute-logo.jpg")
+        with cols4[1]:
+            st.markdown("""
+            **WELL Building Standard** - Internationaal certificeringssysteem voor gezonde gebouwen dat zich richt op het welzijn van gebruikers, met aandacht voor onder andere luchtkwaliteit, materialen, licht, comfort en ergonomie. Binnen de meubel- en interieurbranche is WELL relevant omdat meubels, stoffering en afwerkingsmaterialen direct invloed hebben op binnenluchtkwaliteit en gebruikersgezondheid. Producten met lage emissies, veilige materialen en ergonomisch ontwerp dragen bij aan WELL-credits binnen gebouwcertificering. Dit maakt het label toepasbaar bij projectinrichting, kantoorconcepten en zorg- en onderwijsomgevingen waar gezondheid centraal staat. 
+            Meer lezen: [WELL](https://www.wellcertified.com/)
+            """)
+        
+        
+        # RIJ 5 — BREEAM
+        cols5 = st.columns([6,1])
+        with cols5[0]:
+            st.markdown("""
+            **BREEAM** - Internationaal duurzaamheidskeurmerk voor gebouwen dat prestaties beoordeelt op thema’s zoals materialen, gezondheid, circulariteit en milieubelasting. Binnen de meubel- en interieurbranche is BREEAM relevant omdat meubilair en interieur bijdragen aan credits voor materiaalgebruik, losmaakbaarheid, levensduur en emissies naar de binnenlucht. Circulair ontworpen meubels, hergebruikte materialen en producten met lage milieubelasting helpen bij het behalen van BREEAM-scores in nieuwbouw en renovatieprojecten. Hierdoor is het label breed toepasbaar bij projectinrichting, aanbestedingen en duurzame vastgoedontwikkeling. Meer lezen: [BREEAM](https://www.breeam.com/)
+            """)
+        with cols5[1]:
+            st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/BREEAM_logo.svg/3840px-BREEAM_logo.svg.png")
+            
+        
     if ss.klanttype_value == 'B2B':
         with st.container(border = True):
             st.subheader('Duurzaamheidsindices')
@@ -311,7 +334,6 @@ with st.expander("**1. Bewijslaag**"):
         st.subheader('Environmental Product Declaration (EPD)')
         st.markdown("""
                     EPD’s bieden onderbouwde impactmetingen van producten en materialen op basis van gestandaardiseerde en onafhankelijke methodieken. Ze maken de milieuprestaties van producten transparant en onderling vergelijkbaar, wat essentieel is voor onderbouwde keuzes in ontwerp, inkoop en aanbestedingen. Daarmee vormen EPD’s een betrouwbaar fundament voor zowel technische besluitvorming als externe communicatie.
-                    -	<Triboo EPD>
                     -	Meubelmaker Casala heeft meerdere EPD’s voor hun producten gepubliceerd, zoals hun Lynx-model stoelen: [pdf](https://meinema.nl/ECOPaspoort/casala-lynx-epd.pdf) 
                     -	Het Spaanse Steelcase S.A., is een ontwerper, producent en leverancier van interieurs en meubels die een EPD-verklaring op laten stellen voor de Lares bank (1800x1600mm): [pdf](https://www.environdec.com/library/epd7395)
                     -	Leverancier van onderwijsmaterialen, meubels en creatieve leermiddelen Lekolar AB uit Zweden heeft een EPD op laten stellen van hun 12:38 tafel: [pdf](https://www.environdec.com/library/epd8173)
@@ -376,7 +398,7 @@ with st.expander("**4. Employer branding**"):
     st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
     st.markdown("""
                 <div style="
-                    font-size: 32px;
+                    font-size: 26px;
                     font-style: italic;
                     text-align: center;
                     margin: 3rem 1rem;
@@ -388,7 +410,7 @@ with st.expander("**4. Employer branding**"):
                 Juist in een sector waar de concurrentie op personeel groot is, wordt onderscheidend vermogen op de arbeidsmarkt een strategische noodzaak. Duurzaamheid en maatschappelijke verantwoordelijkheid worden vooral voor de jongere generaties steeds vaker een harde eis in hun loopbaankeuze. Uit onder meer de [Deloitte Global Millennial Survey (2024)](https://www.deloitte.com/nl/nl/services/consulting/research/2024-gen-z-and-millennial-survey.html) blijkt dat Millennials en Generatie Z verwachten dat bedrijven actief bijdragen aan maatschappelijke en ecologische vraagstukken. Zingeving en impact wegen daarbij voor veel werkzoekenden zwaarder dan salaris of functietitel. Ook recent onderzoek van [Gallup (2023)](https://advisor.visualcapitalist.com/wp-content/uploads/2023/06/state-of-the-global-workplace-2023-download.pdf) en [PwC (2024)](https://www.pwc.com.tr/global-workforce-sustainability-study-2024)  laat zien dat betekenisvol werk en authentieke duurzaamheidsambities bijdragen aan hogere betrokkenheid en langer behoud van jong talent.
                 
                 <div style="
-                    font-size: 32px;
+                    font-size: 26px;
                     font-style: italic;
                     text-align: center;
                     margin: 3rem 1rem;
