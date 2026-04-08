@@ -5,7 +5,6 @@ import streamlit as st
 import textwrap
 import gspread
 import plotly.graph_objects as go
-from google.oauth2.service_account import Credentials
 
 ss = st.session_state
 
@@ -14,14 +13,12 @@ if "session_id" not in ss:
     ss.session_id = str(uuid.uuid4())
 
 # --- Google Sheets logging ---
-_SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 _SHEET_NAME = "FLIM log"
 _TAB_NAME = "Blad1"
 
 @st.cache_resource(show_spinner=False)
 def _get_sheet():
-    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=_SCOPES)
-    client = gspread.authorize(creds)
+    client = gspread.service_account_from_dict(dict(st.secrets["gcp_service_account"]))
     return client.open(_SHEET_NAME).worksheet(_TAB_NAME)
 
 def log_event(page: str, event_type: str, value: str = ""):
