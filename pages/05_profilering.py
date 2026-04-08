@@ -305,8 +305,7 @@ with st.expander("**1. Bewijslaag**"):
         cols5 = st.columns([6,1])
         with cols5[0]:
             st.markdown("""
-            **BREEAM** - Internationaal duurzaamheidskeurmerk voor gebouwen dat prestaties beoordeelt op thema’s zoals materialen, gezondheid, circulariteit en milieubelasting. Binnen de meubel- en interieurbranche is BREEAM relevant omdat meubilair en interieur bijdragen aan credits voor materiaalgebruik, losmaakbaarheid, levensduur en emissies naar de binnenlucht. Circulair ontworpen meubels, hergebruikte materialen en producten met lage milieubelasting helpen bij het behalen van BREEAM-scores in nieuwbouw en renovatieprojecten. Hierdoor is het label breed toepasbaar bij projectinrichting, aanbestedingen en duurzame vastgoedontwikkeling. Meer lezen:
-            Meer lezen: [BREEAM](https://www.breeam.com/)
+            **BREEAM** - Internationaal duurzaamheidskeurmerk voor gebouwen dat prestaties beoordeelt op thema’s zoals materialen, gezondheid, circulariteit en milieubelasting. Binnen de meubel- en interieurbranche is BREEAM relevant omdat meubilair en interieur bijdragen aan credits voor materiaalgebruik, losmaakbaarheid, levensduur en emissies naar de binnenlucht. Circulair ontworpen meubels, hergebruikte materialen en producten met lage milieubelasting helpen bij het behalen van BREEAM-scores in nieuwbouw en renovatieprojecten. Hierdoor is het label breed toepasbaar bij projectinrichting, aanbestedingen en duurzame vastgoedontwikkeling. Meer lezen: [BREEAM](https://www.breeam.com/)
             """)
         with cols5[1]:
             st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/BREEAM_logo.svg/3840px-BREEAM_logo.svg.png")
