@@ -296,9 +296,7 @@ with st.expander("**1. Bewijslaag**"):
             st.image('assets/blauwer_engel.jpg')
         with cols4[1]:
             st.markdown("""
-            **WELL Building Standard** - Certificering die zich richt op gezondheid en welzijn van gebruikers van gebouwen. 
-            Binnen de meubel- en interieurbranche is WELL relevant door eisen aan binnenluchtkwaliteit, materiaalemissies, 
-            comfort en ergonomie. Producten met lage emissies en gezonde materialen dragen bij aan WELL-punten. 
+            **WELL Building Standard** - Internationaal certificeringssysteem voor gezonde gebouwen dat zich richt op het welzijn van gebruikers, met aandacht voor onder andere luchtkwaliteit, materialen, licht, comfort en ergonomie. Binnen de meubel- en interieurbranche is WELL relevant omdat meubels, stoffering en afwerkingsmaterialen direct invloed hebben op binnenluchtkwaliteit en gebruikersgezondheid. Producten met lage emissies, veilige materialen en ergonomisch ontwerp dragen bij aan WELL-credits binnen gebouwcertificering. Dit maakt het label toepasbaar bij projectinrichting, kantoorconcepten en zorg- en onderwijsomgevingen waar gezondheid centraal staat. 
             Meer lezen: [website](https://www.wellcertified.com/)
             """)
         
