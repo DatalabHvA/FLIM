@@ -293,7 +293,7 @@ with st.expander("**1. Bewijslaag**"):
         # RIJ 4 — WELL
         cols4 = st.columns([1,6])
         with cols4[0]:
-            st.image('assets/blauwer_engel.jpg')
+            st.image("https://buildingrevolution.nl/wp-content/uploads/2021/11/well-building-institute-logo.jpg")
         with cols4[1]:
             st.markdown("""
             **WELL Building Standard** - Internationaal certificeringssysteem voor gezonde gebouwen dat zich richt op het welzijn van gebruikers, met aandacht voor onder andere luchtkwaliteit, materialen, licht, comfort en ergonomie. Binnen de meubel- en interieurbranche is WELL relevant omdat meubels, stoffering en afwerkingsmaterialen direct invloed hebben op binnenluchtkwaliteit en gebruikersgezondheid. Producten met lage emissies, veilige materialen en ergonomisch ontwerp dragen bij aan WELL-credits binnen gebouwcertificering. Dit maakt het label toepasbaar bij projectinrichting, kantoorconcepten en zorg- en onderwijsomgevingen waar gezondheid centraal staat. 
