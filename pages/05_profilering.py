@@ -266,7 +266,7 @@ with st.expander("**1. Bewijslaag**"):
         cols1 = st.columns([6,1])
         with cols1[0]:
             st.markdown("""
-            **EU Ecolabel** - Een transnationaal toegepast label is het Europese milieukeurmerk EU Ecolabel. Dit geeft aan dat een product of dienst een verminderde milieu-impact heeft over de hele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Het is een strenge norm voor milieuverantwoord meubilair, die de gehele levensduur meeneemt. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade vanaf de productie tot aan de verwijdering te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [website](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
+            **EU Ecolabel** - Een transnationaal toegepast Europees milieukeurmerk en tevens strenge norm voor milieuvriendelijke producten waaronder meubilair. Dit keurmerk geeft aan dat een product of dienst een verminderde milieu-impact heeft over diens gehele levenscyclus, van grondstofwinning tot productie, gebruik en afvalfase. Deze aanduiding garandeert dat een meubelstuk, zoals een stoel, voldoet aan strenge criteria om de milieuschade gedurende deze levenscyclus te beperken. “ bronHet label hanteert strenge en wetenschappelijk onderbouwde criteria en is breed toepasbaar als herkenbaar consumentenlabel binnen de EU. Meer lezen: [website](https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en)
                         """)
         with cols1[1]:
             st.image('assets/ecolabel.png')
