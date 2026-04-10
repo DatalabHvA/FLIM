@@ -327,10 +327,12 @@ def tile_prijsstijgingen(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_materiaal_value = mat
-            log_event("Home", "bar_click_prijsstijgingen", mat)
-            ss["_navigate_to"] = target_page
-            st.rerun()
+            row = ss.df_now_prijs[ss.df_now_prijs['materiaal'] == mat]
+            if not row.empty and not pd.isna(row.iloc[0]['risk2']):
+                ss.selected_materiaal_value = mat
+                log_event("Home", "bar_click_prijsstijgingen", mat)
+                ss["_navigate_to"] = target_page
+                st.rerun()
     st.caption('De balken tonen de veranderingen in de prijzen van de door u gekozen materialen. Dit kan een langdurige of kortstondige veranderingen zijn.')
 
 def tile_leveringszekerheid(target_page):
@@ -355,10 +357,12 @@ def tile_leveringszekerheid(target_page):
     if clicks:
         mat = clicks[0].get("x")
         if mat:
-            ss.selected_materiaal_value = mat
-            log_event("Home", "bar_click_leveringszekerheid", mat)
-            ss["_navigate_to"] = target_page
-            st.rerun()
+            row = ss.df_now_lev[ss.df_now_lev['material'] == mat]
+            if not row.empty and not pd.isna(row.iloc[0]['supply_risk']):
+                ss.selected_materiaal_value = mat
+                log_event("Home", "bar_click_leveringszekerheid", mat)
+                ss["_navigate_to"] = target_page
+                st.rerun()
     st.caption('De balken laten de stabiliteit van de belangrijkste productielanden zien.')
 
 def tile_klantvraag_overheid(target_page: str):
