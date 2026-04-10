@@ -51,18 +51,26 @@ def init_session_state():
         ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
     if 'df_now_lev' not in ss:
         ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+    ensure_start_logged()
 
 # --- Google Sheets logging ---
 _SHEET_NAME = "FLIM log"
 _TAB_NAME = "Blad1"
 
-def log_event(page: str, event_type: str, value: str = ""):
+def log_event(page: str, event_type: str, value: str = "") -> bool:
     try:
         client = gspread.service_account_from_dict(dict(st.secrets["gcp_service_account"]))
         sheet = client.open(_SHEET_NAME).worksheet(_TAB_NAME)
         sheet.append_row([datetime.utcnow().isoformat(), ss.session_id, page, event_type, value])
+        return True
     except Exception:
-        pass  # never crash the app due to logging
+        return False  # never crash the app due to logging
+
+def ensure_start_logged():
+    """Retry logging the session start on every rerun until it succeeds."""
+    if not ss.get("_start_logged"):
+        if log_event("Home", "session_start"):
+            ss._start_logged = True
 
 @st.cache_data(show_spinner=False)
 def get_prijs_kpi(materials_list):
