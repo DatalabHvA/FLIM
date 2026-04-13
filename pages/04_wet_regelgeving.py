@@ -37,8 +37,112 @@ with st.sidebar:
     st.header("Filters")
     widget_omzet()
     widget_klantsegment()
+    widget_materialen()
 
 st.title('Wet- en regelgeving')
+
+# --- Filtered regulation table ---
+
+_EUDR_MATERIALS = [
+    "hout", "eiken", "beuken", "fins vuren", "amerikaans noten", "sparren", "dennen",
+    "osb", "spaanplaat", "mdf", "multiplex", "buigtriplex", "gefineerde multiplex",
+    "textiel", "leer"
+]
+_CBAM_MATERIALS = ["rvs", "aluminium", "gerecycled metaal"]
+_PLASTICS_MATERIALS = [
+    "polyurethaanschuim", "polyether", "gerecycled schuim", "thermoloft",
+    "ldpe", "hdpe", "hd-nsa", " pe ", "zacht pvc", "gerecycled kunststof"
+]
+_REACH_MATERIALS = [
+    "mdf", "spaanplaat", "multiplex", "hpl", "biocomposiet",
+    "schuim", "plastic", "thermoloft", "pvc"
+]
+
+def _any_material_matches(keywords: list) -> bool:
+    selected = [m.lower().replace(" ", "").replace("-", "") for m in ss.get("selected_materials_value", [])]
+    keywords_norm = [kw.lower().replace(" ", "").replace("-", "") for kw in keywords]
+    return any(
+        any(kw in mat for kw in keywords_norm)
+        for mat in selected
+    )
+
+_REGULATIONS = [
+    {
+        "naam": "**ESPR** – Ecodesign for Sustainable Products Regulation",
+        "link": "https://afvalcirculair.nl/circulair-ontwerp/espr/",
+        "toepassing": "Fabrikanten, importeurs en distributeurs van producten op de EU-markt (incl. meubels)",
+        "wanneer": "In werking sinds 18 juli 2024; gefaseerde uitrol vanaf 2026",
+        "show": True,
+    },
+    {
+        "naam": "**DPP** – Digitaal Productpaspoort",
+        "link": "https://afvalcirculair.nl/circulair-ontwerp/digitaal-product-paspoort-dpp/",
+        "toepassing": "Producenten/verkopers; relevant voor reparateurs en circulaire verwerkers",
+        "wanneer": "Verplichting voor meubels vanaf 2027 (in ontwikkeling)",
+        "show": True,
+    },
+    {
+        "naam": "**UPV Meubels** – Uitgebreide Producentenverantwoordelijkheid",
+        "link": "https://afvalcirculair.nl/uitgebreide-producentenverantwoordelijkheid-upv/",
+        "toepassing": "Producenten/importeurs van meubels",
+        "wanneer": "In NL-beleid opgenomen: UPV voor meubels in 2029–2030",
+        "show": True,
+    },
+    {
+        "naam": "**CSRD** / **VSME** – Corporate Sustainability Reporting / Voluntary SME Standard",
+        "link": "https://www.rvo.nl/onderwerpen/csrd",
+        "toepassing": "Grote bedrijven (CSRD); MKB in de keten van CSRD-plichtige klanten (VSME)",
+        "wanneer": "Grote bedrijven: rapportageplichtig 2025. MKB: VSME-standaard gepubliceerd 2024",
+        "show": True,
+    },
+    {
+        "naam": "**Right to Repair** – Richtlijn reparatie van goederen",
+        "link": "https://commission.europa.eu/law/law-topic/consumer-protection-law/directive-repair-goods_en",
+        "toepassing": "Fabrikanten/verkopers van consumentenproducten (incl. meubels bij aanwijzing productgroep)",
+        "wanneer": "In werking juli 2024; omzetting door lidstaten voor juli 2026",
+        "show": True,
+    },
+    {
+        "naam": "**EUDR** – Verordening ontbossingsvrije producten",
+        "link": "https://ondernemersplein.overheid.nl/duurzaam-ondernemen/milieu/verordening-ontbossingsvrije-producten-eudr-wat-betekent-dit-voor-u/",
+        "toepassing": "Bedrijven die hout en houtproducten op de EU-markt brengen",
+        "wanneer": "Toepassing vanaf 30 december 2025",
+        "show": _any_material_matches(_EUDR_MATERIALS),
+    },
+    {
+        "naam": "**CBAM** – Carbon Border Adjustment Mechanism",
+        "link": "https://www.douane.nl/onderwerpen/vgem/milieu/cbam/",
+        "toepassing": "EU-bedrijven die koolstofintensieve producten (staal, aluminium) importeren",
+        "wanneer": "Rapportageplicht sinds okt 2023; financiële verplichting vanaf 2026",
+        "show": _any_material_matches(_CBAM_MATERIALS),
+    },
+    {
+        "naam": "**Circulaire Plastics Norm**",
+        "link": "https://www.internetconsultatie.nl/nationale_circulaire_plastic_norm/b1#sectie-consultatiegegevens",
+        "toepassing": "Producenten/verwerkers van polymeren; meubelfabrikanten die schuim of kunststoffen toepassen",
+        "wanneer": "Vanaf 2027 (gefaseerde invoering)",
+        "show": _any_material_matches(_PLASTICS_MATERIALS),
+    },
+    {
+        "naam": "**REACH** – Registratie, Evaluatie, Autorisatie en Restrictie chemische stoffen",
+        "link": "https://ondernemersplein.overheid.nl/wetten-en-regels/verplichtingen-bij-chemische-stoffen-reach/",
+        "toepassing": "Bedrijven die chemische stoffen produceren, importeren of gebruiken (verf, lijmen, coatings, meubels)",
+        "wanneer": "Sinds 1 juni 2007; doorlopend geüpdatet",
+        "show": _any_material_matches(_REACH_MATERIALS),
+    },
+]
+
+visible = [r for r in _REGULATIONS if r["show"]]
+
+if visible:
+    st.subheader("Relevante wet- en regelgeving voor uw materiaalkeuze")
+    rows = "| Wet / Regeling | Van toepassing op | Per wanneer |\n|---|---|---|\n"
+    for r in visible:
+        rows += f"| [{r['naam']}]({r['link']}) | {r['toepassing']} | {r['wanneer']} |\n"
+    st.markdown(rows, unsafe_allow_html=True)
+    st.caption("Tabel gefilterd op basis van uw materiaalselectie.")
+
+st.markdown("---")
 
 if True: # not ((ss.omzet_value == ">€50M") | (ss.medewerkers_value == "250+ fte")):
     st.subheader("Waar krijgt de branche de komende jaren mee te maken?")
@@ -129,7 +233,6 @@ Wie niet tijdig inspeelt op deze regels, loopt risico’s:
         n3.markdown("Contractuele verplichtingen bedrijven aan leveranciers (data quality, emissie-info). Niet leveren = contractbreuk. ")
         n3.page_link("pages/04x_VSME.py", label = "CSRD, bij MKB via VSME", icon="➡") 
 
-    st.page_link("pages/04x_tabel.py", label = "_**>> Klik hier voor een volledig overzicht van relevante wet- en regelgeving**_")
 
 else: 
     st.title('Andere titel')

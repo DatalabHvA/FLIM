@@ -48,9 +48,9 @@ def init_session_state():
     if 'selected_materials_value' not in ss:
         ss.selected_materials_value = ['Hout - Multiplex', 'Polyurethaan', 'Wol', 'RVS 305']
     if 'df_now_prijs' not in ss:
-        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
+        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value), ss.prijzen_df)
     if 'df_now_lev' not in ss:
-        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value), ss.geo_df, ss.wgi_df)
     ensure_start_logged()
 
 # --- Google Sheets logging ---
@@ -73,8 +73,8 @@ def ensure_start_logged():
             ss._start_logged = True
 
 @st.cache_data(show_spinner=False)
-def get_prijs_kpi(materials_list):
-    variance = ss.prijzen_df.drop('Jaar', axis=1).std().rename('risk2').reset_index().rename(columns={'index': 'materiaal'})
+def get_prijs_kpi(materials_list, prijzen_df):
+    variance = prijzen_df.drop('Jaar', axis=1).std().rename('risk2').reset_index().rename(columns={'index': 'materiaal'})
     result = variance.loc[lambda d: d['materiaal'].isin(materials_list)]
     missing = set(materials_list) - set(result['materiaal'])
     if missing:
@@ -82,8 +82,8 @@ def get_prijs_kpi(materials_list):
     return result
 
 @st.cache_data(show_spinner=False)
-def get_levzeker(materials_list):
-    wgi = ss.geo_df.merge(ss.wgi_df, on='ISO').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
+def get_levzeker(materials_list, geo_df, wgi_df):
+    wgi = geo_df.merge(wgi_df, on='ISO').groupby('material').apply(lambda g: (g['market_share'] * g['governance_score']).sum()).rename('wgi_score')
     result = wgi.reset_index().loc[lambda d: d['material'].isin(materials_list)][['material', 'wgi_score']].rename(columns={'wgi_score': 'supply_risk'})
     missing = set(materials_list) - set(result['material'])
     if missing:
@@ -242,19 +242,19 @@ def widget_materialen():
         ss.selected_materials_value = ['Hout - Multiplex', 'Polyurethaan', 'Wol', 'RVS 305']
 
     if 'df_now_prijs' not in ss:
-        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
+        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value), ss.prijzen_df)
 
     if 'df_now_lev' not in ss:
-        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value), ss.geo_df, ss.wgi_df)
 
     def _sync():
         ss.selected_materials_value = ss.selected_materials_widget
-        ss.df_now_prijs = get_prijs_kpi(tuple(ss.selected_materials_value))
-        ss.df_now_lev = get_levzeker(tuple(ss.selected_materials_value))
+        ss.pop('df_now_prijs', None)
+        ss.pop('df_now_lev', None)
         log_event("sidebar", "widget_materialen", ", ".join(ss.selected_materials_value))
 
     st.multiselect(
-        "Grondstoffen en materialen",
+        "Grondstoffen en materialen (doorzoekbaar)",
         OPTIONS,
         default=ss.selected_materials_value,
         key="selected_materials_widget",

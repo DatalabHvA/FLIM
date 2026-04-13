@@ -53,7 +53,7 @@ df = (
 hhi = ss.geo_df.groupby("material").apply(lambda g: (g["market_share"] ** 2).sum()).rename("hhi")
 hhi_kpi = hhi.reset_index().loc[lambda d: d.material == ss.selected_materiaal_value].iloc[0]["hhi"]
 
-df_now = get_levzeker(tuple([ss.selected_materiaal_value]))
+df_now = get_levzeker(tuple([ss.selected_materiaal_value]), ss.geo_df, ss.wgi_df)
 wgi_kpi = df_now.iloc[0]["supply_risk"]
 
 # --- KPI tiles ---
