@@ -287,15 +287,28 @@ with st.sidebar:
 # ---------- Data (apply filters where appropriate) ----------
 # NOTE: Hook your real filters into these calls (branche/fte/omzet/etc.).
 
+# ---------- Tile layout helpers ----------
+def _desc(text: str, min_height: int = 80):
+    """Fixed-height description block so all tile charts start at the same vertical position."""
+    st.markdown(f'<div style="min-height:{min_height}px;font-size:0.875rem;line-height:1.5;margin-bottom:0.25rem">{text}</div>', unsafe_allow_html=True)
+
+def _cap(text: str, min_height: int = 55):
+    """Fixed-height caption block."""
+    st.markdown(f'<div style="min-height:{min_height}px;font-size:0.8rem;color:#888;line-height:1.4;margin-bottom:0.25rem">{text}</div>', unsafe_allow_html=True)
+
+def _wrap_labels(labels: tuple, width: int = 12) -> tuple:
+    """Insert <br> into long axis labels so they wrap instead of overlapping."""
+    import textwrap
+    return tuple("<br>".join(textwrap.wrap(str(l), width)) for l in labels)
+
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
     st.subheader("Prijsontwikkelingen")
-    st.write("De prijzen en prijsschommelingen van grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
-    st.caption("Klik op een balk voor de achterliggende informatie en toelichting.")
-    st.caption(" ")
+    _desc("De prijzen en prijsschommelingen van grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
+    _cap("Klik op een balk voor de achterliggende informatie en toelichting.")
     # --- build the bar chart (any way you like) ---
-    x = tuple(ss.df_now_prijs["materiaal"].tolist())
+    x = _wrap_labels(tuple(ss.df_now_prijs["materiaal"].tolist()))
     y_raw = (ss.df_now_prijs["risk2"] * 100).tolist()
     colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y_raw]
     y = tuple(5 if pd.isna(v) else v for v in y_raw)
@@ -337,12 +350,10 @@ def tile_prijsstijgingen(target_page):
 
 def tile_leveringszekerheid(target_page):
     st.subheader("Leveringszekerheid")
-    
-    st.write("De leveringszekerheid van grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
-    st.caption("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
-    st.caption(" ")
+    _desc("De leveringszekerheid van grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
+    _cap("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
 
-    x = tuple(ss.df_now_lev["material"].tolist())
+    x = _wrap_labels(tuple(ss.df_now_lev["material"].tolist()))
     y = tuple(ss.df_now_lev["supply_risk"].tolist())
     fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
 
@@ -368,26 +379,18 @@ def tile_leveringszekerheid(target_page):
 def tile_klantvraag_overheid(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
-        st.write("Publieke markt verschuift: van lineair naar circulair")
+        _desc("Publieke markt verschuift: van lineair naar circulair", min_height=75)
         #st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         fig = make_klantvraag_overheid_plot()
-
-        clicks = plotly_events(
-            fig,
-            click_event=True, hover_event=False, select_event=False,
-            override_height=CHART_HEIGHT, override_width="100%",
-            key=f"evt_klantvraag_onderwijs_{ss.events_epoch}"
-        )
-        if clicks:
-            st.switch_page(target_page)
-        if st.button("Bekijk informatie over klantvraag", width = 'stretch'):
+        st.plotly_chart(fig, width='stretch', config={"staticPlot": True, "displayModeBar": False})
+        if st.button("Bekijk informatie over klantvraag", width='stretch'):
             st.switch_page(target_page)
         #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_klantvraag_B(target_page: str):
     with st.container(border=False):
         st.subheader("Klantvraag")
-        st.write("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.")
+        _desc("De vraag naar meubels met focus op kwaliteit, levensduur en repareerbaarheid groeit dubbel zo hard als de normale meubelmarkt.", min_height=75)
         #st.caption("Klik op een punt in de grafiek om meer te weten te komen over de ontwikkelingen in de klantvraag en andere marktontwikkelingen.")
         if ss.klanttype_value == 'B2C':
             fig = make_klantvraag_scatter_b2c(ss.klantvraag_df_b2c)
@@ -395,25 +398,18 @@ def tile_klantvraag_B(target_page: str):
             fig = make_klantvraag_scatter_b2b(ss.klantvraag_df_b2b)
         fig.update_layout(**COMMON_LAYOUT,
             legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
+            height=CHART_HEIGHT,
             )
-
-        clicks = plotly_events(
-            fig,
-            click_event=True, hover_event=False, select_event=False,
-            override_height=CHART_HEIGHT, override_width="110%",
-            key=f"evt_klantvraag_{ss.events_epoch}"
-        )
-        if clicks:
-            st.switch_page(target_page)
-        if st.button("Bekijk informatie over klantvraag", width = 'stretch'):
+        st.plotly_chart(fig, width='stretch', config={"staticPlot": True, "displayModeBar": False})
+        if st.button("Bekijk informatie over klantvraag", width='stretch'):
             st.switch_page(target_page)
         #st.caption('De grafiek vergelijkt de verwachte groei van het meubelsegment gericht op kwaliteit, duurzaamheid en repareerbaarheid (groene lijn) met die van de totale markt (zwarte lijn).')
 
 def tile_wetgeving(target_page: str):
     with st.container(border=False):
         st.subheader("Wet- en regelgeving")
-        st.write("De wet- en regelgeving verandert voor de meubelbranche. De komende jaren gaan er strengere normen en eisen gesteld worden aan materiaal- en ontwerpkeuzes.")
-        st.caption("Klik op de button onder de visual om meer te weten te komen over de ontwikkelingen in de Nederlandse en Europese wet- en regelgeving.")
+        _desc("De wet- en regelgeving verandert voor de meubelbranche. De komende jaren gaan er strengere normen en eisen gesteld worden aan materiaal- en ontwerpkeuzes.")
+        _cap("Klik op de button onder de visual om meer te weten te komen over de ontwikkelingen in de Nederlandse en Europese wet- en regelgeving.")
         
     # --- Stijl voor de niet-klikbare knop ---
     st.markdown("""
@@ -446,8 +442,8 @@ def tile_wetgeving(target_page: str):
 def tile_profilering(target_page):
     with st.container(border=False):
         st.subheader("Bedrijfsprofilering")
-        st.write('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.')
-        with st.container(border = True):
+        _desc('Duurzame ambities zonder duidelijke positionering blijven onzichtbaar voor klanten, opdrachtgevers en medewerkers.', min_height=75)
+        with st.container(border=True, height=CHART_HEIGHT):
             st.image('assets/Tegel - profilering.png')
         if st.button("Bekijk informatie over bedrijfsprofilering", width = 'stretch'):
             st.switch_page(target_page)
@@ -455,8 +451,8 @@ def tile_profilering(target_page):
 def tile_subsidies(target_page):
     with st.container(border=False):
         st.subheader("Subsidies")
-        st.write('Er wordt financiële ondersteuning geboden vanuit de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.')
-        with st.container(border = True):
+        _desc('Er wordt financiële ondersteuning geboden vanuit de Nederlandse overheid en de Europese Unie voor innovaties op gebied van materialen, ontwerp en processen.', min_height=75)
+        with st.container(border=True, height=CHART_HEIGHT):
             st.image('assets/Tegel - subsidies.png')
         if st.button("Bekijk informatie over subsidies", width = 'stretch'):
                 st.switch_page(target_page)
