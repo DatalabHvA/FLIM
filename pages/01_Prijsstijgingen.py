@@ -63,6 +63,73 @@ st.markdown("""
     (bron: investingnomads.nl).
             """)
 
+# Plot
+fig = go.Figure()
+
+# Original data
+fig.add_trace(go.Scatter(
+    x=x_labels,
+    y=y,
+    mode='lines+markers',
+    name=f"Historische prijs van {ss.selected_materiaal_value}",
+    line=dict(color='blue', width=3),
+    marker=dict(size=6)
+))
+
+# Trendline
+fig.add_trace(go.Scatter(
+    x=x_labels,
+    y=y_fit,
+    mode='lines',
+    name='Trendlijn',
+    line=dict(color='red', dash='dash')
+))
+
+# ±1σ prediction band
+fig.add_trace(go.Scatter(
+    x=list(x_labels) + list(x_labels[::-1]),
+    y=list(ci_upper) + list(ci_lower[::-1]),
+    fill='toself',
+    fillcolor='rgba(0,100,255,0.2)',
+    line=dict(color='rgba(255,255,255,0)'),
+    hoverinfo="skip",
+    name='Spreiding (±1σ)'
+))
+
+
+
+for e in events:
+    x = pd.to_datetime(e["date"])
+    fig.add_shape(
+        type="line",
+        x0=x, x1=x,
+        y0=0, y1=1,
+        xref="x", yref="paper",          # y in [0..1] over hele plothoogte
+        line=dict(color=e["color"], width=e["width"], dash=e["dash"]),
+        opacity=0.7,
+    )
+    fig.add_annotation(
+        x=x, y=1, xref="x", yref="paper",
+        text=e["label"],
+        showarrow=False,
+        xanchor="left",
+        yanchor="bottom",
+        bgcolor="white",
+        bordercolor=e["color"],
+        borderwidth=1,
+        opacity=0.9,
+    )
+
+# Layout
+fig.update_layout(
+    xaxis_title="Jaar",
+    yaxis_title="Producentenprijsindex (2015 = 100)",
+    template="plotly_white",
+    **COMMON_LAYOUT,
+)
+
+st.plotly_chart(fig, width='stretch')
+
 # Ensure datetime
 x_dt = pd.to_datetime(filtered_df['Jaar'])
 
@@ -138,73 +205,6 @@ events = [
 ]
 
 #Mogelijke dash opties: "solid", "dot", "dash", "longdash", "dashdot", "longdashdot"
-
-# Plot
-fig = go.Figure()
-
-# Original data
-fig.add_trace(go.Scatter(
-    x=x_labels,
-    y=y,
-    mode='lines+markers',
-    name=f"Historische prijs van {ss.selected_materiaal_value}",
-    line=dict(color='blue', width=3),
-    marker=dict(size=6)
-))
-
-# Trendline
-fig.add_trace(go.Scatter(
-    x=x_labels,
-    y=y_fit,
-    mode='lines',
-    name='Trendlijn',
-    line=dict(color='red', dash='dash')
-))
-
-# ±1σ prediction band
-fig.add_trace(go.Scatter(
-    x=list(x_labels) + list(x_labels[::-1]),
-    y=list(ci_upper) + list(ci_lower[::-1]),
-    fill='toself',
-    fillcolor='rgba(0,100,255,0.2)',
-    line=dict(color='rgba(255,255,255,0)'),
-    hoverinfo="skip",
-    name='Spreiding (±1σ)'
-))
-
-
-
-for e in events:
-    x = pd.to_datetime(e["date"])
-    fig.add_shape(
-        type="line",
-        x0=x, x1=x,
-        y0=0, y1=1,
-        xref="x", yref="paper",          # y in [0..1] over hele plothoogte
-        line=dict(color=e["color"], width=e["width"], dash=e["dash"]),
-        opacity=0.7,
-    )
-    fig.add_annotation(
-        x=x, y=1, xref="x", yref="paper",
-        text=e["label"],
-        showarrow=False,
-        xanchor="left",
-        yanchor="bottom",
-        bgcolor="white",
-        bordercolor=e["color"],
-        borderwidth=1,
-        opacity=0.9,
-    )
-
-# Layout
-fig.update_layout(
-    xaxis_title="Jaar",
-    yaxis_title="Producentenprijsindex (2015 = 100)",
-    template="plotly_white",
-    **COMMON_LAYOUT,
-)
-
-st.plotly_chart(fig, width='stretch')
 
 # Toelichtende tekst onder grafiek
 st.markdown("""
