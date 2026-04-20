@@ -85,7 +85,7 @@ def bar_colors(values):
 # --- Figure builders (cached) ---
 
 @st.cache_data(show_spinner=False)
-def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
+def make_levzeker_bar_figure(x_labels: tuple, x_display: tuple, y: tuple, C_LAYOUT):
     colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v >= 0.6 else "#ffbf00" if v >= 0.45 else "#d62728" for v in y]
     y_plot = tuple(0.05 if pd.isna(v) else v for v in y)
     hover = ["Geen data beschikbaar" if pd.isna(v) else f"Zekerheid: {v:.2f}" for v in y]
@@ -98,9 +98,10 @@ def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
     fig.update_layout(
         xaxis_title=None, yaxis_title="Index", showlegend=False,
         margin=dict(l=40, r=5, t=20, b=60),
-        xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10, categoryorder="category ascending"),
+        xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10,
+                   categoryorder="category ascending", tickvals=list(x_labels), ticktext=list(x_display)),
         yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
-        height = CHART_HEIGHT
+        height=CHART_HEIGHT
     )
 
     fig.update_yaxes(
@@ -308,7 +309,8 @@ def tile_prijsstijgingen(target_page):
     _desc("De prijzen en prijsschommelingen van grondstoffen en materialen zijn de afgelopen 10 jaar toegenomen.")
     _cap("Klik op een balk voor de achterliggende informatie en toelichting.")
     # --- build the bar chart (any way you like) ---
-    x = _wrap_labels(tuple(ss.df_now_prijs["materiaal"].tolist()))
+    x_orig = tuple(ss.df_now_prijs["materiaal"].tolist())
+    x_wrapped = _wrap_labels(x_orig)
     y_raw = (ss.df_now_prijs["risk2"] * 100).tolist()
     colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y_raw]
     y = tuple(5 if pd.isna(v) else v for v in y_raw)
@@ -316,17 +318,18 @@ def tile_prijsstijgingen(target_page):
 
     fig = go.Figure(
         go.Bar(
-            x=x, y=y, marker_color=colors,
+            x=x_orig, y=y, marker_color=colors,
             customdata=hover,
             hovertemplate="<b>%{x}</b><br>%{customdata}<extra></extra>"
         )
     )
-    fig.update_layout(height=CHART_HEIGHT, 
-                      xaxis_title=None, 
-                      yaxis_title="Prijsvariatie t.o.v. 2015 (%)", 
+    fig.update_layout(height=CHART_HEIGHT,
+                      xaxis_title=None,
+                      yaxis_title="Prijsvariatie t.o.v. 2015 (%)",
                       showlegend=False,
                       margin=dict(l=40, r=5, t=20, b=60),
-                      xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10, categoryorder="category ascending"),
+                      xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10,
+                                 categoryorder="category ascending", tickvals=list(x_orig), ticktext=list(x_wrapped)),
                       yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
 )
 
@@ -353,9 +356,9 @@ def tile_leveringszekerheid(target_page):
     _desc("De leveringszekerheid van grondstoffen in de meubelindustrie afgenomen door geopolitieke spanningen en schaarste in aanbod op de markt.")
     _cap("Klik op een balk om de wereldwijde grondstofspreiding en de onderbouwing van de risicoscore te zien volgens de World Governance Indicatoren.")
 
-    x = _wrap_labels(tuple(ss.df_now_lev["material"].tolist()))
+    x_orig = tuple(ss.df_now_lev["material"].tolist())
     y = tuple(ss.df_now_lev["supply_risk"].tolist())
-    fig = make_levzeker_bar_figure(x, y, COMMON_LAYOUT)  # cached
+    fig = make_levzeker_bar_figure(x_orig, _wrap_labels(x_orig), y, COMMON_LAYOUT)  # cached
 
     fig.update_layout(yaxis_title="Stabiliteit van productielanden (WGI)")
 
