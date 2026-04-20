@@ -85,7 +85,7 @@ def bar_colors(values):
 # --- Figure builders (cached) ---
 
 @st.cache_data(show_spinner=False)
-def make_levzeker_bar_figure(x_labels: tuple, x_display: tuple, y: tuple, C_LAYOUT):
+def make_levzeker_bar_figure(x_labels: tuple, y: tuple, C_LAYOUT):
     colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v >= 0.6 else "#ffbf00" if v >= 0.45 else "#d62728" for v in y]
     y_plot = tuple(0.05 if pd.isna(v) else v for v in y)
     hover = ["Geen data beschikbaar" if pd.isna(v) else f"Zekerheid: {v:.2f}" for v in y]
@@ -97,9 +97,9 @@ def make_levzeker_bar_figure(x_labels: tuple, x_display: tuple, y: tuple, C_LAYO
     )
     fig.update_layout(
         xaxis_title=None, yaxis_title="Index", showlegend=False,
-        margin=dict(l=40, r=5, t=20, b=60),
-        xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10,
-                   categoryorder="category ascending", tickvals=list(x_labels), ticktext=list(x_display)),
+        margin=dict(l=40, r=5, t=20, b=80),
+        xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=10), title_standoff=10,
+                   categoryorder="category ascending", tickangle=-35),
         yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
         height=CHART_HEIGHT
     )
@@ -297,11 +297,6 @@ def _cap(text: str, min_height: int = 55):
     """Fixed-height caption block."""
     st.markdown(f'<div style="min-height:{min_height}px;font-size:0.8rem;color:#888;line-height:1.4;margin-bottom:0.25rem">{text}</div>', unsafe_allow_html=True)
 
-def _wrap_labels(labels: tuple, width: int = 12) -> tuple:
-    """Insert <br> into long axis labels so they wrap instead of overlapping."""
-    import textwrap
-    return tuple("<br>".join(textwrap.wrap(str(l), width)) for l in labels)
-
 # ---------- Tiles ----------
 
 def tile_prijsstijgingen(target_page):
@@ -310,7 +305,6 @@ def tile_prijsstijgingen(target_page):
     _cap("Klik op een balk voor de achterliggende informatie en toelichting.")
     # --- build the bar chart (any way you like) ---
     x_orig = tuple(ss.df_now_prijs["materiaal"].tolist())
-    x_wrapped = _wrap_labels(x_orig)
     y_raw = (ss.df_now_prijs["risk2"] * 100).tolist()
     colors = ["#bfbfbf" if pd.isna(v) else "#2ca02c" if v <= 10 else "#ffbf00" if v <= 20 else "#d62728" for v in y_raw]
     y = tuple(5 if pd.isna(v) else v for v in y_raw)
@@ -327,9 +321,9 @@ def tile_prijsstijgingen(target_page):
                       xaxis_title=None,
                       yaxis_title="Prijsvariatie t.o.v. 2015 (%)",
                       showlegend=False,
-                      margin=dict(l=40, r=5, t=20, b=60),
-                      xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10,
-                                 categoryorder="category ascending", tickvals=list(x_orig), ticktext=list(x_wrapped)),
+                      margin=dict(l=40, r=5, t=20, b=80),
+                      xaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=10), title_standoff=10,
+                                 categoryorder="category ascending", tickangle=-35),
                       yaxis=dict(showline=True, linecolor="black", mirror=True, tickfont=dict(size=11), title_standoff=10),
 )
 
@@ -358,7 +352,7 @@ def tile_leveringszekerheid(target_page):
 
     x_orig = tuple(ss.df_now_lev["material"].tolist())
     y = tuple(ss.df_now_lev["supply_risk"].tolist())
-    fig = make_levzeker_bar_figure(x_orig, _wrap_labels(x_orig), y, COMMON_LAYOUT)  # cached
+    fig = make_levzeker_bar_figure(x_orig, y, COMMON_LAYOUT)  # cached
 
     fig.update_layout(yaxis_title="Stabiliteit van productielanden (WGI)")
 
