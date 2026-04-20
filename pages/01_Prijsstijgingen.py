@@ -221,5 +221,3 @@ st.markdown("""
     Een sterke **schommeling** zorgt voor **onzekerheid in kosten**. Dit heeft invloed op het margedruk, prijsbeleid en contractafspraken.
 
             """)
-
-
