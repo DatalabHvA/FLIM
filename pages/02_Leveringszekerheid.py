@@ -41,7 +41,7 @@ st.caption(f"Gefilterd op materiaal: **{ss.selected_materiaal_value}**")
 st.markdown(
     "Leveringszekerheid geeft aan hoe **betrouwbaar** en **stabiel** de aanvoer van een materiaal is. "
     "De kaart en indicatoren zijn gebaseerd op de landen die dit materiaal naar **Nederland exporteren** (op basis van UN Comtrade-data). "
-    "De twee indicatoren bepalen samen het risico: de **concentratie van exportlanden (HHI)** en de **bestuurlijke stabiliteit van die landen (WGI)**."
+    "Twee indicatoren bepalen samen het risico: de **concentratie van exportlanden (HHI)** en de **bestuurlijke stabiliteit van die landen (WGI)**."
 )
 
 # --- Data ---
@@ -102,3 +102,24 @@ with st.expander("Meer uitleg over HHI en WGI"):
         """
     )
 
+# --- Map ---
+st.markdown(
+    "De kaart toont de landen die dit materiaal naar **Nederland exporteren**, ingekleurd op **bestuurlijke stabiliteit** (WGI-score): "
+    "**groen** = hoge zekerheid, **rood** = lage zekerheid."
+)
+
+fig = px.choropleth(
+    df, locations="ISO", color="governance_score",
+    color_continuous_scale=["#d62728", "#ffbf00", "#2ca02c"],
+    range_color=(0, 1), projection="natural earth",
+    hover_name="country",
+    hover_data={"ISO": False, "market_share": ":.2f", "governance_score": ":.2f"},
+    labels={"market_share": "Aandeel export naar NL", "governance_score": "WGI-score"},
+)
+fig.update_layout(
+    height=600, margin=dict(l=10, r=10, t=30, b=10),
+    coloraxis_colorbar=dict(title="Zekerheid"),
+)
+st.plotly_chart(fig, width='stretch')
+
+st.caption("Bron exportdata: UN Comtrade. Marktaandelen zijn berekend op basis van exportwaarde naar Nederland.")
