@@ -397,7 +397,7 @@ with st.expander("**3. Ketenprofilering**"):
 
 with st.expander("**4. Employer branding**"):
     st.header("Employer branding")
-    st.write("Naast positionering richting markt en keten wordt duurzame profilering als werkgever steeds belangrijker voor het aantrekken en behouden van medewerkers. Dit wordt aangeduid als employer branding (werkgeversimago): de manier waarop een organisatie haar duurzame propositie, ambities en maatschappelijke bijdrage inzet om talent aan te trekken, te binden en te motiveren.")
+    st.write("Naast positionering richting markt en keten wordt duurzame profilering richting werknemers ook steeds belangrijker voor het aantrekken en behouden van  medewerkers. Dit wordt 'employer branding'  (werkgeversimago) genoemd en is de manier waarop een organisatie haar duurzame  propositie, ambities en maatschappelijke bijdrage inzet om talent aan te  trekken, binden en motiveren.")
     st.markdown("""
                 <div style="
                     font-size: 26px;
